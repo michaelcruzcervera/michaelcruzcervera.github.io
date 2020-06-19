@@ -262,26 +262,35 @@ void main() {
     );
     camera.position.z = 100;
 
+    scene.add(new THREE.AmbientLight(0x000055));
+var light = new THREE.PointLight( 0xffcc77, 1);
+//scene.add(light);
+light.position.z = 0;
+light.position.x = -3;
+light.position.y = 1;
+
+    var uniforms = THREE.UniformsUtils.merge(
+            [THREE.UniformsLib['lights'],
+            {
+              diffuse: {type: 'c', value: new THREE.Color(0x0000ff)}
+            }
+            ]
+        )
+
     // create a wireframe material
     material = new THREE.ShaderMaterial( {
-uniforms: {
+uniforms: {uniforms,
     color1: {
       value: new THREE.Color("black")
     },
     color2: {
       value: new THREE.Color("purple")
-    },
-tExplosion: {
-type: "t",
-value: THREE.ImageUtils.loadTexture( 'explosion.png' )
-},
-time: { // float initialized to 0
-type: "f",
-value: 0.0
-}
+    }
 },
 vertexShader: document.getElementById( 'vertexShader' ).textContent,
-fragmentShader: document.getElementById( 'fragmentShader' ).textContent
+fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
+
+
 } );
 
     // create a sphere and assign the material
