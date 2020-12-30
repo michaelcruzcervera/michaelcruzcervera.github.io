@@ -14,7 +14,10 @@ body
 
 section
 {
-  padding: 100px;
+  padding-left: 150px;
+  padding-right: 150px;
+  padding-top: 80px;
+  padding-bottom: 50px;
   opacity: 1;
 }
 
@@ -121,6 +124,7 @@ header ul li {
 header ul li a {
   position: relative;
   display: inline-block;
+  padding: 2px;
   margin: 0 15px;
   color: #fff;
   text-decoration: none;
@@ -178,6 +182,8 @@ header ul li a:hover:after {
 {
   display: flex;
   justify-content: space-between;
+  max-width: 800px;
+  margin: auto;
 }
 .contentBx
 {
@@ -188,11 +194,48 @@ header ul li a:hover:after {
   font-size: 24px;
   margin-bottom: 10px;
 }
-
 .w50
 {
-  min-width: 50%
+  position: relative;
+  min-width: 300px;
+  max-width: 50%;
+  min-height: 300px;
 }
+#bust
+{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+  min-width: 400px;
+  min-width: 400px;
+  width: 100%;
+  height: 100%;
+}
+.circle
+  {
+    position:absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+
+    border-radius: 50%;
+    background-color: lightblue;
+    width: 150px;
+    height: 150px;
+  }
+
 .about img
 {
   max-width: 50%;
@@ -213,13 +256,13 @@ img
 .work .content
 {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
 }
 .work .content .workBx
 {
-  width: 45%;
-  padding: 20px;
+  flex: 0 50%;
+  box-sizing: border-box;
+  padding: 10px;
 }
 
 .work .content .workBx img
@@ -237,35 +280,79 @@ img
 }
 .contact ul li a
 {
-  position: relative;
   width: 60px;
   height: 60px;
-  display: flex;
-  background: #fff;
-  padding: 10px;
-  margin: 20px;
-  text-decoration: none;
-  border-radius: 60%;
-  color: #e2e2e2;
-  box-shadow: inset -1px -1px 2px rgba(0,0,0,0.2), 2px 2px 5px rgba(0,0,0,0.2);
-  transition: 0.5s;
+  background-color: #fff;
+  text-align: center;
+  line-height: 80px;
+  font-size: 35px;
+  margin: 0 10px;
+  display: block;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid #fff;
+  z-index: 1;
 }
 
-.contact ul li a:hover
+.contact ul li a img
 {
-  color: #999;
-  transform: translateY(-5px);
-  box-shadow: inset -1px -1px 2px rgba(0,0,0,0.2), 2px 12px 5px rgba(0,0,0,0.1);
+  position: relative;
+  transition: .5s;
+  z-index: 3;
 }
+
+.contact ul li a:hover img{
+  filter: invert(1);
+  transform: rotateY(360deg);
+}
+
+
 .contact ul li a:before
 {
-  content: '';
+  content: "";
   position: absolute;
-  top: 10px;
-  left: 10px;
-  right: 10px;
-  bottom: 10px;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
+  background: #f00;
+  transition: .5s;
+  z-index: 2;
+}
+
+
+.contact ul li a {
+  position: relative;
+  color: #262626;
+  transition: .5s;
+  z-index: 3;
+}
+
+
+.contact ul li a:hover:before {
+  top: 0;
+}
+
+.contact ul li:nth-child(1) a:before{
+  background: #0077b5;
+}
+
+.contact ul li:nth-child(2) a:before{
+  background: #6e5494;
+}
+
+.contact ul li:nth-child(3) a:before{
+  background: #c4302b;
+}
+
+.contact ul li:nth-child(4) a:before{
+  background: #3cb371;
+}
+
+.contact ul li:nth-child(5) a:before{
+  background: radial-gradient(circle at 33% 100%, #fed373 4%, #f15245 30%, #d92e7f 62%, #9b36b7 85%, #515ecf);
 }
 
 .formBx
@@ -403,6 +490,13 @@ img
     padding: 10px;
   }
 
+  .w50
+  {
+
+    max-width: 100%;
+
+  }
+
   /*Hamburger Animation*/
   header.sticky .hamburger
   {
@@ -496,10 +590,17 @@ img
   {
     padding: 20px 20px;
   }
+
   .banner
+  {
+    height: 100vh;
+  }
+
+  .container
   {
     padding: 150px 20px 100px;
   }
+
   section
   {
     padding: 100px 20px;

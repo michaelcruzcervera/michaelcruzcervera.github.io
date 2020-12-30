@@ -27,7 +27,7 @@
           $(window).on("load",function() {
             function fade() {
               var animation_height = $(window).innerHeight() * 0.7;
-              var ratio = Math.round( (1 / animation_height) * 10000 ) / 10000;
+              var ratio = Math.round( (1 / animation_height) * 10000 ) / 7000;
 
               $('section').each(function() {
 
@@ -40,14 +40,16 @@
                   if ( objectTop < windowBottom - animation_height ) {
                     $(this).css( {
                       transition: 'opacity 0.5s linear',
-                      opacity: 1
+                      opacity: 1,
+
                     } );
 
                   } else {
 
                     $(this).css( {
-                      transition: 'opacity 0.25s linear',
+                      transition: 'opacity 0.3s linear',
                       opacity: (windowBottom - objectTop) * ratio
+
                     } );
                   }
                 } else {
@@ -101,7 +103,9 @@
                 nisi ut aliquip ex ea commodo consequat.</p>
             </div>
             <div class="w50">
-              <canvas id="c"></canvas>
+              <div class="circle"></div>
+              <canvas id="bust"></canvas>
+
             </div>
             <!--
             <div class="w50">
@@ -133,12 +137,17 @@
           </div>
         </section>
         <section class="contact" id="contact">
+
           <div class="heading">
             <ul>
-              <li><a href="https://www.linkedin.com/in/michael-cruz-cervera/"><img src="images/icons/linkedin.png"></a></li>
+              <li> <a href="https://www.linkedin.com/in/michael-cruz-cervera/"><img src="images/icons/linkedin.png"></a></li>
               <li><a href="https://github.com/michaelcruzcervera"><img src="images/icons/github.png"></a></li>
+              <li><a href="https://www.youtube.com/channel/UCZ5U-x3KI8S5laVjoQJdU6w"><img src="images/icons/youtube.png"></a></li>
+              <li><a href="https://medium.com/@michaelcruzc3"><img src="images/icons/medium.png"></a></li>
+              <li><a href="https://www.instagram.com/michael_cruz_cervera/"><img src="images/icons/instagram.png"></a></li>
             </ul>
           </div>
+
           <div class="heading">
             <h2>Contact Me</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
