@@ -1,48 +1,159 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-	<title>TITLE</title>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset="UTF-8">
+      <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css"/>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="js/three.js"></script>
+        <script type="module" src="js/loader/GLTFLoader.js"></script>
+        <script src="js/scripts.js"></script>
+        <script>
+          window.addEventListener('scroll', function(){
+            var header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 0);
+          });
+
+          function toggleMenu(){
+            var menu = document.querySelector('.menu');
+            var hamburger = document.querySelector('.hamburger')
+            hamburger.classList.toggle("is-active");
+            menu.classList.toggle('active');
+          }
+
+          $(window).on("load",function() {
+            function fade() {
+              var animation_height = $(window).innerHeight() * 0.7;
+              var ratio = Math.round( (1 / animation_height) * 10000 ) / 10000;
+
+              $('section').each(function() {
+
+                var objectTop = $(this).offset().top;
+                var objectBottom = $(this).position().top + ($(this).outerHeight());
+                var windowTop = $(window).scrollTop();
+                var windowBottom = $(window).scrollTop() + $(window).innerHeight();
+
+                if ( objectTop < windowBottom && objectBottom > windowTop) {
+                  if ( objectTop < windowBottom - animation_height ) {
+                    $(this).css( {
+                      transition: 'opacity 0.5s linear',
+                      opacity: 1
+                    } );
+
+                  } else {
+
+                    $(this).css( {
+                      transition: 'opacity 0.25s linear',
+                      opacity: (windowBottom - objectTop) * ratio
+                    } );
+                  }
+                } else {
+                  $(this).css( 'opacity', 0 );
+                }
+              });
+            }
+            $('.fade').css( 'opacity', 0 );
+            fade();
+            $(window).scroll(function() {fade();});
+          });
+          </script>
+
+        <title>Personal Portfolio</title>
+      </head>
+      <body>
+        <header>
+          <a href="#" class="logo">Portfolio</a>
+          <button class="hamburger hamburger--elastic" onclick="toggleMenu();" type="button">
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
+          </button>
+          <ul class="menu">
+            <li><a href="#home" onclick="toggleMenu();">Home</a></li>
+            <li><a href="#about" onclick="toggleMenu();">About</a></li>
+            <li><a href="#work" onclick="toggleMenu();">Work</a></li>
+            <li><a href="#contact" onclick="toggleMenu();">Contact</a></li>
+          </ul>
+        </header>
+        <div class="banner" id="home">
+          <div class="container">
+            <div class="textBx">
+              <h2>Hello, I'm <br> <span>Michael Cruz</span></h2>
+              <h3>I'm a Software Engineer.</h3>
+              <a href="#about" class="btn">About Me </a>
+
+            </div>
+          </div>
+        </div>
+        <section class="about" id="about">
+          <div class="heading">
+            <h2>About Me</h2>
+          </div>
+          <div class="content">
+            <div class="contentBx w50">
+              <h3>I'm a Software Engineer.</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div class="w50">
+              <canvas id="c"></canvas>
+            </div>
+            <!--
+            <div class="w50">
+              <img src="images/profile.png" alt="Profile Picture" class="img">
+            </div>-->
+          </div>
+        </section>
+        <section class="work" id="work">
+          <div class="heading">
+            <h2>My Work</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+          </div>
+          <div class="content">
+            <div class="workBx">
+              <img src="images/placeholder.png">
+            </div>
+            <div class="workBx">
+              <img src="images/placeholder.png">
+            </div>
+            <div class="workBx">
+              <img src="images/placeholder.png">
+            </div>
+            <div class="workBx">
+              <img src="images/placeholder.png">
+            </div>
+          </div>
+          <div class="heading">
+            <a href="#" class="btn">View More</a>
+          </div>
+        </section>
+        <section class="contact" id="contact">
+          <div class="heading">
+            <ul>
+              <li><a href="https://www.linkedin.com/in/michael-cruz-cervera/"><img src="images/icons/linkedin.png"></a></li>
+              <li><a href="https://github.com/michaelcruzcervera"><img src="images/icons/github.png"></a></li>
+            </ul>
+          </div>
+          <div class="heading">
+            <h2>Contact Me</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+          </div>
+            <div class="formBx">
+              <form class="" action="index.html" method="post">
+                <h3>Message Me</h3>
+                <input type="text" name="Full Name" value="Full Name">
+                <input type="email" name="Email" value="Email">
+                <textarea placeholder="Your Message"></textarea>
+                <input type="submit" value="Send">
+              </form>
+            </div>
+        </section>
 
 
-	<!-- Font -->
-
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CPoppins:400,500" rel="stylesheet">
-
-
-	<link href="common-css/ionicons.css" rel="stylesheet">
-
-
-	<link rel="stylesheet" href="common-css/jquery.classycountdown.css" />
-
-	<link href="03-comming-soon/css/styles.css" rel="stylesheet">
-
-	<link href="03-comming-soon/css/responsive.css" rel="stylesheet">
-
-</head>
-<body>
-
-	<div class="main-area center-text" style="background-image:url(images/Background.png);">
-
-		<div class="display-table">
-			<div class="display-table-cell">
-
-				<img src ="images/profile.png" alt="Profile Picture" style="width:150px;height:150px;">
-				<h1 class="title font-white"><b>Comming Soon</b></h1>
-				<p class="desc font-white">My Website is Currently under construction, in the meanwhile please check me out on linked in, and my projects on Github / Art Station.</p>
-
-				<ul class="social-btn font-white">
-					<li><a href="https://www.linkedin.com/in/michael-cruz-cervera/">LinkedIn</a></li>
-					<li><a href="https://github.com/michaelcruzcervera">Github</a></li>
-					<li><a href="https://www.artstation.com/michaelcruzcervera">Art Station</a></li>
-					<li><a href="mailto:michaelcruz1998@hotmail.com">Email</a></li>
-				</ul><!-- social-btn -->
-
-			</div><!-- display-table -->
-		</div><!-- display-table-cell -->
-	</div><!-- main-area -->
-
-</body>
+      </body>
 </html>
