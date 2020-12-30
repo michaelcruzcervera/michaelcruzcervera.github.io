@@ -31,9 +31,8 @@ function main() {
   gltfLoader.load('https://threejsfundamentals.org/threejs/resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf', (gltf) => {
     const root = gltf.scene;
     scene.add(root);
-
   });
-
+/*
   const boxWidth = 1;
   const boxHeight = 1;
   const boxDepth = 1;
@@ -43,12 +42,12 @@ function main() {
 
   const cube = new THREE.Mesh(geometry, material);
   scene.add(cube);
-
+*/
   function render(time) {
     time *= 0.001;  // convert time to seconds
 
-    cube.rotation.x = time;
-    cube.rotation.y = time;
+    //cube.rotation.x = time;
+    //cube.rotation.y = time;
 
     renderer.render(scene, camera);
 
