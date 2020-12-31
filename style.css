@@ -10,7 +10,8 @@ body
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
-  max-width: 100%
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 section
@@ -20,6 +21,7 @@ section
   padding-top: 80px;
   padding-bottom: 50px;
   opacity: 1;
+  min: 100vh;
 }
 
 .container
@@ -31,7 +33,8 @@ section
 .banner
 {
   position: relative;
-    height: 100vh;
+  height: 100vh;
+  min-height: 600px;
   background: lightblue;
   background-size: cover;
   background-position: right;
@@ -137,14 +140,6 @@ header.sticky ul li a
   color: #111;
 }
 
-header ul li a:hover{
-  text-shadow: 0 0 5px rgba(255,255,255,0.8),0 -4px 15px rgba(255,255,255,0.5);
-}
-
-header.sticky ul li a:hover{
-  text-shadow: 0 0 5px rgba(0,0,0,0.2);
-}
-
 header.sticky ul li a:after {
   background: #111;
 }
@@ -213,15 +208,14 @@ header ul li a:hover:after {
   margin-bottom: auto;
   margin-left: auto;
   margin-right: auto;
-
-  min-width: 400px;
-  min-width: 400px;
+  min-width: 300px;
+  min-width: 300px;
   width: 100%;
   height: 100%;
 }
 .circle
   {
-    position:absolute;
+    position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
@@ -270,20 +264,30 @@ img
 {
   max-width: 100%;
 }
-
-.contact ul
+.footer{
+  width: 100%;
+  background: #111;
+  color: #fff;
+  padding: 10px;
+}
+.footer p
+{
+  text-align: center
+}
+.footer ul
 {
   position: relative;
   display: flex;
   justify-content: center;
   list-style: none;
   padding: 50px;
+  margin: auto;
 }
-.contact ul li a
+.footer ul li a
 {
-  width: 2em;
-  height: 2em;
-  background-color: #fff;
+  width: 1.5em;
+  height: 1.5em;
+  background-color: #111;
   text-align: center;
   line-height: 80px;
   font-size: 35px;
@@ -292,24 +296,26 @@ img
   border-radius: 50%;
   position: relative;
   overflow: hidden;
-  border: 3px solid #fff;
+  border: 3px solid #111;
   z-index: 1;
+  transition:  0.3s;
 }
 
-.contact ul li a img
+.footer ul li a img
 {
+  filter: invert(1);
   position: relative;
-  transition: .5s;
+
   z-index: 3;
 }
 
-.contact ul li a:hover img{
-  filter: invert(1);
+.footer ul li a:hover img{
+  transition:  0.5s;
   transform: rotateY(360deg);
 }
 
 
-.contact ul li a:before
+.footer ul li a:before
 {
   content: "";
   position: absolute;
@@ -324,7 +330,7 @@ img
 }
 
 
-.contact ul li a {
+.footer ul li a {
   position: relative;
   color: #262626;
   transition: .5s;
@@ -332,27 +338,27 @@ img
 }
 
 
-.contact ul li a:hover:before {
+.footer ul li a:hover:before {
   top: 0;
 }
 
-.contact ul li:nth-child(1) a:before{
+.footer ul li:nth-child(1) a:before{
   background: #0077b5;
 }
 
-.contact ul li:nth-child(2) a:before{
+.footer ul li:nth-child(2) a:before{
   background: #6e5494;
 }
 
-.contact ul li:nth-child(3) a:before{
+.footer ul li:nth-child(3) a:before{
   background: #c4302b;
 }
 
-.contact ul li:nth-child(4) a:before{
+.footer ul li:nth-child(4) a:before{
   background: #3cb371;
 }
 
-.contact ul li:nth-child(5) a:before{
+.footer ul li:nth-child(5) a:before{
   background: radial-gradient(circle at 33% 100%, #fed373 4%, #f15245 30%, #d92e7f 62%, #9b36b7 85%, #515ecf);
 }
 
@@ -364,11 +370,12 @@ img
 {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .formBx form h3
 {
-
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 10px;
@@ -376,15 +383,15 @@ img
 .formBx form input,
 .formBx form textarea
 {
-  margin-bottom: 20px;
-  padding: 15px;
-  font-size: 16px;
-  background: transparent;
-  border: none;
-  outline: none;
-  background: lightgrey;
-  color: #999;
-  resize: none;
+  width: 100%;
+  max-width: 800px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
 }
 .formBx form textarea
 {
@@ -409,6 +416,50 @@ img
 .hamburger {
   all: unset;
 }
+
+/*Text Animations*/
+.wave
+{
+justify-content:center;
+align-items:center;
+font-weight:bold;max-width:300px;height:50%;
+}
+
+:root{
+  /*interstellar vars*/
+  --colors: #F2385A, #F5A503, #E9F1DF, #56D9CD, #3AA1BF;
+  --max: length($colors);
+  --dash: 70;
+  --dash-gap: 10;
+  --dash-space: $dash * ($max - 1) + $dash-gap * $max;
+  --time: 6s;
+  --time-step: $time/$max;
+}
+
+.interstellar use{
+  stroke-dasharray:30;
+  -webkit-animation: dash 10s linear infinite;
+}
+.interstellar:nth-child(2){
+  -webkit-animation: dash 10s linear infinite;
+  animation-delay: 0s;
+}
+.interstellar:nth-child(3){
+  -webkit-animation: dash 10s linear infinite;
+  animation-delay: 1s;
+}
+.interstellar:nth-child(4){
+  -webkit-animation: dash 10s linear infinite;
+  animation-delay: 2s;
+}
+
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 30;
+  }
+}
+
 
 /*Responsive */
 @media (max-width: 800px)
@@ -497,7 +548,10 @@ img
     max-width: 100%;
 
   }
-
+  .contact ul li a
+  {
+    padding: 10px;
+  }
   /*Hamburger Animation*/
   header.sticky .hamburger
   {
