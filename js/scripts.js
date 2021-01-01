@@ -57,7 +57,7 @@ function main() {
 
   function render(time) {
     time *= 0.001;  // convert time to seconds
-    
+
     if (resizeRendererToDisplaySize(renderer)) {
       const canvas = renderer.domElement;
       camera.aspect = canvas.clientWidth / canvas.clientHeight;
@@ -80,7 +80,7 @@ function onMouseMove(event, cube) {
 
   var tween = new TWEEN.Tween(cube.rotation)
                   .to({x:-this.mouse.y * 0.3 ,
-                    y: this.mouse.x * (Math.PI / 6)}, 500)
+                    y: this.mouse.x * (Math.PI / 6)}, 300)
                   .start();
 
   animate();
@@ -89,7 +89,7 @@ function onMouseMove(event, cube) {
 function onMouseLeave(event, cube) {
   var tween = new TWEEN.Tween(cube.rotation)
                   .to({x:0,
-                    y: 0}, 500)
+                    y: 0}, 600)
                   .start();
 
   animate();
