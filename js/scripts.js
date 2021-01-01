@@ -48,16 +48,6 @@ function main() {
 
   } );
 
-const boxWidth = 1;
-  const boxHeight = 2;
-  const boxDepth = 1;
-  const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
-
-  const material = new THREE.MeshPhongMaterial({color: 0x44aa88});  // greenish blue
-
-  const cube = new THREE.Mesh(geometry, material);
-  scene.add(cube);
-
   this.mouse = new THREE.Vector2(0, 0)
   mouseArea.addEventListener('mousemove', (ev) => { this.onMouseMove(ev, mesh) })
   mouseArea.addEventListener('mouseleave', (ev) => { this.onMouseLeave(ev, mesh) })
@@ -67,9 +57,7 @@ const boxWidth = 1;
 
   function render(time) {
     time *= 0.001;  // convert time to seconds
-
-    //cube.rotation.x = time;
-    //cube.rotation.y = time;
+    
     if (resizeRendererToDisplaySize(renderer)) {
       const canvas = renderer.domElement;
       camera.aspect = canvas.clientWidth / canvas.clientHeight;
@@ -90,13 +78,28 @@ function onMouseMove(event, cube) {
     y: -(event.clientY / window.innerHeight) * 2 + 1,
   }
 
-  cube.rotation.x = -this.mouse.y * 0.3 ;
-  cube.rotation.y = this.mouse.x * (Math.PI / 6);
+  var tween = new TWEEN.Tween(cube.rotation)
+                  .to({x:-this.mouse.y * 0.3 ,
+                    y: this.mouse.x * (Math.PI / 6)}, 500)
+                  .start();
+
+  animate();
 }
 
 function onMouseLeave(event, cube) {
-  cube.rotation.x = 0;
-  cube.rotation.y = 0;
+  var tween = new TWEEN.Tween(cube.rotation)
+                  .to({x:0,
+                    y: 0}, 500)
+                  .start();
+
+  animate();
+}
+
+function animate() {
+	requestAnimationFrame(animate);
+	TWEEN.update();
+
+	threeRenderer.render(scene, camera);
 }
 
 function resizeRendererToDisplaySize(renderer) {
