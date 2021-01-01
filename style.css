@@ -1,17 +1,17 @@
 
 html {
   scroll-behavior: smooth;
-  /*scroll-snap-type: y proximity;*/
 }
 
 body
 {
-  margin:0;
+  right: 0;
+  left: 0;
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
   max-width: 100%;
-  overflow-x: hidden;
 }
 
 section
@@ -27,7 +27,6 @@ section
 .container
 {
   padding: 100px;
-  /*scroll-snap-align: start;*/
 }
 
 .banner
