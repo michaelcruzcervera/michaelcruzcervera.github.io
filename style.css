@@ -1,4 +1,16 @@
 
+:root{
+  --hero-color: lightblue;
+  --black: #111;
+
+  /*interstellar Text effect*/
+  --dash: 70;
+  --dash-gap: 15;
+  --dash-space: calc(var(--dash) * ( 5 - 1 ) + var(--dash-gap) * 5);
+  --time: 13s;
+  --time-step: calc(var(--time) / 5);
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -16,30 +28,27 @@ body
 
 section
 {
-  padding-left: 150px;
-  padding-right: 150px;
-  padding-top: 80px;
-  padding-bottom: 50px;
   opacity: 1;
-  min: 100vh;
+  padding: 100px 0 50px 0;
 }
 
-.container
+section.banner
 {
-  padding: 100px;
-}
-
-.banner
-{
+  padding: 0;
   position: relative;
   height: 100vh;
   min-height: 600px;
-  background: lightblue;
+  background: var(--hero-color);
   background-size: cover;
   background-position: right;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.textBx
+{
+  padding: 100px;
 }
 
 .banner h2
@@ -192,8 +201,7 @@ header ul li a:hover:after {
 .w50
 {
   position: relative;
-  min-width: 300px;
-  max-width: 50%;
+  width: 50%;
   min-height: 300px;
 }
 #bust
@@ -203,14 +211,11 @@ header ul li a:hover:after {
   bottom: 0;
   left: 0;
   right: 0;
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
+  min-height: 300px;
   min-width: 300px;
-  min-width: 300px;
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 .circle
   {
@@ -225,7 +230,7 @@ header ul li a:hover:after {
     margin-right: auto;
 
     border-radius: 50%;
-    background-color: lightblue;
+    background-color: var(--hero-color);
     width: 150px;
     height: 150px;
   }
@@ -246,28 +251,51 @@ img
   margin-left: auto;
   margin-right: auto;
 }
-
+.work
+{
+  background: #111;
+}
+.work p
+{
+  color: #fff;
+}
 .work .content
 {
   display: flex;
   flex-wrap: wrap;
+
 }
 .work .content .workBx
 {
   flex: 0 50%;
   box-sizing: border-box;
   padding: 10px;
+
 }
 
 .work .content .workBx img
 {
   max-width: 100%;
+  border-radius: 5px;
+  transition: 0.5s;
+}
+.work .content .workBx img:hover {
+  transform: translateY(-5px);
+  transform: scale(1.03);
 }
 .footer{
   width: 100%;
-  background: #111;
+  bottom: 0;
+  background: var(--black);
   color: #fff;
-  padding: 10px;
+  padding: 0;
+  position: relative;
+  background-size: cover;
+  background-position: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 .footer p
 {
@@ -286,7 +314,7 @@ img
 {
   width: 1.5em;
   height: 1.5em;
-  background-color: #111;
+  background-color: var(--black);
   text-align: center;
   line-height: 80px;
   font-size: 35px;
@@ -295,7 +323,7 @@ img
   border-radius: 50%;
   position: relative;
   overflow: hidden;
-  border: 3px solid #111;
+  border: 3px solid var(--black);
   z-index: 1;
   transition:  0.3s;
 }
@@ -323,7 +351,7 @@ img
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: #f00;
+
   transition: .5s;
   z-index: 2;
 }
@@ -331,7 +359,6 @@ img
 
 .footer ul li a {
   position: relative;
-  color: #262626;
   transition: .5s;
   z-index: 3;
 }
@@ -421,41 +448,78 @@ img
 {
 justify-content:center;
 align-items:center;
-font-weight:bold;max-width:300px;height:50%;
+font-weight:bold;
+max-width:300px;
+height:50%;
+
 }
 
-:root{
-  /*interstellar vars*/
-  --colors: #F2385A, #F5A503, #E9F1DF, #56D9CD, #3AA1BF;
-  --max: length($colors);
-  --dash: 70;
-  --dash-gap: 10;
-  --dash-space: $dash * ($max - 1) + $dash-gap * $max;
-  --time: 6s;
-  --time-step: $time/$max;
+.interstellar
+{
+  font-weight: bold;
+  max-width:500px;
 }
-
 .interstellar use{
-  stroke-dasharray:30;
-  -webkit-animation: dash 10s linear infinite;
+  stroke-dasharray: var(--dash) var(--dash-space);
+  fill: none;
+  stroke-dashoffset: 0;
+  stroke-width: 4;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  animation: dash var(--time) infinite linear;
+  -webkit-animation: dash var(--time) infinite linear;
 }
-.interstellar:nth-child(2){
-  -webkit-animation: dash 10s linear infinite;
-  animation-delay: 0s;
+.interstellar .text1{
+  stroke: #F2385A;
+  -webkit-animation-delay: calc(var(--time-step) * -1);
+  animation-delay: calc(var(--time-step) * -1);
+
 }
-.interstellar:nth-child(3){
-  -webkit-animation: dash 10s linear infinite;
-  animation-delay: 1s;
-}
-.interstellar:nth-child(4){
-  -webkit-animation: dash 10s linear infinite;
-  animation-delay: 2s;
+.interstellar .text2{
+  stroke: #F5A503;
+  -webkit-animation-delay: calc(var(--time-step) * -2);
+
+  animation-delay: calc(var(--time-step) * -2);
+
 }
 
+.interstellar .text3{
+  stroke: #E9F1DF;
+  -webkit-animation-delay: calc(var(--time-step) * -3);
+  animation-delay: calc(var(--time-step) * -3);
+
+
+}
+
+.interstellar .text4{
+  stroke: #56D9CD;
+  -webkit-animation-delay: calc(var(--time-step) * -4);
+  animation-delay: calc(var(--time-step) * -4);
+
+
+}
+
+.interstellar .text5{
+  stroke: #3AA1BF;
+  -webkit-animation-delay: calc(var(--time-step) * -5);
+  animation-delay: calc(var(--time-step) * -5);
+
+}
+
+@-webkit-keyframes dash {
+  100% {
+    stroke-dashoffset: -moz-calc( ( var(--dash) + var(--dash-gap) ) * 5px );
+    stroke-dashoffset: -webkit-calc( ( var(--dash) + var(--dash-gap) ) * 5px );
+    stroke-dashoffset: calc( ( var(--dash) + var(--dash-gap) ) * 5px );
+  }
+}
 
 @keyframes dash {
-  to {
-    stroke-dashoffset: 30;
+  100% {
+    stroke-dashoffset: -moz-calc( ( var(--dash) + var(--dash-gap) ) * -5px );
+    stroke-dashoffset: -webkit-calc( ( var(--dash) + var(--dash-gap) ) * -5px );
+    stroke-dashoffset: calc( ( var(--dash) + var(--dash-gap) ) * -5px );
+
   }
 }
 
@@ -505,13 +569,9 @@ font-weight:bold;max-width:300px;height:50%;
   {
     padding: 100px 50px;
   }
-  .container
+  .textBx
   {
     padding: 150px 50px 100px;
-  }
-  .banner
-  {
-    height: 100vh;
   }
   .banner h2
   {
@@ -535,6 +595,10 @@ font-weight:bold;max-width:300px;height:50%;
   {
     flex-direction: column;
   }
+  .contentBx
+  {
+    padding-right: 0;
+  }
   .work .content .workBx
   {
     width: 100%;
@@ -543,9 +607,7 @@ font-weight:bold;max-width:300px;height:50%;
 
   .w50
   {
-
-    max-width: 100%;
-
+    width: auto;
   }
   .contact ul li a
   {

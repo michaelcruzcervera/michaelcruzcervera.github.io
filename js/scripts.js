@@ -53,11 +53,10 @@ function main() {
   mouseArea.addEventListener('mouseleave', (ev) => { this.onMouseLeave(ev, mesh) })
 
 
+  requestAnimationFrame(render);
 
-
-  function render(time) {
-    time *= 0.001;  // convert time to seconds
-
+  function render() {
+    TWEEN.update();
     if (resizeRendererToDisplaySize(renderer)) {
       const canvas = renderer.domElement;
       camera.aspect = canvas.clientWidth / canvas.clientHeight;
@@ -68,7 +67,7 @@ function main() {
 
     requestAnimationFrame(render);
   }
-  requestAnimationFrame(render);
+
 
 }
 
@@ -82,8 +81,6 @@ function onMouseMove(event, cube) {
                   .to({x:-this.mouse.y * 0.3 ,
                     y: this.mouse.x * (Math.PI / 6)}, 300)
                   .start();
-
-  animate();
 }
 
 function onMouseLeave(event, cube) {
@@ -91,15 +88,6 @@ function onMouseLeave(event, cube) {
                   .to({x:0,
                     y: 0}, 600)
                   .start();
-
-  animate();
-}
-
-function animate() {
-	requestAnimationFrame(animate);
-	TWEEN.update();
-
-	threeRenderer.render(scene, camera);
 }
 
 function resizeRendererToDisplaySize(renderer) {
