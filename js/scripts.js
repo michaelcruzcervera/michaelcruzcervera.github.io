@@ -17,7 +17,7 @@ function main(){
     });
     setTimeout(function(){
          window.location = goTo;
-    }, 1000);                             // time in ms
+    }, 1200);                             // time in ms
 });
 
   window.addEventListener('scroll', function(){
@@ -78,13 +78,14 @@ function fullscreenClick() {
     $(box).css({
       "position": "fixed",
       "z-index": "100000",
+      "width": width + "px",
+      "height": height + "px",
       "left": (pos.left) + "px",
       "top": (pos.top) + "px",
-      //"left": "50%",
-      "width": width + "px",
-      "height": height + "px"
+
 
     });
+
     /*
     $(image).css({
       "width":"100%",
@@ -101,10 +102,10 @@ function fullscreenClick() {
     $(box).animate({
       "top": "0",
       "left": "0",
-      "padding": "0",
-      "margin": "0",
       "height": "100vh",
-      "width": "100vw"
+      "width": "100vw",
+      "padding": "0",
+      "margin":"0"
 
     }, 800);
 
