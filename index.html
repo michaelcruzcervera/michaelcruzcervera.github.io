@@ -12,58 +12,6 @@
         <script src="./js/libs/tween.js"></script>
         <script type="module" src="js/loader/GLTFLoader.js"></script>
         <script src="js/scripts.js"></script>
-        <script>
-          window.addEventListener('scroll', function(){
-            var header = document.querySelector('header');
-            header.classList.toggle('sticky', window.scrollY > 0);
-          });
-
-          function toggleMenu(){
-            var menu = document.querySelector('.menu');
-            var hamburger = document.querySelector('.hamburger')
-            hamburger.classList.toggle("is-active");
-            menu.classList.toggle('active');
-          }
-
-          $(window).on("load",function() {
-            function fade() {
-              var animation_height = $(window).innerHeight() * 0.3;
-              var ratio = Math.round( (1 / animation_height) * 10000 ) / 5000;
-
-              $('section').each(function() {
-
-                var objectTop = $(this).offset().top;
-                var objectBottom = $(this).position().top + ($(this).outerHeight()) - 150 ;
-                var windowTop = $(window).scrollTop()-10;
-                var windowBottom = $(window).scrollTop() + $(window).innerHeight() - 150 ;
-
-                if ( objectTop < windowBottom && objectBottom > windowTop) {
-                  if ( objectTop < windowBottom - animation_height ) {
-                    $(this).css( {
-                      transition: 'opacity 0.5s linear',
-                      opacity: 1,
-
-                    } );
-
-                  } else {
-
-                    $(this).css( {
-                      transition: 'opacity 0.1s linear',
-                      opacity: (windowBottom - objectTop) * ratio
-
-                    } );
-                  }
-                } else {
-                  $(this).css( 'opacity', 0 );
-                }
-              });
-            }
-            $('.fade').css( 'opacity', 0 );
-            fade();
-            $(window).scroll(function() {fade();});
-          });
-          </script>
-
         <title>Personal Portfolio</title>
       </head>
       <body>
@@ -105,6 +53,8 @@
               <div class="circle"></div>
               <canvas id="bust"></canvas>
 
+
+
             </div>
             <!--
             <div class="w50">
@@ -128,17 +78,25 @@
             <p>Have a look at some of my previous work.</p>
           </div>
           <div class="content">
-            <div class="workBx">
+            <div class="workBx" >
+              <a class="with-transition" href="pages/work.html" >
               <img src="images/placeholder.png">
+              </a>
             </div>
             <div class="workBx">
+              <a class="with-transition" href="pages/work.html" >
               <img src="images/placeholder.png">
+              </a>
             </div>
             <div class="workBx">
+              <a class="with-transition" href="pages/work.html" >
               <img src="images/placeholder.png">
+              </a>
             </div>
             <div class="workBx">
+              <a class="with-transition" href="pages/work.html" >
               <img src="images/placeholder.png">
+              </a>
             </div>
           </div>
           <div class="heading">
