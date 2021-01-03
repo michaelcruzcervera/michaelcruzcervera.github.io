@@ -29,7 +29,7 @@ body
 section
 {
   opacity: 1;
-  padding: 100px 0 50px 0;
+  padding: 100px 50px 50px 50px;
 }
 
 section.banner
@@ -44,6 +44,24 @@ section.banner
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: -2;
+}
+
+section.banner img
+{
+  position: absolute;
+  height: 100vh;
+  max-height: 100vh;
+  width: 100%;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  object-fit: none;
+  background-position: center center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  z-index: -1;
 }
 
 .textBx
@@ -51,12 +69,25 @@ section.banner
   padding: 100px;
 }
 
+.workTitle
+{
+  margin-top: 60vh;
+  padding: 100px;
+}
+
+.banner h1
+{
+  color: #fff;
+  font-size: 3em;
+  font-weight: 700;
+}
+
 .banner h2
 {
   font-size: 3em;
   color: #fff;
   font-weight: 500;
-  line-height: 1.5em
+  line-height: 1.5em;
 }
 .banner h2 span
 {
@@ -252,14 +283,14 @@ header ul li a:hover:after {
   margin-left: auto;
   margin-right: auto;
 }
-
+/*
 img
 {
   max-width: 100%;
   display: block;
   margin-left: auto;
   margin-right: auto;
-}
+}*/
 .work
 {
   background: #111;
@@ -276,21 +307,39 @@ img
 }
 .work .content .workBx
 {
+  position: relative;
   flex: 0 50%;
   box-sizing: border-box;
   padding: 10px;
-
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
 }
 
 .work .content .workBx img
 {
-  max-width: 100%;
+  background: white;
+  width: 100%;
+  height: 100%;
   border-radius: 5px;
   transition: 0.5s;
   object-fit: none;
   background-position: center center;
+  margin-left: auto;
+  margin-right: auto;
   background-repeat: no-repeat;
   overflow: hidden;
+}
+
+.work .content .workBx h2
+{
+  position: absolute;
+  bottom: 0px;
+  left: 25px;
+  font-size: 2em;
+  color: #111;
+  font-weight: 500;
+  line-height: 1.5em;
 }
 
 .work .content .workBx:hover img{
@@ -539,6 +588,92 @@ height:50%;
   }
 }
 
+.intro
+{
+  position: absolute;
+  left:0;
+  width: 100%;
+  height: 100%;
+}
+.intro .background
+{
+  position: absolute;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background: lightgreen;
+  z-index: 10000;
+  animation: slide 5s ease-in forwards;
+}
+
+@keyframes slide {
+  25% {
+    left: 0;
+  }
+  50%, 75%{
+    left:-50vw;
+  }
+  100% {
+    left:-100vw;
+  }
+}
+
+svg.hi {
+  background: linear-gradient(135deg, #aa3bb1, #582a7e);
+  max-width: 50%;
+  position: absolute;
+  font-size: 4em;
+  left:0;
+  right: 0;
+  top:0;
+  bottom: 0;
+  margin: auto;
+  .text {
+    display: none;
+  }
+  &.go {
+    .text {
+      font-family: Arial, sans-serif;
+      font-size: 20px;
+      font-weight: bold;
+      text-transform: uppercase;
+      display: block;
+    }
+    .text-stroke {
+      fill: none;
+      stroke: #51256f;
+      stroke-width: 2.8px;
+      stroke-dashoffset: -900;
+      stroke-dasharray: 900;
+      stroke-linecap: butt;
+      stroke-linejoin: round;
+      animation: dashfill 2.5s ease-in-out forwards;
+    }
+    .text-stroke:nth-child(2) {
+      animation-delay: .3s;
+    }
+    .text-stroke:nth-child(3) {
+      animation-delay: .9s;
+    }
+    .text-stroke-2 {
+      stroke: #f6bdfa;
+      animation-delay: 1.2s;
+    }
+    .text-stroke:nth-child(5) {
+      animation-delay: 1.5s;
+    }
+    .text-stroke:nth-child(6) {
+      animation-delay: 1.8s;
+    }
+  }
+}
+
+@keyframes dashfill {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
 @keyframes animate_in {
   0%{
     transform: translateY(50px);
@@ -593,7 +728,7 @@ height:50%;
   }
   section
   {
-    padding: 100px 50px;
+    padding: 100px 100px 50px 100px;
   }
   section div:before
   {
@@ -629,6 +764,7 @@ height:50%;
   {
     padding-right: 0;
   }
+
   .work .content .workBx
   {
     width: 100%;
@@ -749,7 +885,7 @@ height:50%;
 
   section
   {
-    padding: 100px 20px;
+    padding: 100px 50px 20px 50px;
   }
 }
 

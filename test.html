@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+      <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css"/>
+        <link rel="icon" href="images/icons/m.png">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="js/scripts.js"></script>
+        <title>Personal Portfolio</title>
+      </head>
+      <body>
+        <div class="intro">
+          <div class="background"></div>
+            <svg class="hi go" viewbox="0 0 200 200">
+              <text text-anchor="center" x="10" y="50" class="text text-stroke" clip-path="url(#text1)">Hi</text>
+              <text text-anchor="center" x="10" y="50" class="text text-stroke text-stroke-2" clip-path="url(#text1)">Hi</text>
+              <defs>
+                <clipPath id="text1">
+                  <text text-anchor="center" x="10" y="50" class="text">Hi</text>
+                </clipPath>
+                </defs
+              </svg>
+          </div>
+        <header>
+          <a href="#" class="logo">Portfolio</a>
+          <button class="hamburger hamburger--elastic" onclick="toggleMenu();" type="button">
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
+          </button>
+          
+          <ul class="menu">
+
+            <li><a href="#home" onclick="toggleMenu();">Home</a></li>
+            <li><a href="#about" onclick="toggleMenu();">About</a></li>
+            <li><a href="#work" onclick="toggleMenu();">Work</a></li>
+            <li><a href="#contact" onclick="toggleMenu();">Contact</a></li>
+          </ul>
+        </header>
+
+        <section class="banner" id="home">
+            <div class="textBx">
+              <h2>Hello, I'm <br> <span>Michael Cruz</span></h2>
+              <h3>I'm a Software Engineer.</h3>
+              <a href="#about" class="btn">About Me </a>
+
+            </div>
+        </section>
+        <section class="about" id="about">
+          <div class="heading">
+            <h2>About Me</h2>
+          </div>
+          <div class="content">
+            <div class="contentBx w50">
+              <h3>I'm a Software Engineer.</h3>
+              <p>I'm a recent Msc Computer Science graduate and have a passion for creating
+                experiences which impact people. Keen to keep up with new tech and explore
+                new fields inside and outside Computer Science. <br>
+                My hobbies include GameDev, 3D modeling, graphic design, and fitness.</p>
+            </div>
+            <div class="w50">
+              <div class="circle"></div>
+              <canvas id="bust"></canvas>
+
+
+
+            </div>
+            <!--
+            <div class="w50">
+              <img src="images/profile.png" alt="Profile Picture" class="img">
+            </div>-->
+          </div>
+        </section>
+
+    </body>
+
+  </html>

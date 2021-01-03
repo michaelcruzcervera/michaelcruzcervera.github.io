@@ -22,16 +22,19 @@ section
 section.banner
 {
   padding: 0;
+  height: 100vh;
   position: relative;
   display: flex;
+  background: lightgrey;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  z-index: -2;
 }
 
 img
 {
-  position: relative;
+  position: absolute;
   height: auto;
   width: 100%;
   left: 0;
