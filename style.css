@@ -1,7 +1,7 @@
 
 :root{
   --hero-color: lightblue;
-  --black: #111;
+  --black: #232b2b;
 
   /*interstellar Text effect*/
   --dash: 70;
@@ -206,7 +206,7 @@ header ul li a:hover:after {
   width: 100%;
   text-align: center;
   margin-bottom: 30px;
-  color: #111;
+  color: var(--black);
 }
 .heading h2
 {
@@ -283,17 +283,17 @@ header ul li a:hover:after {
   margin-left: auto;
   margin-right: auto;
 }
-/*
+
 img
 {
   max-width: 100%;
   display: block;
   margin-left: auto;
   margin-right: auto;
-}*/
+}
 .work
 {
-  background: #111;
+  background: var(--black);
 }
 .work p
 {
@@ -380,7 +380,7 @@ img
 {
   width: 1.5em;
   height: 1.5em;
-  background-color: var(--black);
+  *background-color: var(--black);
   text-align: center;
   line-height: 80px;
   font-size: 35px;
