@@ -5,14 +5,20 @@ $(function(){
 });
 
 function main(){
-  var full = $(".workBx");
 
-  //Loops over all elements that have the class fullscreen
+
+  $('.tile').each(function() {
+      const btn = new HoverButton($(this)[0]);
+  });
+
+  var tiles = $(".tile");
+
+  //Loops over all elements that have the class with-transition
 
   $('a.with-transition').click(function (e) {
     e.preventDefault();                   // prevent default anchor behavior
     var goTo = this.getAttribute("href"); // store anchor href
-    full.each(function(index, elem) {
+    tiles.each(function(index, elem) {
       $(elem).click(fullscreenClick);
     });
     setTimeout(function(){
@@ -67,21 +73,25 @@ function fullscreenClick() {
     });
 
     //Get its position
-    var pos = $(box).children().position();
-    var width = $(box).innerWidth();
-    var height = $(box).innerHeight();
+
+
+    var box = $(box).children().getBoundingClientRect();
+    var pos;
+    var x = box.left + box.width * 0.5;
+    var y = box.top + box.height * 0.5;
+
     //Substitute our box with our holder
     $(box).before($(holder));
 
     //Set the position of our box (not holder)
     //Give it absolute position (eg. outside our set structure)
     $(box).css({
-      "position": "fixed",
+      "position": "absolute",
       "z-index": "100000",
-      "width": width + "px",
-      "height": height + "px",
-      "left": (pos.left) + "px",
-      "top": (pos.top) + "px",
+      "width": box.width + "px",
+      "height": box.height + "px",
+      "left": (box.left) + "px",
+      "top": (box.top) + "px",
 
 
     });
@@ -121,4 +131,67 @@ function toggleMenu(){
   var hamburger = document.querySelector('.hamburger')
   hamburger.classList.toggle("is-active");
   menu.classList.toggle('active');
+}
+
+class HoverButton {
+  constructor(el) {
+    this.el = el;
+    this.hover = false;
+    this.calculatePosition();
+    this.attachEventsListener();
+  }
+
+  attachEventsListener() {
+    window.addEventListener("mousemove", (e) => this.onMouseMove(e));
+    window.addEventListener("resize", (e) => this.calculatePosition(e));
+    window.addEventListener("scroll", (e) => this.calculatePosition(e));
+
+  }
+
+  calculatePosition() {
+    this.el.style.transition="0.4s ease-out"
+    this.el.style.transform = "none";
+
+    const box = this.el.getBoundingClientRect();
+    this.x = box.left + box.width * 0.5;
+    this.y = box.top + box.height * 0.5;
+    this.width = box.width;
+    this.height = box.height;
+  }
+
+  onMouseMove(e) {
+
+    let hover = false;
+    let hoverArea = this.hover ? 0.6: 0.4;
+    let x = e.clientX - this.x;
+    let y = e.clientY - this.y;
+    let distance = Math.sqrt(x * x + y * y);
+
+    if (x < this.width/2 && x > -this.width/2 && y < this.height/2 && y > -this.height/2) {
+      hover = true;
+      if (!this.hover) {
+        this.hover = true;
+      }
+      this.onHover(e.clientX, e.clientY);
+    }
+
+    if (!hover && this.hover) {
+      this.onLeave();
+      this.hover = false;
+    }
+  }
+
+  onHover(x, y) {
+     this.el.style.transition="0.4s ease-out"
+    this.el.style.transform = "translate(" + ((x - this.x) * 0.12) + "px," + ((y - this.y) * 0.12) + "px)";// scale(1.05)";
+
+    this.el.style.zIndex = 10;
+  }
+  onLeave() {
+
+    this.el.style.transition="0.8s ease-out"
+    this.el.style.transform = "none";
+
+    this.el.style.zIndex = 1;
+  }
 }
