@@ -134,9 +134,29 @@ function toggleMenu(){
 }
 
 class HoverButton {
-  constructor(el) {
+  constructor(
+    el,
+    strength = 0.09,
+    proximity = 0,
+    scale = 1.05,
+    circle = false,
+    attract = true,
+    tilt = false,
+    easeLeave = "cubic-bezier(.57,1.66,.54,-0.04)",
+    easeEnter = "linear"
+  ) {
     this.el = el;
+    this.strength = strength;
+    this.attract = attract;
+    this.proximity = proximity;
+    this.circle = circle;
+    this.scale = scale;
+    this.easeLeave = easeLeave;
+    this.easeEnter = easeEnter;
+    this.tilt = tilt;
+
     this.hover = false;
+
     this.calculatePosition();
     this.attachEventsListener();
   }
@@ -144,13 +164,16 @@ class HoverButton {
   attachEventsListener() {
     window.addEventListener("mousemove", (e) => this.onMouseMove(e));
     window.addEventListener("resize", (e) => this.calculatePosition(e));
-    window.addEventListener("scroll", (e) => this.calculatePosition(e));
 
+    window.addEventListener("scroll", (e) => this.calculatePosition(e));
   }
 
   calculatePosition() {
-    this.el.style.transition="0.4s ease-out"
-    this.el.style.transform = "none";
+    gsap.set(this.el, {
+  x: 0,
+  y: 0,
+  scale: 1
+});
 
     const box = this.el.getBoundingClientRect();
     this.x = box.left + box.width * 0.5;
@@ -160,14 +183,25 @@ class HoverButton {
   }
 
   onMouseMove(e) {
-
     let hover = false;
-    let hoverArea = this.hover ? 0.6: 0.4;
+    let hoverArea = (this.hover ? 0.7 : 0.5);
     let x = e.clientX - this.x;
     let y = e.clientY - this.y;
     let distance = Math.sqrt(x * x + y * y);
 
-    if (x < this.width/2 && x > -this.width/2 && y < this.height/2 && y > -this.height/2) {
+    var inside = false;
+
+    if (this.circle) {
+      inside = distance < (this.width/2 + this.proximity)
+    } else {
+      inside =
+        x < this.width / 2 + this.proximity &&
+        x > -this.width / 2 - this.proximity &&
+        y < this.height / 2 + this.proximity &&
+        y > -this.height / 2 - this.proximity;
+    }
+
+    if (inside) {
       hover = true;
       if (!this.hover) {
         this.hover = true;
@@ -182,16 +216,63 @@ class HoverButton {
   }
 
   onHover(x, y) {
-     this.el.style.transition="0.4s ease-out"
-    this.el.style.transform = "translate(" + ((x - this.x) * 0.12) + "px," + ((y - this.y) * 0.12) + "px)";// scale(1.05)";
+    if (this.tilt) {
+      var rotX = ((y - this.y + this.height/2 - 90) / -2) * this.strength;
+      var rotY = ((x - this.x + this.width/2 - 90) / 2) * this.strength;
+      gsap.to(this.el,  {
+  rotationX: rotX,
+  rotationY: rotY,
+  scale: this.scale,
+  ease: 'power2.out',
+  duration: 0.4
+});
+    } else {
+      var transX = 0;
+      var transY = 0;
+
+      if (this.attract) {
+        transX = (x - this.x) * this.strength;
+        transY = (y - this.y) * this.strength;
+      } else {
+        transX = -(x - this.x) * this.strength;
+        transY = -(y - this.y) * this.strength;
+      }
+
+      gsap.to(this.el,  {
+  x: transX,
+  y: transY,
+  scale: this.scale,
+  ease: 'power2.out',
+  duration: 0.4
+});
+    }
 
     this.el.style.zIndex = 10;
   }
   onLeave() {
-
-    this.el.style.transition="0.8s ease-out"
-    this.el.style.transform = "none";
+    gsap.to(this.el, {
+      x: 0,
+      y: 0,
+      scale: 1,
+      ease: 'elastic.out(1.1, 0.4)',
+      duration: 0.7
+    });
 
     this.el.style.zIndex = 1;
+  }
+}
+
+$("div.tile .img").each(function () {
+  const btn = new HoverButton($(this)[0]);
+});
+
+function insideElipse(x, y, centreX, centreY, width, height) {
+  var p =
+    Math.pow(x - centreX, 2) / Math.pow(height/2, 2) +
+    Math.pow(y - centreY, 2) / Math.pow(width/2, 2);
+  if (p <= 1) {
+    return true;
+  } else {
+    return false;
   }
 }
