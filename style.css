@@ -16,7 +16,6 @@
 
 html {
   scroll-behavior: smooth;
-  /*scroll-snap-type: y proximity;*/
 
 }
 
@@ -81,7 +80,7 @@ section.banner img
 
 .textBx
 {
-  padding: 15vh 0 0 100px;
+  padding: calc(15vh + 10px ) 0 0 100px;
   margin-top: auto;
   align-self: flex-start;
 }
@@ -867,12 +866,19 @@ svg.hi {
 }
 
 /*Responsive */
-@media (max-width: 800px)
+@media only screen and (hover: none) and (pointer: coarse)
 {
+  html {
+    scroll-snap-type: y proximity;
+  }
+}
+@media only screen and (hover: none) and (pointer: coarse), (max-width: 800px)
+{
+
   header,
   header.sticky
   {
-    padding: 20px 10px;
+    padding: 20px 20px;
     z-index: 1000;
   }
   .menu
