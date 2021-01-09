@@ -2,8 +2,9 @@
 :root{
   --hero-color: lightblue;
   --black: #232b2b;
+  --white: Azure;
 
-  --header-height: 6vh;
+  --header-height: 10vh;
 
   /*interstellar Text effect*/
   --dash: 70;
@@ -114,10 +115,11 @@ section.banner img
 .btn
 {
   position: relative;
-  background: #2196f3;
+  border-width: medium;
+  border-style: solid;
+  border-color: var(--white);
   display: inline-block;
   border-radius: 50px;
-  border: 0;
   color: #fff;
   margin-top: 20px;
   padding: 10px 30px;
@@ -126,13 +128,15 @@ section.banner img
   text-decoration: none;
   Letter-spacing: 2px;
   font-weight: 500;
-  transition: 0.4s cubic-bezier(.25,1.98,.27,.02);
+  transition: transform 0.4s cubic-bezier(.25,1.98,.27,.02);
   margin-bottom: 100px;
 }
 
 .btn:hover{
   transition: 0.2s linear;
   transform: scale(1.1);
+  background: var(--white);
+  color: var(--black);
 }
 
 header
@@ -454,6 +458,127 @@ img
   margin-left: auto;
   margin-right: auto;
 }
+.skills{
+  background: steelblue; /*lightsteelblue;*/
+  color: #fff;
+}
+.skills h2{
+  color: var(--white);
+}
+.skills p{
+  color: var(--white);
+  margin-top: -40px;
+  margin-bottom: 40px;
+}
+
+.skills .content{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  grid-template-columns: repeat(6, 90px);
+  grid-template-rows: repeat(4, 90px);
+  padding-bottom: 100px;
+
+}
+.skills .content .skill{
+  border-radius: 100px;
+  width: 110px;
+  height: 110px;
+  background: black;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.skills .content .skill:hover{
+  box-shadow: 3px 3px 3px 3px rgba(17, 21, 28, 0.01);
+
+}
+
+.skills .content .skill h3{
+
+}
+:root{
+  /*Skill Colors*/
+  --color1: lightcoral;
+  --color2: #ffbe7a;
+  --color3: skyblue;
+  --color4: var(--white);
+  --small-circle: 100px;
+  --big-circle: 150px;
+}
+.skills .skill:nth-child(1){
+    width: var(--big-circle);
+    height: var(--big-circle);
+    grid-column: 4  / span 2;
+    background: var(--color4);
+    color: steelblue;
+    grid-row: 1 / span 2;
+    margin-bottom: -30px;
+}
+.skills .skill:nth-child(2){
+    grid-column: 3;
+    background: var(--color2);
+    grid-row: 1;
+}
+.skills .skill:nth-child(3){
+    grid-column: 1;
+    background: var(--color1);
+    /*color: lightpink;*/
+    grid-row: 1;
+    margin-bottom: -65px;
+    margin-right: -65px;
+}
+.skills .skill:nth-child(4){
+    grid-column: 3;
+    background: var(--color2);
+    grid-row: 4;
+    margin-left: -65px;
+    margin-bottom: -10px;
+}
+
+.skills .skill:nth-child(5){
+  width: var(--big-circle);
+  height: var(--big-circle);
+    grid-column: 2  / span 2;
+    background: var(--color3);
+    grid-row: 2 / span 2;
+
+}
+
+.skills .skill:nth-child(6){
+    grid-column: 6;
+    background: var(--color1);
+    /*color: lightpink;*/
+    grid-row: 2;
+
+}
+.skills .skill:nth-child(7){
+    grid-column: 6;
+    background: var(--color3);
+    grid-row: 3;
+    margin-top: 50px;
+    margin-left: -60px;
+}
+.skills .skill:nth-child(8){
+    grid-column: 1;
+    background: var(--color4);
+    color: steelblue;
+    grid-row: 3;
+}
+.skills .skill:nth-child(9){
+  width: var(--big-circle);
+  height: var(--big-circle);
+    grid-column: 4 / span 2;
+    background: var(--color1);
+    /*color: lightpink;*/
+    grid-row: 3 / span 2;
+    margin-left: -75px;
+}
+
 .work
 {
   background: var(--black);
@@ -490,7 +615,7 @@ img
   margin: 5px;
 }
 .work .content .tile:hover{
-    box-shadow: 3px 3px 3px 3px rgba(17, 21, 28, 0.1);
+    box-shadow: 3px 3px 3px 3px rgba(17, 21, 28, 0.05);
 }
 
 .work .content .tile img
@@ -676,13 +801,18 @@ img
 
 .formBx form input[type="submit"]
 {
+  max-width: 120px;
+  border-width: medium;
+  background: none;
+  border-color: var(--black);
+  color: var(--black);
   border-radius: 100px;
-  max-width: 100px;
-  background: #2196f3;
-  cursor: pointer;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+}
+
+.formBx form input[type="submit"]:hover{
+  background: var(--black);
+  border-color: var(--white);
+  color: var(--white);
 }
 
 .hamburger {
@@ -769,31 +899,92 @@ max-width:500px;
 
 .intro
 {
-  position: absolute;
+  position: fixed;
   left:0;
-  width: 100%;
-  height: 100%;
+  right:0;
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  z-index: 100010;
+  align-items: center;
+  justify-content: center;
 }
+.intro h1{
+  position: absolute;
+
+  color: #fff;
+  font-size: 5em;
+  left:30px;
+  top: -30px;
+}
+.intro .circle{
+
+  position: absolute;
+  border-radius: 100px;
+  background: #111;
+  z-index: 100010;
+  animation: appear 5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+    left: 0;
+    bottom: -20vh;
+  }
+  50%, 75% {
+    opacity: 1;
+    transform: unset;
+    left: 0;
+    bottom: 0;
+  }
+  100% {
+    left:-125vw;
+    transform: rotate(-360deg);
+  }
+}
+
 .intro .background
 {
   position: absolute;
   left:0;
-  width: 100%;
+  width: 200%;
   height: 100%;
-  background: lightgreen;
+  background: lightblue;
   z-index: 10000;
-  animation: slide 5s ease-in forwards;
+  animation: slide 5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  /animation: fade 5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
 }
 
-@keyframes slide {
+@keyframes fade {
+  0%{
+    left: -100vw;
+  }
   25% {
-    left: 0;
+    left: -100vw;
   }
   50%, 75%{
-    left:-50vw;
+    left:-150vw;
   }
   100% {
-    left:-100vw;
+    left:-200vw;
+  }
+}
+@keyframes slide {
+  0%{
+    left: -100vw;
+  }
+  25% {
+    left: -100vw;
+  }
+  50%, 75%{
+    left:-150vw;
+  }
+  100% {
+    left:-200vw;
   }
 }
 
@@ -950,6 +1141,20 @@ svg.hi {
   .contentBx
   {
     padding-right: 0;
+  }
+
+  .skills .content{
+
+    grid-template-columns: repeat(2, 130px);
+    grid-template-rows: repeat(5, 130px);
+    margin: 50px;
+  }
+  .skills .content .skill{
+    width: 120px;
+    height: 120px;
+    margin: 0;
+    grid-column: unset;
+    grid-row: unset;
   }
   .work .content{
     display: block;

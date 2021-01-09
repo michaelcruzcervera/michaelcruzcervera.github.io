@@ -10,6 +10,12 @@ function main(){
   tiles.each(function() {
       const btn = new HoverButton($(this)[0]);
   });
+
+  var skills = $(".skill");
+  skills.each(function() {
+      const btn = new HoverButton($(this)[0]);
+  });
+
   var social = $(".footer li");
   social.each(function() {
       const btn = new HoverButton($(this)[0], circl=true);
@@ -54,7 +60,7 @@ function main(){
             animation: 'animate_in 0.4s normal cubic-bezier(.25,1.98,.27,.02)'
           } );
         } else {
-          $(this).css( {opacity: 0, animation: 'unset' });
+          $(this).css( {transition: "0.1s linear", opacity: 0, animation: 'unset' });
 
         }
       });
@@ -145,7 +151,7 @@ class HoverButton {
     el,
     strength = 0.09,
     proximity = 0,
-    scale = 1.05,
+    scale = 1.07,
     circle = false,
     attract = true,
     tilt = false,
