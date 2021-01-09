@@ -3,16 +3,21 @@
   --hero-color: lightblue;
   --black: #232b2b;
 
+  --header-height: 80px;
+
   /*interstellar Text effect*/
   --dash: 70;
   --dash-gap: 15;
   --dash-space: calc(var(--dash) * ( 5 - 1 ) + var(--dash-gap) * 5);
   --time: 13s;
   --time-step: calc(var(--time) / 5);
+
 }
 
 html {
   scroll-behavior: smooth;
+  /*scroll-snap-type: y proximity;*/
+
 }
 
 body
@@ -28,8 +33,16 @@ body
 
 section
 {
+  scroll-snap-align: start;
+  padding-left: 10%;
+  padding-right: 10%;
   opacity: 1;
-  padding: 100px 50px 50px 50px;
+  padding-top: var(--header-height);
+  /*padding: 100px 50px 50px 50px;*/
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 section.banner
@@ -42,9 +55,9 @@ section.banner
   background-size: cover;
   background-position: right;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: -2;
+  flex-direction: column;
+  justify-content: center;
+
 }
 
 section.banner img
@@ -64,15 +77,12 @@ section.banner img
   z-index: -1;
 }
 
+
 .textBx
 {
-  padding: 100px;
-}
-
-.workTitle
-{
-  margin-top: 60vh;
-  padding: 100px;
+  padding: 15vh 0 0 100px;
+  margin-top: auto;
+  align-self: flex-start;
 }
 
 .banner h1
@@ -108,6 +118,7 @@ section.banner img
   background: #2196f3;
   display: inline-block;
   border-radius: 50px;
+  border: 0;
   color: #fff;
   margin-top: 20px;
   padding: 10px 30px;
@@ -116,6 +127,13 @@ section.banner img
   text-decoration: none;
   Letter-spacing: 2px;
   font-weight: 500;
+  transition: 0.4s cubic-bezier(.25,1.98,.27,.02);
+  margin: 100px;
+}
+
+.btn:hover{
+  transition: 0.2s linear;
+  transform: scale(1.1);
 }
 
 header
@@ -135,7 +153,8 @@ header
 header.sticky
 {
   background: #fff;
-  padding: 10px 100px;
+  height: var(--header-height);
+  padding: 0 100px;
   box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
 
@@ -156,7 +175,7 @@ header.sticky .logo
 header ul {
   display: flex;
   list-style: none;
-  font-size: 1.1em;
+  font-size: 1.3em;
 }
 
 header ul li {
@@ -198,28 +217,172 @@ header ul li a:after {
 }
 
 header ul li a:hover:after {
-  width: 80%;
-  left: 10%;
+  width: 90%;
+  left: 5%;
+}
+
+.mouse-wrap {
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+  transition: 0.3s ease-out;
+}
+
+.mouse-wrap:hover{
+  transition: 0.5s linear;
+  transform: scale(1.1) translate(0,-10px);
+}
+
+
+:root{
+  --colorOutline: #ffff;
+  --widthMouse: 26px;
+  --heightMouse: 44px;
+  --borderMouse: 3.5px;
+
+  --lineOpacity: 0.8;
+  --posMouse: 8px;
+
+  --sizeTrackball: 7px;
+  --posTrackball: 10px;
+  --shrinkTrackball: 0.8;
+
+  --animDuration: 6s;
+}
+
+.mouse {
+
+  /*background: var(--colorOutline);*/
+  border-width:  var(--borderMouse);
+  border-style: solid;
+  border-color: var(--colorOutline);
+  opacity: var(--lineOpacity);
+  position: relative;
+  width: var(--widthMouse);
+  height: var(--heightMouse);
+  border-radius: 100px;
+  background-size: 100% 200%;
+  animation: nudgeMouse var(--animDuration) ease-out infinite;
+}
+
+.mouse:before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  margin: auto;
+  width: calc(var(--widthMouse) - var(--borderMouse));
+  height: calc(var(--heightMouse) - var(--borderMouse));
+  background-color: var(--colorBg);
+  border-radius: 100px;
+}
+
+.mouse:after{
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  margin: auto;
+  background-color: var(--colorOutline);
+  width: var(--sizeTrackball);
+  height: var(--sizeTrackball);
+  border-radius: 100%;
+  animation: trackBallSlide var(--animDuration) linear infinite;
+}
+
+
+@keyframes trackBallSlide {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY( calc( -1 *  var(--posTrackball)));
+  }
+  6% {
+    opacity: 1;
+    transform: scale(0.9) translateY( calc( var(--posTrackball) / 4));
+  }
+  14% {
+    opacity: 0;
+    transform: scale(var(--shrinkTrackball) ) translateY( calc( var(--posTrackball) * 2));
+  }
+  15%, 19% {
+    opacity: 0;
+    transform: scale(var(--shrinkTrackball)) translateY( calc( -1 *  var(--posTrackball)));
+  }
+  28%, 29.99% {
+    opacity: 1;
+    transform: scale(1) translateY( calc( -1 *  var(--posTrackball)));
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1) translateY( calc( var(--posTrackball) * -1));
+  }
+  36% {
+    opacity: 1;
+    transform: scale(0.9) translateY( calc( var(--posTrackball) / 4));
+  }
+  44% {
+    opacity: 0;
+    transform: scale( var(--shrinkTrackball)) translateY( calc( var(--posTrackball) * 2));
+  }
+  45%, 49% {
+    opacity: 0;
+    transform: scale(var(--shrinkTrackball)) translateY( calc( -1 *  var(--posTrackball)));
+  }
+  58%, 59.99% {
+    opacity: 1;
+    transform: scale(1) translateY( calc( -1 *  var(--posTrackball)));
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1) translateY( calc( -1 *  var(--posTrackball)));
+  }
+  66% {
+    opacity: 1;
+    transform: scale(0.9) translateY( calc( var(--posTrackball) / 4));
+  }
+  74% {
+    opacity: 0;
+    transform: scale(var(--shrinkTrackball)) translateY( calc( var(--posTrackball) * 2));
+  }
+  75%, 79% {
+    opacity: 0;
+    transform: scale(var(--shrinkTrackball)) translateY( calc( -1 *  var(--posTrackball)));
+  }
+  88%, 100% {
+    opacity: 1;
+    transform: scale(1) translateY( calc( -1 *  var(--posTrackball)));
+  }
+}
+
+@keyframes nudgeMouse {
+  0% { transform: translateY(0); }
+  20% { transform: translateY(var(--posMouse)); }
+  30% { transform: translateY(0); }
+  50% { transform: translateY(var(--posMouse)); }
+  60% { transform: translateY(0); }
+  80% { transform: translateY(var(--posMouse)); }
+  90% { transform: translateY(0); }
 }
 
 .heading
 {
   width: 100%;
   text-align: center;
-  margin-bottom: 30px;
+  margin-top: auto;
   color: var(--black);
 }
 .heading h2
 {
   font-weight: 600;
-  font-size: 30px;
+  font-size: 4em;
 }
 .content
 {
   display: flex;
   justify-content: space-between;
   max-width: 800px;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
 }
 .contentBx
 {
@@ -325,7 +488,10 @@ img
   */
   overflow: hidden;
   border-radius:10px;
-  margin: 10px;
+  margin: 5px;
+}
+.work .content .tile:hover{
+    box-shadow: 3px 3px 3px 3px rgba(17, 21, 28, 0.1);
 }
 
 .work .content .tile img
@@ -342,6 +508,7 @@ img
 .work .tile:hover img{
 
   transform: scale(1.2);
+
 }
 
 .work .tile:nth-child(1){
@@ -467,6 +634,7 @@ img
 .formBx
 {
   min-width: 60%;
+  margin-bottom: auto;
 }
 .formBx form
 {
@@ -474,11 +642,12 @@ img
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
 }
 
 .formBx form h3
 {
-  font-size: 20px;
+  font-size: 1.5em;
   font-weight: 500;
   margin-bottom: 10px;
 }
@@ -486,7 +655,7 @@ img
 .formBx form textarea
 {
   width: 100%;
-  max-width: 800px;
+  max-width: 50%;
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -495,6 +664,7 @@ img
   margin-bottom: 16px;
   resize: vertical;
 }
+
 .formBx form textarea
 {
   min-height: 200px;
@@ -507,6 +677,7 @@ img
 
 .formBx form input[type="submit"]
 {
+  border-radius: 100px;
   max-width: 100px;
   background: #2196f3;
   cursor: pointer;
@@ -525,9 +696,7 @@ img
 justify-content:center;
 align-items:center;
 font-weight:bold;
-max-width:300px;
-height:50%;
-
+max-width:500px;
 }
 
 .interstellar
@@ -539,7 +708,7 @@ height:50%;
   stroke-dasharray: var(--dash) var(--dash-space);
   fill: none;
   stroke-dashoffset: 0;
-  stroke-width: 4;
+  stroke-width: 2.5;
   stroke-linejoin: round;
   stroke-linecap: round;
   animation: dash var(--time) infinite linear;
@@ -747,25 +916,20 @@ svg.hi {
   }
   .textBx
   {
-    padding: 150px 50px 100px;
+    padding: 0 50px 0;
   }
   .banner h2
   {
-    font-size: 1.5em;
+    font-size: 3em;
   }
   .banner h3
   {
-    font-size: 1em;
+    font-size: 2em;
   }
-  .btn
-  {
-    margin-top: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-  }
+
   .heading h2
   {
-    font-size: 24px;
+    font-size: 2em;
   }
   .content
   {
@@ -792,6 +956,14 @@ svg.hi {
   {
     padding: 10px;
   }
+
+
+  .formBx form input,
+  .formBx form textarea
+  {
+    max-width: 100%;
+  }
+
   /*Hamburger Animation*/
   header.sticky .hamburger
   {
@@ -835,8 +1007,8 @@ svg.hi {
     top: 50%;
     margin-top: -2px; }
     .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
-      width: 30px;
-      height: 4px;
+      width: 35px;
+      height: 3.5px;
       background-color: #000;
       border-radius: 6px;
       position: absolute;
@@ -889,6 +1061,15 @@ svg.hi {
   .banner
   {
     height: 100vh;
+  }
+
+  .banner h2
+  {
+    font-size: 2em;
+  }
+  .banner h3
+  {
+    font-size: 1em;
   }
 
   .container

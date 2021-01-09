@@ -6,12 +6,19 @@ $(function(){
 
 function main(){
 
-
-  $('.tile').each(function() {
+  var tiles = $(".tile");
+  tiles.each(function() {
       const btn = new HoverButton($(this)[0]);
   });
+  var social = $(".footer li");
+  social.each(function() {
+      const btn = new HoverButton($(this)[0], circl=true);
+  });
+/*
+  var scrollMouse = document.querySelector('.mouse-wrap');
+  const btn = new HoverButton(scrollMouse, strength = 0.06, proximity = 1000);
+*/
 
-  var tiles = $(".tile");
 
   //Loops over all elements that have the class with-transition
 
@@ -41,10 +48,10 @@ function main(){
         var windowTop = $(window).scrollTop();
         var windowBottom = $(window).scrollTop() + $(window).innerHeight();
 
-        if ( objectTop < windowBottom && objectBottom > windowTop) {
+        if ( objectTop < windowBottom ) {
           $(this).css( {
             opacity: 1,
-            animation: 'animate_in 0.2s normal ease-out'
+            animation: 'animate_in 0.4s normal cubic-bezier(.25,1.98,.27,.02)'
           } );
         } else {
           $(this).css( {opacity: 0, animation: 'unset' });
@@ -142,8 +149,9 @@ class HoverButton {
     circle = false,
     attract = true,
     tilt = false,
-    easeLeave = "cubic-bezier(.57,1.66,.54,-0.04)",
-    easeEnter = "linear"
+    enterDuration = 0.4,
+    easeLeave = 'elastic.out(1.1, 0.4)',
+    easeEnter = 'power2.out'
   ) {
     this.el = el;
     this.strength = strength;
@@ -165,7 +173,8 @@ class HoverButton {
     window.addEventListener("mousemove", (e) => this.onMouseMove(e));
     window.addEventListener("resize", (e) => this.calculatePosition(e));
 
-    window.addEventListener("scroll", (e) => this.calculatePosition(e));
+    window.addEventListener("scroll", (e) => this.calculatePosition(e));//this.onScroll(e);});
+    //window.addEventListener("scroll", (e) => this.onScroll(e));
   }
 
   calculatePosition() {
@@ -176,15 +185,15 @@ class HoverButton {
 });
 
     const box = this.el.getBoundingClientRect();
-    this.x = box.left + box.width * 0.5;
-    this.y = box.top + box.height * 0.5;
+    this.x = box.left + (box.width * 0.5);
+    this.y = box.top + (box.height * 0.5);
     this.width = box.width;
     this.height = box.height;
   }
 
   onMouseMove(e) {
     let hover = false;
-    let hoverArea = (this.hover ? 0.7 : 0.5);
+    let hoverArea = (this.hover ? 0.4 : 0.4);
     let x = e.clientX - this.x;
     let y = e.clientY - this.y;
     let distance = Math.sqrt(x * x + y * y);
@@ -192,7 +201,7 @@ class HoverButton {
     var inside = false;
 
     if (this.circle) {
-      inside = distance < (this.width/2 + this.proximity)
+      inside = distance < (this.width/2 * hoverArea)
     } else {
       inside =
         x < this.width / 2 + this.proximity &&
@@ -216,36 +225,26 @@ class HoverButton {
   }
 
   onHover(x, y) {
-    if (this.tilt) {
-      var rotX = ((y - this.y + this.height/2 - 90) / -2) * this.strength;
-      var rotY = ((x - this.x + this.width/2 - 90) / 2) * this.strength;
-      gsap.to(this.el,  {
-  rotationX: rotX,
-  rotationY: rotY,
-  scale: this.scale,
-  ease: 'power2.out',
-  duration: 0.4
-});
-    } else {
+
       var transX = 0;
       var transY = 0;
 
       if (this.attract) {
-        transX = (x - this.x) * this.strength;
-        transY = (y - this.y) * this.strength;
+        transX = limitNumberWithinRange((x - this.x) * this.strength, -this.width/2, this.width/2);
+        transY = limitNumberWithinRange((y - this.y) * this.strength, -this.height/2, this.height/2);
       } else {
-        transX = -(x - this.x) * this.strength;
-        transY = -(y - this.y) * this.strength;
+        transX = limitNumberWithinRange(-(x - this.x) * this.strength, -this.width/2, this.width/2);
+        transY = limitNumberWithinRange(-(y - this.y) * this.strength, -this.height/2, this.height/2);
       }
 
       gsap.to(this.el,  {
   x: transX,
   y: transY,
   scale: this.scale,
-  ease: 'power2.out',
+  ease: this.easeEnter,
   duration: 0.4
 });
-    }
+
 
     this.el.style.zIndex = 10;
   }
@@ -254,7 +253,7 @@ class HoverButton {
       x: 0,
       y: 0,
       scale: 1,
-      ease: 'elastic.out(1.1, 0.4)',
+      ease: this.easeLeave,
       duration: 0.7
     });
 
@@ -262,17 +261,9 @@ class HoverButton {
   }
 }
 
-$("div.tile .img").each(function () {
-  const btn = new HoverButton($(this)[0]);
-});
 
-function insideElipse(x, y, centreX, centreY, width, height) {
-  var p =
-    Math.pow(x - centreX, 2) / Math.pow(height/2, 2) +
-    Math.pow(y - centreY, 2) / Math.pow(width/2, 2);
-  if (p <= 1) {
-    return true;
-  } else {
-    return false;
-  }
+
+function limitNumberWithinRange(num, min, max){
+  const parsed = parseInt(num)
+  return Math.min(Math.max(parsed, min), max)
 }
