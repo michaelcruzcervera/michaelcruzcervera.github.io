@@ -29,6 +29,7 @@ body
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
   max-width: 100%;
+  overflow-x: hidden;
 }
 
 section
@@ -128,7 +129,7 @@ section.banner img
   Letter-spacing: 2px;
   font-weight: 500;
   transition: 0.4s cubic-bezier(.25,1.98,.27,.02);
-  margin: 100px;
+  margin-bottom: 100px;
 }
 
 .btn:hover{
@@ -871,7 +872,7 @@ svg.hi {
   header,
   header.sticky
   {
-    padding: 20px 50px;
+    padding: 20px 10px;
     z-index: 1000;
   }
   .menu
