@@ -17,6 +17,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
 }
 
 body
@@ -442,6 +443,9 @@ header ul li a:hover:after {
     height: 150px;
   }
 
+.about h2{
+  margin-top: -100px;
+}
 .about img
 {
   max-width: 50%;
@@ -743,6 +747,10 @@ img
 
 .footer ul li:nth-child(5) a:before{
   background: radial-gradient(circle at 33% 100%, #fed373 4%, #f15245 30%, #d92e7f 62%, #9b36b7 85%, #515ecf);
+}
+
+.contact{
+  scroll-snap-align: unset;
 }
 
 .formBx
@@ -1159,6 +1167,8 @@ svg.hi {
   {
     width: auto;
   }
+
+
   .contact ul li a
   {
     padding: 10px;
