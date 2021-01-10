@@ -41,8 +41,14 @@ background-size: cover;
 .ui h2{
     color: white;
 }
+.ui .content{
+  display: grid;
+  grid-template-columns: repeat(4, 20vw);
+
+  grid-gap: 1vh;
+}
 .ui .content img{
-  width: 20%;
+  width: 100%;
   margin: 10px;
   height:auto;
   border-radius: 20px;
@@ -53,4 +59,21 @@ background-size: cover;
 }
 .other .content .tile{
   margin: 20px;
+}
+
+@media (max-width: 800px)
+{
+  .ui .conent{
+    display: block;
+  }
+  .ui .content img{
+    width: 100%;
+    height:auto;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 600px)
+{
+
 }

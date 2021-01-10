@@ -21,6 +21,7 @@ html {
 
 body
 {
+
   position: absolute;
   right: 0;
   left: 0;
@@ -30,12 +31,10 @@ body
   font-family: 'Poppins', sans-serif;
   width: 100vw;
   overflow-x: hidden;
-overflow-y: scroll !important;
 }
 .body-holder{
   position: relative;
   overflow-x: hidden;
-overflow-y: scroll !important;
 }
 section
 {
@@ -681,16 +680,16 @@ img
 }
 .footer ul li a
 {
-  width: 5vw;
-  height: 5vw;
+  width: 50px;
+  height: 50px;
+  margin: 10px;
   *background-color: var(--black);
   text-align: center;
-  line-height: 80px;
+
   display: block;
   border-radius: 100%;
   position: relative;
   overflow: hidden;
-  border: 3px solid var(--black);
   z-index: 1;
   transition:  0.3s;
 }
@@ -922,13 +921,13 @@ max-width:500px;
 }
 
 /*Responsive */
-/*
+
 @media only screen and (hover: none) and (pointer: coarse)
 {
-  html {
-    scroll-snap-type: y proximity;
+  .mouse-wrap{
+      margin-bottom: 70px;
   }
-}*/
+}
 @media (max-width: 800px)
 {
 
@@ -970,6 +969,7 @@ max-width:500px;
     font-size: 24px;
     margin: 10px;
   }
+
 
   header.sticky .toggle
   {
@@ -1050,20 +1050,12 @@ max-width:500px;
     padding: 10px;
   }
 
-  .mouse-wrap{
-      margin-bottom: 70px;
-  }
+
 
   .formBx form input,
   .formBx form textarea
   {
     max-width: 100%;
-  }
-
-  .footer ul li a
-  {
-    width: 15vw;
-    height: 15vw;
   }
 
   /*Hamburger Animation*/
@@ -1193,7 +1185,15 @@ max-width:500px;
   {
     font-size: 2.2em;
   }
-
+  .footer ul li
+  {
+    margin: 2px;
+  }
+  .footer ul li a
+  {
+    width: 20px;
+    height: 20px;
+  }
   section
   {
     /*padding: 100px 50px 20px 50px;*/
