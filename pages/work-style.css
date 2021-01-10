@@ -6,16 +6,22 @@ section.other {
   height: calc(100vh + var(--footer-height))
 }
 
-section.banner img
-{
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
-  left: 0;
-  top: 0;
-  margin: 0;
-  padding: 0;
-  object-fit: none;
-  background-position: center center;
-  background-repeat: no-repeat;
+section.banner{
+  /* The image used */
+background-image: url("../images/placeholder.png");
+
+/* Create the parallax scrolling effect */
+background-attachment: fixed;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+.refs.content{
+  flex-direction: column;
+  justify-content: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
 }

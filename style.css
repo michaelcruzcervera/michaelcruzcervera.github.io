@@ -4,9 +4,7 @@
   --black: #232b2b;
   --white: Azure;
 
-  --header-height: 10vh;
-  --header-height-mobile: 10vh;
-
+  --header-height: 50px;
   /*interstellar Text effect*/
   --dash: 70;
   --dash-gap: 15;
@@ -23,16 +21,22 @@ html {
 
 body
 {
+  position: absolute;
   right: 0;
   left: 0;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
-  max-width: 100%;
+  width: 100vw;
   overflow-x: hidden;
+overflow-y: scroll !important;
 }
-
+.body-holder{
+  position: relative;
+  overflow-x: hidden;
+overflow-y: scroll !important;
+}
 section
 {
   scroll-snap-align: start;
@@ -134,18 +138,19 @@ header
   left: 0;
   right: 0;
   padding: 40px 100px;
+  margin:0;
+  max-width: 100%;
   z-index: 1000;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   transition: 0.5s;
 }
 
 header.sticky
 {
   background: #fff;
-  height: var(--header-height);
-  padding: 0 100px;
+  max-height: var(--header-height);
+  padding: 20px 100px;
   box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
 
@@ -157,6 +162,8 @@ header .logo
   text-decoration: none;
   font-weight: 700;
   Letter-spacing: 2px;
+  margin: 0;
+  padding: 0;
 }
 header.sticky .logo
 {
@@ -164,6 +171,8 @@ header.sticky .logo
 }
 
 header ul {
+  margin: 0;
+  padding: 0;
   display: flex;
   list-style: none;
   font-size: 1.3em;
@@ -178,7 +187,7 @@ header ul li {
 header ul li a {
   position: relative;
   display: inline-block;
-  padding: 2px;
+
   margin: 0 15px;
   color: #fff;
   text-decoration: none;
@@ -397,7 +406,6 @@ header ul li a:hover:after {
 {
   position: relative;
   width: 50%;
-
   min-height: 300px;
 }
 
@@ -407,13 +415,12 @@ header ul li a:hover:after {
   justify-content: center;
   position: relative;
   margin: auto;
-  width: 350px;
-  height: 350px;
+  width: 100%;
+  height: 100%;
   border-radius: 100%;
   font-family: 'Montserrat', sans-serif;
   font-size: 20px;
   font-weight: lighter;
-  letter-spacing: 2px;
   transition: 1s box-shadow;
   z-index: 11;
 }
@@ -422,7 +429,7 @@ header ul li a:hover:after {
 .circle
   {
     position: absolute;
-    top: 30px;
+    top: 10px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -597,7 +604,7 @@ img
 
 .work .content .tile img
 {
-  object-fit: cover;
+  object-fit:cover;
   width: 100%;
   height: 100%;
   background-position: center center;
@@ -639,9 +646,9 @@ img
 }
 
 .footer{
-  scroll-snap-align: start;
+  scroll-snap-align: end;
   width: 100vw;
-  height: var(--footer-height);
+  min-height: var(--footer-height);
   margin-top: auto;
   margin-bottom: 0;
   background: var(--black);
@@ -657,28 +664,30 @@ img
 {
   width:100%;
   background: var(--black);
-  text-align: center
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 .footer ul
 {
   position: relative;
+  left: 0;
+  right:0;
   display: flex;
   justify-content: center;
   list-style: none;
   padding: 50px;
-  margin: auto;
+  width: 100%;
 }
 .footer ul li a
 {
-  width: 1.5em;
-  height: 1.5em;
+  width: 5vw;
+  height: 5vw;
   *background-color: var(--black);
   text-align: center;
   line-height: 80px;
-  font-size: 35px;
-  margin: 0 10px;
   display: block;
-  border-radius: 50%;
+  border-radius: 100%;
   position: relative;
   overflow: hidden;
   border: 3px solid var(--black);
@@ -690,7 +699,8 @@ img
 {
   filter: invert(1);
   position: relative;
-
+  height: 100%;
+  width:100%;
   z-index: 3;
 }
 
@@ -930,13 +940,13 @@ max-width:500px;
 
   header.sticky{
     padding: 0 30px;
-    height: var(  --header-height-mobile);
+    height: var(--header-height);
   }
   .menu
   {
     position: fixed;
     margin: 0;
-    top: var(  --header-height-mobile);
+    top: var(--header-height);
     left: 100%;
     right: -100%;
     display: flex;
@@ -967,7 +977,7 @@ max-width:500px;
   }
   section
   {
-    padding: 100px 100px 50px 100px;
+    /*padding: 100px 100px 50px 100px;*/
   }
   section div:before
   {
@@ -999,6 +1009,7 @@ max-width:500px;
   .content
   {
     flex-direction: column;
+    margin: 0
   }
   .contentBx
   {
@@ -1030,6 +1041,7 @@ max-width:500px;
   .w50
   {
     width: auto;
+    min-height: unset;
   }
 
 
@@ -1046,6 +1058,12 @@ max-width:500px;
   .formBx form textarea
   {
     max-width: 100%;
+  }
+
+  .footer ul li a
+  {
+    width: 10vw;
+    height: 10vw;
   }
 
   /*Hamburger Animation*/
@@ -1140,7 +1158,7 @@ max-width:500px;
   header.sticky
   {
     padding: 0 30px;
-    height: var(  --header-height-mobile);
+    height: var(  --header-height);
   }
 
   .banner
@@ -1173,7 +1191,7 @@ max-width:500px;
 
   section
   {
-    padding: 100px 50px 20px 50px;
+    /*padding: 100px 50px 20px 50px;*/
   }
 }
 

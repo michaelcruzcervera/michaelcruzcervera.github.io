@@ -110,7 +110,6 @@ function fullscreenClick() {
     //Set the position of our box (not holder)
     //Give it absolute position (eg. outside our set structure)
     $(box).animate({
-      "position": "absolute",
       "border-radius": "0",
       "z-index": "10000",
       "top": "0",
