@@ -1062,8 +1062,8 @@ max-width:500px;
 
   .footer ul li a
   {
-    width: 10vw;
-    height: 10vw;
+    width: 15vw;
+    height: 15vw;
   }
 
   /*Hamburger Animation*/
@@ -1187,6 +1187,11 @@ max-width:500px;
   .container
   {
     padding: 150px 20px 100px;
+  }
+
+  .heading h2
+  {
+    font-size: 2.2em;
   }
 
   section

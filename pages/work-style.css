@@ -1,4 +1,8 @@
 
+
+section{
+    scroll-snap-align: start;
+}
 section.other {
   padding-left: 0;
   padding-right: 0;
@@ -17,11 +21,36 @@ background-repeat: no-repeat;
 background-size: cover;
 }
 
-.refs.content{
+.refs .content{
   flex-direction: column;
   justify-content: center;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0;
+}
+
+.refs .content ul{
+  list-style: none;
+}
+
+.ui{
+
+  background: lightblue;
+}
+.ui h2{
+    color: white;
+}
+.ui .content img{
+  width: 20%;
+  margin: 10px;
+  height:auto;
+  border-radius: 20px;
+}
+
+.ui .content img:hover{
+  box-shadow: 5px 5px 5px 5px rgba(17, 21, 28, 0.03);
+}
+.other .content .tile{
+  margin: 20px;
 }
