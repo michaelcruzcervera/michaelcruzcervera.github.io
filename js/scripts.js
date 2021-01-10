@@ -7,10 +7,11 @@ $(function(){
 function main(){
 
   var tiles = $(".tile");
+  /*
   tiles.each(function() {
       const btn = new HoverButton($(this)[0]);
   });
-
+*/
   var skills = $(".skill");
   skills.each(function() {
       const btn = new HoverButton($(this)[0]);
@@ -28,7 +29,7 @@ function main(){
 
   //Loops over all elements that have the class with-transition
 
-  $('a.with-transition').click(function (e) {
+  $('.work .content .tile a').click(function (e) {
     e.preventDefault();                   // prevent default anchor behavior
     var goTo = this.getAttribute("href"); // store anchor href
     tiles.each(function(index, elem) {
@@ -79,34 +80,50 @@ function fullscreenClick() {
     var box = $(this);
     // /var image = $(this).child();
     //create a holder box so the layout stays the same
-    var holder = $(box).clone(false, true);
+    var holder = $(box).clone(true, true);
     //and make it not visible
     $(holder).css({
       "visibility": "hidden"
     });
 
     //Get its position
+    //$(box).before($(holder));
 
-
-    var box = $(box).children().getBoundingClientRect();
-    var pos;
-    var x = box.left + box.width * 0.5;
-    var y = box.top + box.height * 0.5;
-
+    var pos = this.getBoundingClientRect();
+    var left = pos.left;
+    var top = pos.top;
     //Substitute our box with our holder
-    $(box).before($(holder));
-
+    $(box).css({
+      "position": "fixed",
+      "z-index": "100000",
+      "width": pos.width + "px",
+      "height": pos.height + "px",
+      "left": left + "px",
+      "top": top + "px",
+      "transition":"ease-out"
+    });
     //Set the position of our box (not holder)
     //Give it absolute position (eg. outside our set structure)
-    $(box).css({
+    $(box).animate({
       "position": "absolute",
+      "border-radius": "0",
+      "z-index": "10000",
+      "top": "0",
+      "left": "0",
+      "height": "100vh",
+      "width": "100vw",
+      "padding": "0",
+      "margin":"0"
+    }, 500);
+    /*
+    $(box).css({
+      "position": "fixed",
       "z-index": "100000",
       "width": box.width + "px",
       "height": box.height + "px",
       "left": (box.left) + "px",
       "top": (box.top) + "px",
-
-
+      "transition":"1s linear"
     });
 
     /*
@@ -117,12 +134,11 @@ function fullscreenClick() {
       "background-position": "center center",
       "background-repeat": "no-repeat"
     });*/
-
-    //Set class so it can be animated
-    $(box).addClass("fullscreen");
+/*
 
     //Animate the position
     $(box).animate({
+      "position": "fixed",
       "top": "0",
       "left": "0",
       "height": "100vh",
@@ -130,7 +146,8 @@ function fullscreenClick() {
       "padding": "0",
       "margin":"0"
 
-    }, 800);
+
+    }, 800);*/
 
   }
 

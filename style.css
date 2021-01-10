@@ -66,8 +66,7 @@ section.banner img
 {
   position: absolute;
   height: 100vh;
-  max-height: 100vh;
-  width: 100%;
+  width: 100vw;
   left: 0;
   top: 0;
   margin: 0;
@@ -75,8 +74,6 @@ section.banner img
   object-fit: none;
   background-position: center center;
   background-repeat: no-repeat;
-  overflow: hidden;
-  z-index: -1;
 }
 
 
@@ -131,7 +128,7 @@ section.banner img
   Letter-spacing: 2px;
   font-weight: 500;
   transition: transform 0.4s cubic-bezier(.25,1.98,.27,.02);
-  margin-bottom: 100px;
+  margin-bottom: 30px;
 }
 
 .btn:hover{
@@ -597,15 +594,16 @@ img
 {
   display: grid;
   grid-template-columns: repeat(6, 12vh);
-  grid-template-rows: repeat(3, 17vh);
+  grid-template-rows: repeat(3, 15vh);
   grid-gap: 1vh;
 
 }
 .work .content .tile
 {
   overflow: hidden;
-  border-radius: 30px;
+  border-radius: 25px;
   margin: 5px;
+
 }
 .work .content .tile:hover{
     box-shadow: 5px 5px 5px 5px rgba(17, 21, 28, 0.03);
@@ -629,24 +627,33 @@ img
 }
 
 .work .tile:nth-child(1){
-    grid-column: span 4;
-    grid-row: span 2;
+    grid-column: 1 / span 4;
+    grid-row: 1 / span 2;
 }
 
-.work .tile:nth-child(2),
+.work .tile:nth-child(2){
+    grid-column: 5 / span 2;
+    grid-row: 1 / span 1;
+}
 .work .tile:nth-child(3){
-    grid-column: span 2;
+    grid-column: 5 / span 2;
+    grid-row: 2 / span 1;
 }
 
-.work .tile:nth-child(4),
+.work .tile:nth-child(4){
+    grid-column: 1 / span 3;
+    grid-row: 3 / span 1;
+}
 .work .tile:nth-child(5){
-    grid-column: span 3;
+    grid-column: 4 / span 3;
+    grid-row: 3 / span 1;
 }
 :root{
   --footer-height: 200px;
 }
 
 .footer{
+  scroll-snap-align: start;
   width: 100vw;
   height: var(--footer-height);
   bottom: 0;
