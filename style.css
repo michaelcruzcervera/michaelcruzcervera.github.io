@@ -5,6 +5,7 @@
   --white: Azure;
 
   --header-height: 10vh;
+  --header-height-mobile: 10vh;
 
   /*interstellar Text effect*/
   --dash: 70;
@@ -17,7 +18,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y proximity;
+  scroll-snap-type: y mandatory;
 }
 
 body
@@ -56,7 +57,7 @@ section.banner
   background-size: cover;
   background-position: right;
   display: flex;
-  flex-direction: column;
+
   justify-content: center;
 
 }
@@ -81,8 +82,8 @@ section.banner img
 
 .textBx
 {
-  padding: calc(15vh + 10px ) 0 0 100px;
-  margin-top: auto;
+  padding: 0 0 0 100px;
+
   align-self: flex-start;
 }
 
@@ -226,10 +227,20 @@ header ul li a:hover:after {
 }
 
 .mouse-wrap {
+  /*
   margin-top: auto;
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 30px;
+  padding-bottom: 30px;*/
+  width: 26px;
+  height: 44px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
   transition: 0.3s ease-out;
 }
 
@@ -241,8 +252,8 @@ header ul li a:hover:after {
 
 :root{
   --colorOutline: #ffff;
-  --widthMouse: 26px;
-  --heightMouse: 44px;
+  --widthMouse: 100%;
+  --heightMouse: 100%;
   --borderMouse: 3.5px;
 
   --lineOpacity: 0.8;
@@ -371,7 +382,6 @@ header ul li a:hover:after {
 {
   width: 100%;
   text-align: center;
-  margin-top: auto;
   color: var(--black);
 }
 .heading h2
@@ -401,6 +411,7 @@ header ul li a:hover:after {
 {
   position: relative;
   width: 50%;
+
   min-height: 300px;
 }
 
@@ -413,7 +424,7 @@ header ul li a:hover:after {
   width: 300px;
   height: 300px;
   background: white;
-  border-radius: 1000px;
+  border-radius: 100%;
   font-family: 'Montserrat', sans-serif;
   font-size: 20px;
   font-weight: lighter;
@@ -443,18 +454,6 @@ header ul li a:hover:after {
     height: 150px;
   }
 
-.about h2{
-  margin-top: -100px;
-}
-.about img
-{
-  max-width: 50%;
-  display: block;
-  padding: 20px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 img
 {
   max-width: 100%;
@@ -471,7 +470,7 @@ img
 }
 .skills p{
   color: var(--white);
-  margin-top: -40px;
+  margin-top: -20px;
   margin-bottom: 40px;
 }
 
@@ -592,14 +591,14 @@ img
 .work p
 {
   color: #fff;
-  margin-top: -40px;
-  margin-bottom: 40px;
+
 }
 .work .content
 {
   display: grid;
-  grid-template-columns: repeat(6, minmax(12vh, 1fr));
-  grid-gap: 1rem;
+  grid-template-columns: repeat(6, 12vh);
+  grid-template-rows: repeat(3, 17vh);
+  grid-gap: 1vh;
 
 }
 .work .content .tile
@@ -643,10 +642,16 @@ img
 .work .tile:nth-child(5){
     grid-column: span 3;
 }
+:root{
+  --footer-height: 200px;
+}
 
 .footer{
-  width: 100%;
+  width: 100vw;
+  height: var(--footer-height);
   bottom: 0;
+  left:0;
+  right:0;
   background: var(--black);
   color: #fff;
   padding: 0;
@@ -750,11 +755,16 @@ img
 }
 
 .contact{
-  scroll-snap-align: unset;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  height: calc(100vh + var(--footer-height))
 }
 
 .formBx
 {
+  padding-left: 10%;
+  padding-right: 10%;
   min-width: 60%;
   margin-bottom: auto;
 }
@@ -1072,13 +1082,13 @@ svg.hi {
 
   header.sticky{
     padding: 0 30px;
-    height: var(--header-height);
+    height: var(  --header-height-mobile);
   }
   .menu
   {
     position: fixed;
     margin: 0;
-    top: var(--header-height);
+    top: var(  --header-height-mobile);
     left: 100%;
     right: -100%;
     display: flex;
@@ -1130,7 +1140,7 @@ svg.hi {
 
   .heading h2
   {
-    font-size: 2em;
+    font-size: 3em;
   }
   .content
   {
@@ -1143,7 +1153,7 @@ svg.hi {
 
   .skills .content{
 
-    grid-template-columns: repeat(2, 130px);
+    grid-template-columns: repeat(3, 130px);
     grid-template-rows: repeat(5, 130px);
     margin: 50px;
   }
@@ -1272,10 +1282,11 @@ svg.hi {
 
 @media (max-width: 600px)
 {
-  header,
+
   header.sticky
   {
-    padding: 20px 20px;
+    padding: 0 30px;
+    height: var(  --header-height-mobile);
   }
 
   .banner
