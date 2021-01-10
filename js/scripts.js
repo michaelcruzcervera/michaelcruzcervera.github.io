@@ -7,13 +7,18 @@ $(function(){
 function main(){
 
   var tiles = $(".tile");
-  /*
+
   tiles.each(function() {
       const btn = new HoverButton($(this)[0]);
   });
-*/
+
   var skills = $(".skill");
   skills.each(function() {
+      const btn = new HoverButton($(this)[0]);
+  });
+
+  var circle = $(".circle");
+  circle.each(function() {
       const btn = new HoverButton($(this)[0]);
   });
 
@@ -37,7 +42,7 @@ function main(){
     });
     setTimeout(function(){
          window.location = goTo;
-    }, 1200);                             // time in ms
+    }, 500);                             // time in ms
 });
 
   window.addEventListener('scroll', function(){
@@ -49,7 +54,7 @@ function main(){
       var animation_height = $(window).innerHeight() * 0.1;
       var ratio = Math.round( (1 / animation_height) * 10000 ) / 1000;
 
-      $('section div:not(section.banner div)').each(function() {
+      $('section .content').each(function() {
         var objectTop = $(this).offset().top;
         var objectBottom = $(this).position().top + ($(this).outerHeight());
         var windowTop = $(window).scrollTop();
@@ -280,7 +285,7 @@ class HoverButton {
       duration: 0.7
     });
 
-    this.el.style.zIndex = 1;
+    this.el.style.zIndex = 0;
   }
 }
 
