@@ -407,9 +407,8 @@ header ul li a:hover:after {
   justify-content: center;
   position: relative;
   margin: auto;
-  width: 300px;
-  height: 300px;
-
+  width: 350px;
+  height: 350px;
   border-radius: 100%;
   font-family: 'Montserrat', sans-serif;
   font-size: 20px;
@@ -418,7 +417,6 @@ header ul li a:hover:after {
   transition: 1s box-shadow;
   z-index: 11;
 }
-
 
 
 .circle
@@ -581,8 +579,8 @@ img
 .work .content
 {
   display: grid;
-  grid-template-columns: repeat(6, 12vh);
-  grid-template-rows: repeat(3, 15vh);
+  grid-template-columns: repeat(6, minmax(80px, 12vh));
+  grid-template-rows: repeat(3, minmax(80px, 15vh));
   grid-gap: 1vh;
 
 }
@@ -752,7 +750,7 @@ img
   padding-left: 0;
   padding-right: 0;
   padding-bottom: 0;
-  height: calc(100vh + var(--footer-height))
+  min-height: calc(100vh + var(--footer-height));
 }
 
 .formBx
@@ -975,6 +973,7 @@ max-width:500px;
   {
     opacity: 0;
   }
+
   .textBx
   {
     padding: 0 50px 0;
@@ -986,6 +985,11 @@ max-width:500px;
   .banner h3
   {
     font-size: 2em;
+  }
+
+  #bust{
+    width: 300px;
+    height: 300px;
   }
 
   .heading h2
