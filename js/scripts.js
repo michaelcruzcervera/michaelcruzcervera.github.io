@@ -5,27 +5,82 @@ $(function(){
 });
 
 function main(){
+  //Let lightTheme = false;
+  document.body.addEventListener("click", () => {
+    //Set Colors
+    /*
+    --backround: linear-gradient(to right, #ddd6f3, #faaca8);
+    --meta-colour: linear-gradient(to right, #2bc0e4, #eaecc6);
+    */
+    const themes = [
+      {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#2bc0e4', main2:'#eaecc6'}, //Pink and Baby Blue
+      {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#aa076b', main2:'#61045f'}, //Pink and Ribena
+      {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#ff8008', main2:'#ffc837'}, //Pink and Fanta
+      {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#2bc0e4', main2:'#eaecc6'}, //Pink and Candy Floss
+      {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#757f9a', main2:'#d7dde8'}, //Pink and Clay
+      {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#de6262', main2:'#ffb88c'}, //Pink and Peach
+    ];
 
-  var tiles = $(".tile");
+    let index = Math.floor(Math.random()*themes.length);
+
+    document.documentElement.style.setProperty('--background', `linear-gradient(to right, ${themes[index].bg1}, ${themes[index].bg2})`);
+    document.documentElement.style.setProperty('--meta-colour', `linear-gradient(to right, ${themes[index].main1}, ${themes[index].main2})`);
+  });
+
+  //Set up hover buttons
+  const tiles = $(".tile");
 
   tiles.each(function() {
       const btn = new HoverButton($(this)[0]);
   });
 
-  var skills = $(".skill");
-  skills.each(function() {
-      const btn = new HoverButton($(this)[0]);
+  const menu = $(".menu li a");
+  menu.each(function() {
+      const btn = new HoverButton($(this)[0], 0.1, 0, 1.1, 0.4);
   });
 
-  var circle = $(".circle");
-  circle.each(function() {
-      const btn = new HoverButton($(this)[0]);
+
+  const ham =  document.querySelector('.hamburger');
+  const hamBtn = new HoverButton(ham);
+
+  const btn = $(".btn");
+  btn.each(function() {
+      const btn = new HoverButton($(this)[0], 0.3, 10, 1.1, 0.4);
   });
 
-  var social = $(".footer li");
-  social.each(function() {
-      const btn = new HoverButton($(this)[0], circl=true);
+  const hoverables = $(".hover");
+  hoverables.each(function() {
+      const btn = new HoverButton($(this)[0], 0.3, 10, 1.1, 0.4, false);
   });
+/*
+  const bustAccent =  document.querySelector('.bust-hover');
+  const bustAccentBtn = new HoverButton(bustAccent, 0.2, 200, 1, 10, false, true, false);
+*/
+
+  const socials = $(".footer li");
+  socials.each(function() {
+      const btn = new HoverButton($(this)[0], 0.2);
+  });
+
+
+  $(".blob").each(function () {
+
+  //Set Start Postion/Size
+  var minSize = 50;
+  var maxSize = Math.max(100, $(window).width() * 0.2, $(window).height() * 0.2);
+  var w = Math.floor(Math.random() * maxSize) + minSize;
+  var newq = makeNewPosition();
+  $(this).css({ top: newq[0], left: newq[1], width: 0, height: 0 });
+
+  $(this).animate({ opacity: 1, width: w, height: w }, 400);
+
+  //Add HoverButton
+  const btn = new HoverButton($(this)[0], 0.4, maxSize/2, 1.0, 6, false, false, false);
+
+  //Start Animation
+  animateDiv($(this)[0], minSize, maxSize);
+});
+
 /*
   var scrollMouse = document.querySelector('.mouse-wrap');
   const btn = new HoverButton(scrollMouse, strength = 0.06, proximity = 1000);
@@ -119,39 +174,6 @@ function fullscreenClick() {
       "padding": "0",
       "margin":"0"
     }, 500);
-    /*
-    $(box).css({
-      "position": "fixed",
-      "z-index": "100000",
-      "width": box.width + "px",
-      "height": box.height + "px",
-      "left": (box.left) + "px",
-      "top": (box.top) + "px",
-      "transition":"1s linear"
-    });
-
-    /*
-    $(image).css({
-      "width":"100%",
-      "height":"auto",
-      "object-fit": "none",
-      "background-position": "center center",
-      "background-repeat": "no-repeat"
-    });*/
-/*
-
-    //Animate the position
-    $(box).animate({
-      "position": "fixed",
-      "top": "0",
-      "left": "0",
-      "height": "100vh",
-      "width": "100vw",
-      "padding": "0",
-      "margin":"0"
-
-
-    }, 800);*/
 
   }
 
@@ -167,28 +189,69 @@ function toggleMenu(){
   menu.classList.toggle('active');
 }
 
+
+
+function makeNewPosition() {
+  // Get viewport dimensions (remove the dimension of the div)
+  var h = $(".cont").height();
+  var w = $(".cont").width();
+
+  var nh = Math.floor(Math.random() * h);
+  var nw = Math.floor(Math.random() * w);
+
+  return [nh, nw];
+}
+function animateDiv(element, minSize = 20, maxSize = 150, minSpeed = 35, maxSpeed = 25) {
+
+  var newPos = makeNewPosition();
+  var speed = Math.floor(Math.random() * maxSpeed) + minSpeed;
+  const x1 = element.offsetTop;
+  const y1 = element.offsetLeft;
+  var dist = Math.floor(distance(x1, y1, newPos[0], newPos[1]));
+  var time = dist * speed;
+  var screenWidth = Math.max($(window).width() * 0.2, $(window).height() * 0.2, maxSize);
+  let width = Math.floor(Math.random() * screenWidth) + minSize;
+  var w = width;
+
+  $(element).animate(
+    { top: newPos[0], left: newPos[1], width: w, height: w },
+    time,
+    function () {
+      animateDiv(element);
+    }
+  );
+}
+
+function distance(x1, y1, x2, y2) {
+  var a = x1 - x2;
+  var b = y1 - y2;
+
+  return Math.sqrt(a * a + b * b);
+}
+
 class HoverButton {
   constructor(
     el,
     strength = 0.09,
     proximity = 0,
     scale = 1.07,
-    circle = false,
-    attract = true,
-    tilt = false,
     enterDuration = 0.4,
-    easeLeave = 'elastic.out(1.1, 0.4)',
-    easeEnter = 'power2.out'
+    attract = true,
+    lift = true,
+    unset = true
+
   ) {
     this.el = el;
-    this.strength = strength;
-    this.attract = attract;
-    this.proximity = proximity;
-    this.circle = circle;
-    this.scale = scale;
-    this.easeLeave = easeLeave;
-    this.easeEnter = easeEnter;
-    this.tilt = tilt;
+this.strength = strength;
+this.proximity = proximity;
+this.scale =  scale;
+this.attract = attract;
+this.enterDuration = enterDuration;
+this.lift = lift;
+this.unset = unset;
+
+this.easeLeave = 'elastic.out(1.1, 0.4)';
+this.easeEnter = 'power2.out';
 
     this.hover = false;
 
@@ -198,19 +261,22 @@ class HoverButton {
 
   attachEventsListener() {
     window.addEventListener("mousemove", (e) => this.onMouseMove(e));
+    window.addEventListener("mousemove", (e) => this.calculatePosition(e));
     window.addEventListener("resize", (e) => this.calculatePosition(e));
+    window.addEventListener("load", (e) => this.calculatePosition(e));
 
     window.addEventListener("scroll", (e) => this.calculatePosition(e));//this.onScroll(e);});
     //window.addEventListener("scroll", (e) => this.onScroll(e));
   }
 
   calculatePosition() {
-    gsap.set(this.el, {
-  x: 0,
-  y: 0,
-  scale: 1
-});
-
+    if(this.unset){
+      gsap.set(this.el, {
+    x: 0,
+    y: 0,
+    scale: 1
+  });
+    }
     const box = this.el.getBoundingClientRect();
     this.x = box.left + (box.width * 0.5);
     this.y = box.top + (box.height * 0.5);
@@ -225,17 +291,11 @@ class HoverButton {
     let y = e.clientY - this.y;
     let distance = Math.sqrt(x * x + y * y);
 
-    var inside = false;
-
-    if (this.circle) {
-      inside = distance < (this.width/2 * hoverArea)
-    } else {
-      inside =
+    const inside =
         x < this.width / 2 + this.proximity &&
         x > -this.width / 2 - this.proximity &&
         y < this.height / 2 + this.proximity &&
         y > -this.height / 2 - this.proximity;
-    }
 
     if (inside) {
       hover = true;
@@ -245,7 +305,7 @@ class HoverButton {
       this.onHover(e.clientX, e.clientY);
     }
 
-    if (!hover && this.hover) {
+    if (!hover && this.hover && this.unset) {
       this.onLeave();
       this.hover = false;
     }
@@ -269,11 +329,12 @@ class HoverButton {
   y: transY,
   scale: this.scale,
   ease: this.easeEnter,
-  duration: 0.4
+  duration: this.enterDuration
 });
 
-
-    this.el.style.zIndex = 10;
+if(this.lift){
+this.el.style.zIndex = 10;
+}
   }
   onLeave() {
     gsap.to(this.el, {
@@ -281,7 +342,7 @@ class HoverButton {
       y: 0,
       scale: 1,
       ease: this.easeLeave,
-      duration: 0.7
+      duration: 0.9
     });
 
     this.el.style.zIndex = 0;

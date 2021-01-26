@@ -56,21 +56,45 @@ var fileAnimations;
 var mixer;
 var neck;
 var root;
-  const textureLoader = new THREE.TextureLoader();
+var glasses = [];
+var gIndex = 0;
+var shirts = [];
+var sIndex = 0;
+
+
   const loader = new THREE.GLTFLoader();
   loader.load('../models/bust.glb', function (gltf) { //'https://threejs.org/examples/models/gltf/LeePerrySmith/LeePerrySmith.glb'
     model = gltf.scene.children[0];
     model.scale.set(10,10,10);
-    /*
-    model.children[2].material.map = 0;
-    model.children[3].material.map = 0;
-    model.children[4].material.map = 0; //eyes
-    model.children[5].material.map = 0;
-    model.children[6].material.map = 0; //skin
-    model.children[7].material.map = 0; //hair
-    model.children[8].material.map = 0; //shirt
 
-*/
+    //model.children[2].material.map = 0;
+    //model.children[3].material.map = 0;
+    //model.children[4].material.map = 0; //eyes
+    glasses.push(model.children[5]);//glasses Cyber Punk
+    glasses.push(model.children[6]);//mum glasses
+    glasses.push(model.children[1]);//glasses normal
+    gIndex = Math.floor(Math.random() * glasses.length);
+    for (i = 0; i < glasses.length; i++) {
+      if(i != gIndex){
+        glasses[i].visible = false;
+      }
+    }
+
+    //var n = Math.floor(Math.random() * glasses.length);
+
+
+    shirts.push(model.children[9]);//Suit
+    shirts.push(model.children[10]);//shirt
+    sIndex = Math.floor(Math.random() * shirts.length);
+    for (i = 0; i < shirts.length; i++) {
+      if(i != sIndex){
+        shirts[i].visible = false;
+      }
+    }
+
+    //model.children[7].material.map = 0; //skin
+    //model.children[8].material.map = 0; //hair
+
     let fileAnimations = gltf.animations;
 
     scene.add(model);
@@ -85,11 +109,12 @@ var root;
   }
 });
 
+
+
     mixer = new THREE.AnimationMixer( model );
 
-    var idleAnim = fileAnimations[5]
-    idleAnim.tracks.splice(3, 3);
-    idleAnim.tracks.splice(9, 3);
+    var idleAnim = fileAnimations[0]
+
     var action = mixer.clipAction( idleAnim  ); // access first animation clip
     action.play();
 
@@ -99,6 +124,7 @@ var root;
 
   } );
 
+
   this.mouse = new THREE.Vector2(0, 0)
 
 
@@ -106,7 +132,7 @@ var root;
     var mousecoords = getMousePos(e);
   if (neck && root) {
       moveJoint(mousecoords, neck, 30);
-      moveJoint(mousecoords, root, 20);
+      moveJoint(mousecoords, root, 10);
   }
   });
 
@@ -155,19 +181,6 @@ function moveJoint(mouse, joint, degreeLimit) {
                   .start();
   //joint.rotation.y = THREE.Math.degToRad(degrees.x);
   //joint.rotation.x = THREE.Math.degToRad(degrees.y);
-}
-
-function onMouseMove(event, cube) {
-  this.mouse = {
-    x: (event.clientX / window.innerWidth) * 2 - 1,
-    y: -(event.clientY / window.innerHeight) * 2 + 1,
-  }
-
-  var tween = new TWEEN.Tween(cube.rotation)
-                  .to({x:-this.mouse.y * 0.3 ,
-                    y: this.mouse.x * (Math.PI / 6)}, 300)
-                  .easing(TWEEN.Easing.Quadratic.Out)
-                  .start();
 }
 
 function onMouseLeave(event, cube) {

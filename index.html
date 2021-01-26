@@ -17,32 +17,57 @@
         <title>Personal Portfolio</title>
       </head>
       <body>
+
+
         <div class="body-holder">
 
-
-        <header>
-          <a href="#" class="logo">Portfolio</a>
-          <button class="hamburger hamburger--elastic" onclick="toggleMenu();" type="button">
-            <span class="hamburger-box">
-              <span class="hamburger-inner"></span>
-            </span>
-          </button>
-          <ul class="menu">
-            <li><a href="#home" onclick="toggleMenu();">Home</a></li>
+          <header>
+            <button class="hamburger hamburger--elastic" onclick="toggleMenu();" type="button">
+              <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+              </span>
+            </button>
+            <ul class="menu">
+              <li><a href="#home" onclick="toggleMenu();">Home</a></li>
             <li><a href="#about" onclick="toggleMenu();">About</a></li>
             <li><a href="#work" onclick="toggleMenu();">Work</a></li>
             <li><a href="#contact" onclick="toggleMenu();">Contact</a></li>
           </ul>
         </header>
         <section class="banner" id="home">
+          <div>
+
+          </div>
           <div class="banner-box">
             <h2>Hello, I'm <br> <span>Michael Cruz</span></h2>
-            <div class="sentence">
-              <h3>I'm a Software Engineer</h3><div class="fullstop"></div>
-            </div>
+
+            <h3>I'm a Software Engineer</h3>
+
             <a href="#about" class="btn">About Me</a>
 
           </div>
+          <div class="cont" id="cont">
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <defs>
+              <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 30 -12" result="goo" />
+
+              </filter>
+            </defs>
+          </svg>
           <a class="mouse-wrap" href="#about">
             <div class="mouse">
             </div>
@@ -61,11 +86,8 @@
                 My hobbies include GameDev, 3D modeling, graphic design, and fitness.</p>
             </div>
             <div class="w50">
-              <div class="circle"></div>
+              <div class="circle bust-hover"></div>
               <canvas id="bust"></canvas>
-
-
-
             </div>
             <!--
             <div class="w50">
@@ -79,21 +101,26 @@
             <h3>Here are some of my skills!</h3>
           </div>
           <div class="content">
-              <h3 class="skill">C#</h3>
-              <h3 class="skill">GAME DEV</h3>
 
-              <h3 class="skill">CSS/HTML</h3>
+              <h3 class="skill small hover">SQL</h3>
+              <h3 class="skill medium hover">CSS/HTML</h3>
+              <h3 class="skill medium hover">HASKELL</h3>
+              <h3 class="skill large hover">C#</h3>
 
-              <h3 class="skill">C++</h3>
+              <h3 class="skill small hover">Java</h3>
 
-              <h3 class="skill">HASKELL</h3>
-
-              <h3 class="skill">JS</h3>
-
-              <h3 class="skill">REACT</h3>
-
-              <h3 class="skill">ML</h3>
-              <h3 class="skill">GRAPHIC<br>DESIGN</h3>
+              <h3 class="skill small hover">ML</h3>
+              <h3 class="skill large hover">C++</h3>
+              <h3 class="skill medium hover">GRAPHIC<br>DESIGN</h3>
+              <h3 class="skill medium hover">React</h3>
+              <!--
+              <h3 class="skill large hover">Game Dev</h3>
+              <h3 class="skill medium hover">Software<br>Arch</h3>
+              <h3 class="skill small hover">Data<br>Science</h3>
+              <h3 class="skill medium hover">Unity</h3>
+              <h3 class="skill medium hover">JS</h3>
+              <h3 class="skill small hover">LaTeX</h3>
+            -->
           </div>
           <!--
           <div class="heading">
@@ -117,12 +144,9 @@
           </div>
           <div class="content">
             <div class="tile" >
-
                 <a class="with-transition" href="pages/work.html" >
                 <img src="images/placeholder.png">
                 </a>
-
-
             </div>
             <div class="tile">
               <a class="with-transition" href="pages/work.html" >
@@ -159,7 +183,7 @@
                   <stop color="#000"/>
                 </linearGradient>
                 <pattern id="wave" x="0" y="0.21" width="100%" height="100%" patternUnits="userSpaceOnUse">
-                  <path id="wavePath" d="M-40 9 Q-30 7 -20 9 T0 9 T20 9 T40 9 T60 9 T80 9 T100 9 T120 9 V20 H-40z" mask="url(#mask)" fill="url(#gradient)">
+                  <path id="wavePath" d="M-40 9 Q-30 7 -20 9 T0 9 T20 9 T40 9 T60 9 T80 9 T100 9 T120 9 V20 H-40z" mask="url(#mask)" fill="#532C04">
                     <animateTransform
                     attributeName="transform"
                     begin="0s"
