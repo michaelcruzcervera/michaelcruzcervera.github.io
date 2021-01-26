@@ -103,7 +103,7 @@ function main(){
   window.addEventListener('scroll', function(){
     toggleSticky();
   });
-
+/*
   $(window).on("load",function() {
     function fade() {
       var animation_height = $(window).innerHeight() * 0.1;
@@ -130,7 +130,7 @@ function main(){
     fade();
     $(window).scroll(function() {fade();});
     $(window).resize(function() {fade();});
-  });
+  });*/
 
 }
 
