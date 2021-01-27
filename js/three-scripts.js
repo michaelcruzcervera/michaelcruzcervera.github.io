@@ -9,7 +9,7 @@ function bust() {
   const mouseArea = document.querySelector('#about');
   const renderer = new THREE.WebGLRenderer({canvas,  alpha: true, antialias: true});
   renderer.setClearColor( 0x000000, 0 );
-  renderer.gammaFactor = 2.2;
+  //renderer.gammaFactor = 2.2;
   renderer.gammaOutput = true;
 
   const clock = new THREE.Clock;
@@ -40,12 +40,12 @@ function bust() {
   directionalLight1.position.set( 15, 20, -30 );
   directionalLight1.target.position.set(0, 6, 3.5);
   scene.add( directionalLight1 );
-
+/*
   const directionalLight2 = new THREE.DirectionalLight( 0xffffff, 4 );
   directionalLight2.position.set( -15, 10, -30 );
   directionalLight2.target.position.set(0, 6, 3.5);
   scene.add( directionalLight2 );
-
+*/
   const directionalLight3 = new THREE.DirectionalLight( 0xffffff, 1 );
   directionalLight3.position.set( 0, 20, 20 );
   directionalLight3.target.position.set(0, 6, 2);
@@ -63,10 +63,10 @@ var sIndex = 0;
 
 
   const loader = new THREE.GLTFLoader();
-  loader.load('../models/bust.glb', function (gltf) { //'https://threejs.org/examples/models/gltf/LeePerrySmith/LeePerrySmith.glb'
+  loader.load('../models/bust-test.glb', function (gltf) { //'https://threejs.org/examples/models/gltf/LeePerrySmith/LeePerrySmith.glb'
     model = gltf.scene.children[0];
     model.scale.set(10,10,10);
-
+/*
     //model.children[2].material.map = 0;
     //model.children[3].material.map = 0;
     //model.children[4].material.map = 0; //eyes
@@ -94,7 +94,7 @@ var sIndex = 0;
 
     //model.children[7].material.map = 0; //skin
     //model.children[8].material.map = 0; //hair
-
+*/
     let fileAnimations = gltf.animations;
 
     scene.add(model);
@@ -117,6 +117,7 @@ var sIndex = 0;
 
     var action = mixer.clipAction( idleAnim  ); // access first animation clip
     action.play();
+
 
   }, undefined, function ( error ) {
 
