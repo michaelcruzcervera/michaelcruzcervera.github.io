@@ -63,17 +63,20 @@ var sIndex = 0;
 
 
   const loader = new THREE.GLTFLoader();
-  loader.load('../models/bust-test.glb', function (gltf) { //'https://threejs.org/examples/models/gltf/LeePerrySmith/LeePerrySmith.glb'
+
+  loader.load('../models/bust.glb', function (gltf) { //'https://threejs.org/examples/models/gltf/LeePerrySmith/LeePerrySmith.glb'
     model = gltf.scene.children[0];
     model.scale.set(10,10,10);
-/*
+
+
     //model.children[2].material.map = 0;
     //model.children[3].material.map = 0;
     //model.children[4].material.map = 0; //eyes
     glasses.push(model.children[5]);//glasses Cyber Punk
     glasses.push(model.children[6]);//mum glasses
     glasses.push(model.children[1]);//glasses normal
-    gIndex = Math.floor(Math.random() * glasses.length);
+    gIndex = 0;//Math.floor(Math.random() * glasses.length);
+    console.log(2);
     for (i = 0; i < glasses.length; i++) {
       if(i != gIndex){
         glasses[i].visible = false;
@@ -94,7 +97,7 @@ var sIndex = 0;
 
     //model.children[7].material.map = 0; //skin
     //model.children[8].material.map = 0; //hair
-*/
+
     let fileAnimations = gltf.animations;
 
     scene.add(model);
@@ -169,6 +172,10 @@ var sIndex = 0;
   }
   render();
 
+
+}
+
+function loadAsset(){
 
 }
 

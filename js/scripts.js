@@ -74,10 +74,10 @@ function main(){
   $(this).animate({ opacity: 1, width: w, height: w }, 400);
 
   //Add HoverButton
-  const btn = new HoverButton($(this)[0], 0.4, maxSize/2, 1.0, 6, false, false, false);
+  const btn = new HoverButton($(this)[0], 0.4, maxSize/2, 1.0, 6, false, false, false, true);
 
   //Start Animation
-  //animateDiv($(this)[0], minSize, maxSize);
+  animateDiv($(this)[0], minSize, maxSize);
 });
 
 /*
@@ -238,7 +238,8 @@ class HoverButton {
     enterDuration = 0.4,
     attract = true,
     lift = true,
-    unset = true
+    unset = true,
+    calcPosOnMM = false
 
   ) {
     this.el = el;
@@ -249,6 +250,7 @@ this.attract = attract;
 this.enterDuration = enterDuration;
 this.lift = lift;
 this.unset = unset;
+this.calcPosOnMM = calcPosOnMM;
 
 this.easeLeave = 'elastic.out(1.1, 0.4)';
 this.easeEnter = 'power2.out';
@@ -261,7 +263,10 @@ this.easeEnter = 'power2.out';
 
   attachEventsListener() {
     window.addEventListener("mousemove", (e) => this.onMouseMove(e));
-    window.addEventListener("mousemove", (e) => this.calculatePosition(e));
+    if(this.calcPosOnMM){
+          window.addEventListener("mousemove", (e) => this.calculatePosition(e));
+    }
+
     window.addEventListener("resize", (e) => this.calculatePosition(e));
     window.addEventListener("load", (e) => this.calculatePosition(e));
 

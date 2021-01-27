@@ -123,10 +123,10 @@ section
 }
 
 h3{
-  font-size: 2em;
+  font-size: 1.5em;
 }
 p{
-  font-size: 1.2em;
+  font-size: 1em;
 }
 
 .btn
@@ -422,8 +422,8 @@ section.banner
     margin-right: auto;
     border-radius: 100%;
     background: var(--meta-colour);
-    width: min(300px, 20vw);
-    height: min(300px, 20vw);
+    width: max(min(300px, 20vw), 150px);
+    height: max(min(300px, 20vw), 150px);
     box-shadow: 0 5px 35px 0px rgba(0,0,0,.1);
 
   }
@@ -1257,7 +1257,9 @@ max-width:500px;
     padding: 0 30px;
     height: var(  --header-height);
   }
-
+  .banner-box{
+    padding-left: 20px;
+  }
   .banner
   {
     height: 100vh;
@@ -1265,7 +1267,7 @@ max-width:500px;
 
   .banner h2
   {
-    font-size: 2em;
+    font-size: 1.8em;
   }
   .banner h3
   {
@@ -1273,7 +1275,7 @@ max-width:500px;
   }
   .btn
   {
-    font-size: 1em;
+    font-size: 0.8em;
   }
 
   .skills .content{
