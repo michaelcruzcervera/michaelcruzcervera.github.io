@@ -62,7 +62,6 @@ function main(){
       const btn = new HoverButton($(this)[0], 0.2);
   });
 
-
   $(".blob").each(function () {
 
   //Set Start Postion/Size
@@ -78,7 +77,7 @@ function main(){
   const btn = new HoverButton($(this)[0], 0.4, maxSize/2, 1.0, 6, false, false, false);
 
   //Start Animation
-  animateDiv($(this)[0], minSize, maxSize);
+  //animateDiv($(this)[0], minSize, maxSize);
 });
 
 /*
@@ -88,7 +87,7 @@ function main(){
 
 
   //Loops over all elements that have the class with-transition
-
+/*
   $('.work .content .tile a').click(function (e) {
     e.preventDefault();                   // prevent default anchor behavior
     var goTo = this.getAttribute("href"); // store anchor href
@@ -99,7 +98,7 @@ function main(){
          window.location = goTo;
     }, 500);                             // time in ms
 });
-
+*/
   window.addEventListener('scroll', function(){
     toggleSticky();
   });
@@ -201,6 +200,7 @@ function makeNewPosition() {
 
   return [nh, nw];
 }
+
 function animateDiv(element, minSize = 20, maxSize = 150, minSpeed = 35, maxSpeed = 25) {
 
   var newPos = makeNewPosition();

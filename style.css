@@ -431,7 +431,7 @@ section.banner
 /* -------------- || Skills Section ------------------ */
 
 .skills{
-  background: steelblue;
+  background: var(--background); /*steelblue*/
   color: #fff;
 }
 .skills h2{
@@ -596,7 +596,7 @@ section.banner
   display: grid;
   grid-template-columns: repeat(6, minmax(80px, 10em));
   grid-template-rows: repeat(3, minmax(80px, 10em));
-  grid-gap: 1vh;
+  grid-gap: 2vh;
 
 }
 .work .content .tile
@@ -604,7 +604,6 @@ section.banner
   position: relative;
   overflow: hidden;
   border-radius: 25px;
-  margin: 5px;
 
 }
 .work .content .tile:hover{
