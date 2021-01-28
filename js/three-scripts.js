@@ -81,6 +81,8 @@ var sIndex = 0;
     for (i = 0; i < glasses.length; i++) {
       if(i != gIndex){
         glasses[i].visible = false;
+      }else{
+        glasses[i].visible = true;
       }
     }
 
@@ -88,6 +90,8 @@ var sIndex = 0;
     for (i = 0; i < shirts.length; i++) {
       if(i != sIndex){
         shirts[i].visible = false;
+      }else{
+        shirts[i].visible = true;
       }
     }
 
@@ -133,17 +137,30 @@ var sIndex = 0;
   }
   });
 
-  mouseArea.addEventListener('touchmove', function(e) {
-    var mousecoords = getMousePos(e);
-  if (neck && root) {
-      moveJoint(mousecoords, neck, 30);
-      moveJoint(mousecoords, root, 10);
-  }
-  });
-
   mouseArea.addEventListener('mouseleave', (ev) => {
     this.onMouseLeave(ev, neck);
     this.onMouseLeave(ev, root);
+  });
+
+  mouseArea.addEventListener('click', (ev) => {
+    gIndex = Math.floor(Math.random() * glasses.length);
+
+    for (i = 0; i < glasses.length; i++) {
+      if(i != gIndex){
+        glasses[i].visible = false;
+      }else{
+        glasses[i].visible = true;
+      }
+    }
+
+    sIndex = Math.floor(Math.random() * shirts.length);
+    for (i = 0; i < shirts.length; i++) {
+      if(i != sIndex){
+        shirts[i].visible = false;
+      }else{
+        shirts[i].visible = true;
+      }
+    }
   });
 
 /*

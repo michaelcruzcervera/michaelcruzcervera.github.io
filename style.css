@@ -1026,7 +1026,7 @@ max-width:500px;
 /* -------------- || Responsive ------------------ */
 
 .hamburger {
-  all: unset;
+ all: unset;
 }
 
 .paused{
@@ -1062,7 +1062,7 @@ max-width:500px;
     top: var(--header-height);
     left: 100%;
     right: -100%;
-    display: flex;
+    display: none;
     flex-direction: column;
     padding: 100px 50px;
     text-align: center;
@@ -1076,6 +1076,7 @@ max-width:500px;
   {
     left: 0;
     right: 0;
+    display: flex;
   }
   header ul li a
   {
