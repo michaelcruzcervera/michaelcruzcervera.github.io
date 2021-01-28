@@ -85,33 +85,7 @@ function main(){
   animateDiv($(this)[0], minSize, maxSize);
 });
 
-// start render
-function start() {
 
-  $(".blob").each(function () {
-    animateDiv($(this)[0]);
-});
-
-}
-
-// observer + log + stop render
-
-const onScreen = new Set();
-const intersectionObserver = new IntersectionObserver((entries) => {
-entries.forEach(entry => {
-  if (entry.isIntersecting) {
-    onScreen.add(entry.target);
-    start();
-    //console.log('blobs has been started');
-  } else {
-    onScreen.delete(entry.target);
-    //console.log('blobs has been halted');
-      }
-});
-
-});
-
-document.querySelectorAll('.cont').forEach(elem => intersectionObserver.observe(elem));
 
   window.addEventListener('scroll', function(){
     toggleSticky();
@@ -231,7 +205,7 @@ function animateDiv(element, minSize = 20, maxSize = 150, minSpeed = 35, maxSpee
     { top: newPos[0], left: newPos[1], width: w, height: w },
     time,
     function () {
-
+      animateDiv(element);
     }
   );
 }
