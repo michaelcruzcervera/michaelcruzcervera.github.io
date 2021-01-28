@@ -1,7 +1,5 @@
 $(function(){
-
-    bust();
-
+      bust();
 });
 
 function bust() {
@@ -68,26 +66,24 @@ var sIndex = 0;
     model = gltf.scene.children[0];
     model.scale.set(10,10,10);
 
+    model.traverse(o => {
+      // Reference the accessories
+      if (o.name.includes("Glasses")) {
+        glasses.push(o);
+      }
+      if (o.name.includes("Shirt")) {
+        shirts.push(o);
+      }
+    });
 
-    //model.children[2].material.map = 0;
-    //model.children[3].material.map = 0;
-    //model.children[4].material.map = 0; //eyes
-    glasses.push(model.children[5]);//glasses Cyber Punk
-    glasses.push(model.children[6]);//mum glasses
-    glasses.push(model.children[1]);//glasses normal
-    gIndex = 0;//Math.floor(Math.random() * glasses.length);
-    console.log(2);
+    gIndex = Math.floor(Math.random() * glasses.length);
+
     for (i = 0; i < glasses.length; i++) {
       if(i != gIndex){
         glasses[i].visible = false;
       }
     }
 
-    //var n = Math.floor(Math.random() * glasses.length);
-
-
-    shirts.push(model.children[9]);//Suit
-    shirts.push(model.children[10]);//shirt
     sIndex = Math.floor(Math.random() * shirts.length);
     for (i = 0; i < shirts.length; i++) {
       if(i != sIndex){
@@ -95,22 +91,19 @@ var sIndex = 0;
       }
     }
 
-    //model.children[7].material.map = 0; //skin
-    //model.children[8].material.map = 0; //hair
-
     let fileAnimations = gltf.animations;
 
     scene.add(model);
 
     model.traverse(o => {
-  // Reference the neck and waist bones
-  if (o.isBone && o.name === 'Head') {
-    neck = o;
-  }
-  if (o.isBone && o.name === 'Spine') {
-    root = o;
-  }
-});
+      // Reference the neck and waist bones
+      if (o.isBone && o.name === 'Head') {
+        neck = o;
+      }
+      if (o.isBone && o.name === 'Spine') {
+        root = o;
+      }
+    });
 
 
 
@@ -140,6 +133,14 @@ var sIndex = 0;
   }
   });
 
+  mouseArea.addEventListener('touchmove', function(e) {
+    var mousecoords = getMousePos(e);
+  if (neck && root) {
+      moveJoint(mousecoords, neck, 30);
+      moveJoint(mousecoords, root, 10);
+  }
+  });
+
   mouseArea.addEventListener('mouseleave', (ev) => {
     this.onMouseLeave(ev, neck);
     this.onMouseLeave(ev, root);
@@ -150,9 +151,10 @@ var sIndex = 0;
   mouseArea.addEventListener('mouseleave', (ev) => { this.onMouseLeave(ev, model) })
 */
 
-  requestAnimationFrame(render);
+  //requestAnimationFrame(render);
 
   function render() {
+    requestId = requestAnimationFrame(render);
     if (typeof mixer !== 'undefined' ){
       var delta = clock.getDelta();
         mixer.update(delta);
@@ -168,16 +170,44 @@ var sIndex = 0;
 
     renderer.render(scene, camera);
 
-    requestAnimationFrame(render);
+
   }
   render();
 
+  // start render
+  function start() {
+      render();
+  }
 
+  // stop render
+  function stop() {
+     window.cancelAnimationFrame(requestId);
+     requestId = undefined;
+  }
+
+  // observer + log + stop render
+
+const onScreen = new Set();
+const intersectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      onScreen.add(entry.target);
+      start();
+      //console.log('render has been started');
+    } else {
+      onScreen.delete(entry.target);
+      stop();
+      //console.log('render has been halted');
+        }
+  });
+
+});
+
+document.querySelectorAll('#bust').forEach(elem => intersectionObserver.observe(elem));
 }
 
-function loadAsset(){
 
-}
+
 
 function moveJoint(mouse, joint, degreeLimit) {
   let degrees = getMouseDegrees(mouse.x, mouse.y, degreeLimit);
@@ -251,21 +281,7 @@ function resizeRendererToDisplaySize(renderer) {
   if (y >= w.y / 2) {
     ydiff = y - w.y / 2;
     yPercentage = (ydiff / (w.y / 2)) * 100;
-    dy = ((degreeLimit*0.3) * yPercentage) / 100;
+    dy = ((degreeLimit*0.7) * yPercentage) / 100;
   }
   return { x: dx, y: dy };
-}
-
-
-class ColorGUIHelper {
-  constructor(object, prop) {
-    this.object = object;
-    this.prop = prop;
-  }
-  get value() {
-    return `#${this.object[this.prop].getHexString()}`;
-  }
-  set value(hexString) {
-    this.object[this.prop].set(hexString);
-  }
 }

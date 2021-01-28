@@ -1029,6 +1029,13 @@ max-width:500px;
   all: unset;
 }
 
+.paused{
+    -webkit-animation-play-state: paused !important;
+    -moz-animation-play-state: paused !important;
+    -o-animation-play-state: paused !important;
+    animation-play-state: paused !important;
+}
+
 @media only screen and (hover: none) and (pointer: coarse)
 {
   .mouse-wrap{

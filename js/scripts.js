@@ -6,6 +6,40 @@ $(function(){
 
 function main(){
   //Let lightTheme = false;
+  window.addEventListener('load', (event) => {
+    //Set up hover buttons
+    const tiles = $(".tile");
+
+    tiles.each(function() {
+        const btn = new HoverButton($(this)[0]);
+    });
+
+    const menu = $(".menu li a");
+    menu.each(function() {
+        const btn = new HoverButton($(this)[0], 0.1, 5, 1.1, 0.4);
+    });
+
+
+    const ham =  document.querySelector('.hamburger');
+    const hamBtn = new HoverButton(ham);
+
+    const btn = $(".btn");
+    btn.each(function() {
+        const btn = new HoverButton($(this)[0], 0.3, 10, 1.1, 0.4);
+    });
+
+    const hoverables = $(".hover");
+    hoverables.each(function() {
+        const btn = new HoverButton($(this)[0], 0.3, 10, 1.1, 0.4, false);
+    });
+
+    const socials = $(".footer li");
+    socials.each(function() {
+        const btn = new HoverButton($(this)[0], 0.2);
+    });
+
+
+  });
   document.body.addEventListener("click", () => {
     //Set Colors
     /*
@@ -27,40 +61,11 @@ function main(){
     document.documentElement.style.setProperty('--meta-colour', `linear-gradient(to right, ${themes[index].main1}, ${themes[index].main2})`);
   });
 
-  //Set up hover buttons
-  const tiles = $(".tile");
 
-  tiles.each(function() {
-      const btn = new HoverButton($(this)[0]);
-  });
-
-  const menu = $(".menu li a");
-  menu.each(function() {
-      const btn = new HoverButton($(this)[0], 0.1, 0, 1.1, 0.4);
-  });
-
-
-  const ham =  document.querySelector('.hamburger');
-  const hamBtn = new HoverButton(ham);
-
-  const btn = $(".btn");
-  btn.each(function() {
-      const btn = new HoverButton($(this)[0], 0.3, 10, 1.1, 0.4);
-  });
-
-  const hoverables = $(".hover");
-  hoverables.each(function() {
-      const btn = new HoverButton($(this)[0], 0.3, 10, 1.1, 0.4, false);
-  });
 /*
   const bustAccent =  document.querySelector('.bust-hover');
   const bustAccentBtn = new HoverButton(bustAccent, 0.2, 200, 1, 10, false, true, false);
 */
-
-  const socials = $(".footer li");
-  socials.each(function() {
-      const btn = new HoverButton($(this)[0], 0.2);
-  });
 
   $(".blob").each(function () {
 
@@ -80,25 +85,34 @@ function main(){
   animateDiv($(this)[0], minSize, maxSize);
 });
 
-/*
-  var scrollMouse = document.querySelector('.mouse-wrap');
-  const btn = new HoverButton(scrollMouse, strength = 0.06, proximity = 1000);
-*/
+// start render
+function start() {
 
-
-  //Loops over all elements that have the class with-transition
-/*
-  $('.work .content .tile a').click(function (e) {
-    e.preventDefault();                   // prevent default anchor behavior
-    var goTo = this.getAttribute("href"); // store anchor href
-    tiles.each(function(index, elem) {
-      $(elem).click(fullscreenClick);
-    });
-    setTimeout(function(){
-         window.location = goTo;
-    }, 500);                             // time in ms
+  $(".blob").each(function () {
+    animateDiv($(this)[0]);
 });
-*/
+
+}
+
+// observer + log + stop render
+
+const onScreen = new Set();
+const intersectionObserver = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+  if (entry.isIntersecting) {
+    onScreen.add(entry.target);
+    start();
+    //console.log('blobs has been started');
+  } else {
+    onScreen.delete(entry.target);
+    //console.log('blobs has been halted');
+      }
+});
+
+});
+
+document.querySelectorAll('.cont').forEach(elem => intersectionObserver.observe(elem));
+
   window.addEventListener('scroll', function(){
     toggleSticky();
   });
@@ -217,7 +231,7 @@ function animateDiv(element, minSize = 20, maxSize = 150, minSpeed = 35, maxSpee
     { top: newPos[0], left: newPos[1], width: w, height: w },
     time,
     function () {
-      animateDiv(element);
+
     }
   );
 }
