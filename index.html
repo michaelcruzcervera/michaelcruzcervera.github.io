@@ -23,6 +23,39 @@
         <div class="body-holder">
 
           <header>
+            <label class="switch">
+              <input class="toggle" type="checkbox">
+              <svg
+              id="theme-svg"
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              >
+
+              <mask id="mask">
+                <rect x="0" y="0" width="100%" height="100%" fill="white" />
+                <circle cx="18" cy="6" r="7" fill="black" />
+              </mask>
+              <circle class="center" fill="black" cx="12" cy="12" r="5" mask="url(#mask)"/>
+              <g class="lines" stroke="currentColor">
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </g
+
+              </svg>
+            </label>
             <button class="hamburger hamburger--elastic" onclick="toggleMenu();" type="button">
               <span class="hamburger-box">
                 <span class="hamburger-inner"></span>
@@ -36,9 +69,9 @@
           </ul>
         </header>
         <section class="banner" id="home">
-          <div>
+          <div class="isolate">
 
-          </div>
+
           <div class="banner-box">
             <h2>Hello, I'm <br> <span>Michael Cruz</span></h2>
 
@@ -56,8 +89,9 @@
             <div class="blob"></div>
             <div class="blob"></div>
             <div class="blob"></div>
-
-
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
           </div>
           <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
             <defs>
@@ -72,6 +106,7 @@
             <div class="mouse">
             </div>
           </a>
+          </div>
         </section>
         <section class="about" id="about">
           <div class="heading">
@@ -183,7 +218,7 @@
                   <stop color="#000"/>
                 </linearGradient>
                 <pattern id="wave" x="0" y="0.21" width="100%" height="100%" patternUnits="userSpaceOnUse">
-                  <path id="wavePath" d="M-40 9 Q-30 7 -20 9 T0 9 T20 9 T40 9 T60 9 T80 9 T100 9 T120 9 V20 H-40z" mask="url(#mask)" fill="#532C04">
+                  <path id="wavePath" d="M-40 9 Q-30 7 -20 9 T0 9 T20 9 T40 9 T60 9 T80 9 T100 9 T120 9 V20 H-40z" mask="url(#mask)" >
                     <animateTransform
                     attributeName="transform"
                     begin="0s"
@@ -195,7 +230,7 @@
                   </path>
                 </pattern>
               </defs>
-              <text text-anchor="middle" x="50" y="15" font-size="12" fill="black" fill-opacity="0.1">CONTACT ME</text>
+              <text text-anchor="middle" x="50" y="15" font-size="12" fill="none" fill-opacity="0.1">CONTACT ME</text>
               <text text-anchor="middle" x="50" y="15" font-size="12" fill="url(#wave)"  fill-opacity="1">CONTACT ME</text>
             </svg>
           </div>
@@ -211,11 +246,11 @@
         </section>
         <section class="footer">
             <ul>
-              <li> <a href="https://www.linkedin.com/in/michael-cruz-cervera/"><img src="images/icons/linkedin.png"></a></li>
-              <li><a href="https://github.com/michaelcruzcervera"><img src="images/icons/github.png"></a></li>
-              <li><a href="https://www.youtube.com/channel/UCZ5U-x3KI8S5laVjoQJdU6w"><img src="images/icons/youtube.png"></a></li>
-              <li><a href="https://medium.com/@michaelcruzc3"><img src="images/icons/medium.png"></a></li>
-              <li><a href="https://www.instagram.com/michael_cruz_cervera/"><img src="images/icons/instagram.png"></a></li>
+              <li> <a href="https://www.linkedin.com/in/michael-cruz-cervera/"><img src="images/icons/linkedin-text.svg"></a></li>
+              <li><a href="https://github.com/michaelcruzcervera"><img src="images/icons/github.svg"></a></li>
+              <li><a href="https://www.youtube.com/channel/UCZ5U-x3KI8S5laVjoQJdU6w"><img src="images/icons/youtube.svg"></a></li>
+              <li><a href="https://medium.com/@michaelcruzc3"><img src="images/icons/medium.svg"></a></li>
+              <li><a href="https://www.instagram.com/michael_cruz_cervera/"><img src="images/icons/instagram.svg"></a></li>
             </ul>
             <p>&#169;Michael Cruz Cervera </p>
         </section>

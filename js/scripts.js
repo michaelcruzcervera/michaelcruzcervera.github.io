@@ -6,7 +6,7 @@ $(function(){
 
 function main(){
   //Let lightTheme = false;
-  window.addEventListener('load', (event) => {
+  //window.addEventListener('load', (event) => {
     //Set up hover buttons
     const tiles = $(".tile");
 
@@ -21,11 +21,14 @@ function main(){
 
 
     const ham =  document.querySelector('.hamburger');
-    const hamBtn = new HoverButton(ham);
+    const hamBtn = new HoverButton(ham, 0.1, 30, 1.1, 0.4);
+
+    const sw =  document.querySelector('.switch');
+    const swBtn = new HoverButton(sw, 0.1, 30, 1.1, 0.4);
 
     const btn = $(".btn");
     btn.each(function() {
-        const btn = new HoverButton($(this)[0], 0.3, 10, 1.1, 0.4);
+        const btn = new HoverButton($(this)[0], 0.1, 0, 1.1, 0.4);
     });
 
     const hoverables = $(".hover");
@@ -39,26 +42,53 @@ function main(){
     });
 
 
+//  });
+
+  let light = true;
+  const toggle = document.querySelector(".toggle");
+
+const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+const currentTheme = localStorage.getItem("theme");
+if (currentTheme == "dark") {
+  document.body.classList.toggle("dark-theme");
+  changeBannerTheme(false);
+  toggle.checked = true;
+} else if (currentTheme == "light") {
+  document.body.classList.toggle("light-theme");
+  changeBannerTheme(true);
+  toggle.checked = false;
+}
+
+toggle.addEventListener("click", function () {
+  if (prefersDarkScheme.matches) {
+    document.body.classList.toggle("light-theme");
+
+    var theme = document.body.classList.contains("light-theme")
+      ? "light"
+      : "dark";
+  } else {
+    document.body.classList.toggle("dark-theme");
+
+    var theme = document.body.classList.contains("dark-theme")
+      ? "dark"
+      : "light";
+  }
+  localStorage.setItem("theme", theme);
+});
+
+  toggle.addEventListener("click", function(){
+    if (toggle.checked == true){
+    light = false;
+  } else {
+    light = true;
+  }
   });
+function toggleThemes(){
+  light = !light;
+}
   document.body.addEventListener("click", () => {
-    //Set Colors
-    /*
-    --backround: linear-gradient(to right, #ddd6f3, #faaca8);
-    --meta-colour: linear-gradient(to right, #2bc0e4, #eaecc6);
-    */
-    const themes = [
-      {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#2bc0e4', main2:'#eaecc6'}, //Pink and Baby Blue
-      {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#aa076b', main2:'#61045f'}, //Pink and Ribena
-      {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#ff8008', main2:'#ffc837'}, //Pink and Fanta
-      {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#2bc0e4', main2:'#eaecc6'}, //Pink and Candy Floss
-      {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#757f9a', main2:'#d7dde8'}, //Pink and Clay
-      {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#de6262', main2:'#ffb88c'}, //Pink and Peach
-    ];
-
-    let index = Math.floor(Math.random()*themes.length);
-
-    document.documentElement.style.setProperty('--background', `linear-gradient(to right, ${themes[index].bg1}, ${themes[index].bg2})`);
-    document.documentElement.style.setProperty('--meta-colour', `linear-gradient(to right, ${themes[index].main1}, ${themes[index].main2})`);
+    changeBannerTheme(light);
   });
 
 
@@ -119,6 +149,40 @@ function main(){
     $(window).resize(function() {fade();});
   });*/
 
+}
+
+function changeBannerTheme(light){
+  //Dark Themes
+  const dthemes = [
+    {bg1:'#485563', bg2:'#232B32', main1:'#fe8c00', main2:'#f83600'}, //dark and bright orange
+    {bg1:'#485563', bg2:'#232B32', main1:'#00c6ff', main2:'#0072ff'}, //dark and bright blue
+    {bg1:'#243b55', bg2:'#232B32', main1:'#fe8c00', main2:'#f83600'}, //dark and bright orange
+    {bg1:'#004e92', bg2:'#232B32', main1:'#00c6ff', main2:'#0072ff'},
+    {bg1:'#485563', bg2:'#232B32', main1:'#fe8c00', main2:'#f83600'}, //dark and bright orange
+    {bg1:'#485563', bg2:'#232B32', main1:'#00c6ff', main2:'#0072ff'}
+  ];
+  //Light Themes
+  const lthemes = [
+    {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#2bc0e4', main2:'#eaecc6'}, //Pink and Baby Blue
+    {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#aa076b', main2:'#61045f'}, //Pink and Ribena
+    {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#ff8008', main2:'#ffc837'}, //Pink and Fanta
+    {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#2bc0e4', main2:'#eaecc6'}, //Pink and Candy Floss
+    {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#757f9a', main2:'#d7dde8'}, //Pink and Clay
+    {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#de6262', main2:'#ffb88c'}, //Pink and Peach
+  ];
+
+
+  if(light){
+    let index = Math.floor(Math.random()*lthemes.length);
+    document.documentElement.style.setProperty('--background', `linear-gradient(to top, ${lthemes[index].bg1}, ${lthemes[index].bg2})`);
+    document.documentElement.style.setProperty('--background-inverted', `linear-gradient(to bottom, ${lthemes[index].bg1}, ${lthemes[index].bg2})`);
+    document.documentElement.style.setProperty('--meta-colour', `linear-gradient(to right, ${lthemes[index].main1}, ${lthemes[index].main2})`);
+  }else{
+    let index = Math.floor(Math.random()*dthemes.length);
+    document.documentElement.style.setProperty('--background', `linear-gradient(to bottom, ${dthemes[index].bg1}, ${dthemes[index].bg2})`);
+    document.documentElement.style.setProperty('--background-inverted', `linear-gradient(to top, ${dthemes[index].bg1}, ${dthemes[index].bg2})`);
+    document.documentElement.style.setProperty('--meta-colour', `linear-gradient(to right, ${dthemes[index].main1}, ${dthemes[index].main2})`);
+  }
 }
 
 function fullscreenClick() {
@@ -189,7 +253,7 @@ function makeNewPosition() {
   return [nh, nw];
 }
 
-function animateDiv(element, minSize = 20, maxSize = 150, minSpeed = 35, maxSpeed = 25) {
+function animateDiv(element, minSize = 40, maxSize = 150, minSpeed = 35, maxSpeed = 25) {
 
   var newPos = makeNewPosition();
   var speed = Math.floor(Math.random() * maxSpeed) + minSpeed;
