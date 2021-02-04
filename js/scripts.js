@@ -63,13 +63,13 @@ if (currentTheme == "dark") {
 toggle.addEventListener("click", function () {
   if (prefersDarkScheme.matches) {
     document.body.classList.toggle("light-theme");
-
+    light = true;
     var theme = document.body.classList.contains("light-theme")
       ? "light"
       : "dark";
   } else {
     document.body.classList.toggle("dark-theme");
-
+    light = false;
     var theme = document.body.classList.contains("dark-theme")
       ? "dark"
       : "light";
@@ -84,18 +84,10 @@ toggle.addEventListener("click", function () {
     light = true;
   }
   });
-function toggleThemes(){
-  light = !light;
-}
+
   document.body.addEventListener("click", () => {
     changeBannerTheme(light);
   });
-
-
-/*
-  const bustAccent =  document.querySelector('.bust-hover');
-  const bustAccentBtn = new HoverButton(bustAccent, 0.2, 200, 1, 10, false, true, false);
-*/
 
   $(".blob").each(function () {
 
