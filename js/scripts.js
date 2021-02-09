@@ -16,7 +16,7 @@ function main(){
 
     const menu = $(".menu li a");
     menu.each(function() {
-        const btn = new HoverButton($(this)[0], 0.1, 5, 1.1, 0.4);
+        const btn = new HoverButton($(this)[0], 0.1, 5, 1.1, 0.4, true, true, true, true);
     });
 
 
@@ -52,38 +52,38 @@ const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
 const currentTheme = localStorage.getItem("theme");
 if (currentTheme == "dark") {
   document.body.classList.toggle("dark-theme");
-  changeBannerTheme(false);
+  light = false;
+  changeBannerTheme(light);
   toggle.checked = true;
 } else if (currentTheme == "light") {
   document.body.classList.toggle("light-theme");
-  changeBannerTheme(true);
+  light = true;
+  changeBannerTheme(light);
   toggle.checked = false;
 }
 
 toggle.addEventListener("click", function () {
   if (prefersDarkScheme.matches) {
     document.body.classList.toggle("light-theme");
-    light = true;
     var theme = document.body.classList.contains("light-theme")
       ? "light"
       : "dark";
+
   } else {
     document.body.classList.toggle("dark-theme");
-    light = false;
     var theme = document.body.classList.contains("dark-theme")
       ? "dark"
       : "light";
   }
+  if(theme != "dark"){
+    light = true;
+  }else if (theme != "light"){
+    light = false;
+  }
+  changeBannerTheme(light);
   localStorage.setItem("theme", theme);
 });
 
-  toggle.addEventListener("click", function(){
-    if (toggle.checked == true){
-    light = false;
-  } else {
-    light = true;
-  }
-  });
 
   document.body.addEventListener("click", () => {
     changeBannerTheme(light);
