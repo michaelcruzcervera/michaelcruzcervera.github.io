@@ -1,88 +1,88 @@
 $(function(){
 
-    main();
+  main();
 
 });
 
 function main(){
   //Let lightTheme = false;
   //window.addEventListener('load', (event) => {
-    //Set up hover buttons
-    const tiles = $(".tile");
+  //Set up hover buttons
+  const tiles = $(".tile");
 
-    tiles.each(function() {
-        const btn = new HoverButton($(this)[0]);
-    });
+  tiles.each(function() {
+    const btn = new HoverButton($(this)[0]);
+  });
 
-    const menu = $(".menu li a");
-    menu.each(function() {
-        const btn = new HoverButton($(this)[0], 0.1, 5, 1.1, 0.4, true, true, true, true);
-    });
-
-
-    const ham =  document.querySelector('.hamburger');
-    const hamBtn = new HoverButton(ham, 0.1, 30, 1.1, 0.4);
-
-    const sw =  document.querySelector('.switch');
-    const swBtn = new HoverButton(sw, 0.1, 30, 1.1, 0.4);
-
-    const btn = $(".btn");
-    btn.each(function() {
-        const btn = new HoverButton($(this)[0], 0.1, 0, 1.1, 0.4);
-    });
-
-    const hoverables = $(".hover");
-    hoverables.each(function() {
-        const btn = new HoverButton($(this)[0], 0.3, 10, 1.1, 0.4, false);
-    });
-
-    const socials = $(".footer li");
-    socials.each(function() {
-        const btn = new HoverButton($(this)[0], 0.2);
-    });
+  const menu = $(".menu li a");
+  menu.each(function() {
+    const btn = new HoverButton($(this)[0], 0.1, 5, 1.1, 0.4, true, true, true, true);
+  });
 
 
-//  });
+  const ham =  document.querySelector('.hamburger');
+  const hamBtn = new HoverButton(ham, 0.1, 30, 1.1, 0.4);
+
+  const sw =  document.querySelector('.switch');
+  const swBtn = new HoverButton(sw, 0.1, 30, 1.1, 0.4);
+
+  const btn = $(".btn");
+  btn.each(function() {
+    const btn = new HoverButton($(this)[0], 0.1, 0, 1.1, 0.4);
+  });
+
+  const hoverables = $(".hover");
+  hoverables.each(function() {
+    const btn = new HoverButton($(this)[0], 0.3, 10, 1.1, 0.4, false);
+  });
+
+  const socials = $(".footer li");
+  socials.each(function() {
+    const btn = new HoverButton($(this)[0], 0.2);
+  });
+
+
+  //  });
 
   let light = true;
   const toggle = document.querySelector(".toggle");
 
-const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+  const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
 
-const currentTheme = localStorage.getItem("theme");
-if (currentTheme == "dark") {
-  document.body.classList.toggle("dark-theme");
-  light = false;
-  changeBannerTheme(light);
-  toggle.checked = true;
-} else if (currentTheme == "light") {
-  document.body.classList.toggle("light-theme");
-  light = true;
-  changeBannerTheme(light);
-  toggle.checked = false;
-}
-
-toggle.addEventListener("click", function () {
-  if (prefersDarkScheme.matches) {
+  const currentTheme = localStorage.getItem("theme");
+  if (currentTheme == "dark") {
+    document.body.classList.toggle("dark-theme");
+    light = false;
+    changeBannerTheme(light);
+    toggle.checked = true;
+  } else if (currentTheme == "light") {
     document.body.classList.toggle("light-theme");
-    var theme = document.body.classList.contains("light-theme")
+    light = true;
+    changeBannerTheme(light);
+    toggle.checked = false;
+  }
+
+  toggle.addEventListener("click", function () {
+    if (prefersDarkScheme.matches) {
+      document.body.classList.toggle("light-theme");
+      var theme = document.body.classList.contains("light-theme")
       ? "light"
       : "dark";
 
-  } else {
-    document.body.classList.toggle("dark-theme");
-    var theme = document.body.classList.contains("dark-theme")
+    } else {
+      document.body.classList.toggle("dark-theme");
+      var theme = document.body.classList.contains("dark-theme")
       ? "dark"
       : "light";
-  }
-  if(theme != "dark"){
-    light = true;
-  }else if (theme != "light"){
-    light = false;
-  }
-  changeBannerTheme(light);
-  localStorage.setItem("theme", theme);
-});
+    }
+    if(theme != "dark"){
+      light = true;
+    }else if (theme != "light"){
+      light = false;
+    }
+    changeBannerTheme(light);
+    localStorage.setItem("theme", theme);
+  });
 
 
   document.body.addEventListener("click", () => {
@@ -91,134 +91,146 @@ toggle.addEventListener("click", function () {
 
   $(".blob").each(function () {
 
-  //Set Start Postion/Size
-  var minSize = 50;
-  var maxSize = Math.max(100, $(window).width() * 0.2, $(window).height() * 0.2);
-  var w = Math.floor(Math.random() * maxSize) + minSize;
-  var newq = makeNewPosition();
-  $(this).css({ top: newq[0], left: newq[1], width: 0, height: 0 });
+    //Set Start Postion/Size
+    var minSize = 50;
+    var maxSize = Math.max(100, $(window).width() * 0.2, $(window).height() * 0.2);
+    var w = Math.floor(Math.random() * maxSize) + minSize;
+    var newq = makeNewPosition();
+    $(this).css({ top: newq[0], left: newq[1], width: 0, height: 0 });
 
-  $(this).animate({ opacity: 1, width: w, height: w }, 400);
+    $(this).animate({ opacity: 1, width: w, height: w }, 400);
 
-  //Add HoverButton
-  const btn = new HoverButton($(this)[0], 0.4, maxSize/2, 1.0, 6, false, false, false, true);
+    //Add HoverButton
+    const btn = new HoverButton($(this)[0], 0.4, maxSize/2, 1.0, 6, false, false, false, true);
 
-  //Start Animation
-  animateDiv($(this)[0], minSize, maxSize);
-});
+    //Start Animation
+    animateDiv($(this)[0], minSize, maxSize);
+  });
 
 
 
   window.addEventListener('scroll', function(){
     toggleSticky();
   });
-/*
+  /*
   $(window).on("load",function() {
-    function fade() {
-      var animation_height = $(window).innerHeight() * 0.1;
-      var ratio = Math.round( (1 / animation_height) * 10000 ) / 1000;
+  function fade() {
+  var animation_height = $(window).innerHeight() * 0.1;
+  var ratio = Math.round( (1 / animation_height) * 10000 ) / 1000;
 
-      $('section .content').each(function() {
-        var objectTop = $(this).offset().top;
-        var objectBottom = $(this).position().top + ($(this).outerHeight());
-        var windowTop = $(window).scrollTop();
-        var windowBottom = $(window).scrollTop() + $(window).innerHeight();
+  $('section .content').each(function() {
+  var objectTop = $(this).offset().top;
+  var objectBottom = $(this).position().top + ($(this).outerHeight());
+  var windowTop = $(window).scrollTop();
+  var windowBottom = $(window).scrollTop() + $(window).innerHeight();
 
-        if ( objectTop < windowBottom ) {
-          $(this).css( {
-            opacity: 1,
-            animation: 'animate_in 0.4s normal cubic-bezier(.25,1.98,.27,.02)'
-          } );
-        } else {
-          $(this).css( {transition: "0.1s linear", opacity: 0, animation: 'unset' });
+  if ( objectTop < windowBottom ) {
+  $(this).css( {
+  opacity: 1,
+  animation: 'animate_in 0.4s normal cubic-bezier(.25,1.98,.27,.02)'
+} );
+} else {
+$(this).css( {transition: "0.1s linear", opacity: 0, animation: 'unset' });
 
-        }
-      });
-    }
-    $('.fade').css( 'opacity', 0 );
-    fade();
-    $(window).scroll(function() {fade();});
-    $(window).resize(function() {fade();});
-  });*/
+}
+});
+}
+$('.fade').css( 'opacity', 0 );
+fade();
+$(window).scroll(function() {fade();});
+$(window).resize(function() {fade();});
+});*/
 
 }
 
 function changeBannerTheme(light){
   //Dark Themes
-  const dthemes = [
-    {bg1:'#485563', bg2:'#232B32', main1:'#fe8c00', main2:'#f83600'}, //dark and bright orange
-    {bg1:'#485563', bg2:'#232B32', main1:'#00c6ff', main2:'#0072ff'}, //dark and bright blue
-    {bg1:'#243b55', bg2:'#232B32', main1:'#fe8c00', main2:'#f83600'}, //dark and bright orange
-    {bg1:'#004e92', bg2:'#232B32', main1:'#00c6ff', main2:'#0072ff'},
-    {bg1:'#485563', bg2:'#232B32', main1:'#fe8c00', main2:'#f83600'}, //dark and bright orange
-    {bg1:'#485563', bg2:'#232B32', main1:'#00c6ff', main2:'#0072ff'}
+  const dark_meta = [
+    {main1:'#fe8c00', main2:'#f83600'}, //dark and bright orange
+    {main1:'#00c6ff', main2:'#0072ff'}, //dark and bright blue
+    {main1:'#fe8c00', main2:'#f83600'}, //dark and bright orange
+    {main1:'#00c6ff', main2:'#0072ff'},
+    {main1:'#fe8c00', main2:'#f83600'}, //dark and bright orange
+    {main1:'#00c6ff', main2:'#0072ff'}
+  ];
+  const dark_bkg = [
+    {bg1:'#485563', bg2:'#232B32'},
+    {bg1:'#243b55', bg2:'#232B32'}, //dark and bright orange
+    {bg1:'#004e92', bg2:'#232B32'},
   ];
   //Light Themes
-  const lthemes = [
-    {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#2bc0e4', main2:'#eaecc6'}, //Pink and Baby Blue
-    {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#aa076b', main2:'#61045f'}, //Pink and Ribena
-    {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#ff8008', main2:'#ffc837'}, //Pink and Fanta
-    {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#2bc0e4', main2:'#eaecc6'}, //Pink and Candy Floss
-    {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#757f9a', main2:'#d7dde8'}, //Pink and Clay
-    {bg1:'#ddd6f3', bg2:'#faaca8', main1:'#de6262', main2:'#ffb88c'}, //Pink and Peach
+  const light_meta = [
+    {main1:'#2bc0e4', main2:'#eaecc6'}, //Baby Blue
+    {main1:'#aa076b', main2:'#61045f'}, //Ribena
+    {main1:'#ff8008', main2:'#ffc837'}, //Fanta
+    {main1:'#2bc0e4', main2:'#eaecc6'}, //Candy Floss
+    {main1:'#757f9a', main2:'#d7dde8'}, //Clay
+    {main1:'#de6262', main2:'#ffb88c'}, //Peach
+  ];
+  const light_bkg = [
+    {bg1:'#ddd6f3', bg2:'#faaca8'}, //Pink
+    {bg1:'#2980B9', bg2:'#6DD5FA'}, //Blue
+    {bg1:'#6190E8', bg2:'#A7BFE8'}, //Blue
   ];
 
 
   if(light){
-    let index = Math.floor(Math.random()*lthemes.length);
-    document.documentElement.style.setProperty('--background', `linear-gradient(to top, ${lthemes[index].bg1}, ${lthemes[index].bg2})`);
-    document.documentElement.style.setProperty('--background-inverted', `linear-gradient(to bottom, ${lthemes[index].bg1}, ${lthemes[index].bg2})`);
-    document.documentElement.style.setProperty('--meta-colour', `linear-gradient(to right, ${lthemes[index].main1}, ${lthemes[index].main2})`);
+    let indexBkg = Math.floor(Math.random()*light_bkg.length);
+    let indexMeta = Math.floor(Math.random()*light_meta.length);
+    document.documentElement.style.setProperty('--background', `linear-gradient(to top, ${light_bkg[indexBkg].bg1}, ${light_bkg[indexBkg].bg2})`);
+    document.documentElement.style.setProperty('--background-inverted', `linear-gradient(to bottom, ${light_bkg[indexBkg].bg1}, ${light_bkg[indexBkg].bg2})`);
+    document.documentElement.style.setProperty('--meta-colour', `linear-gradient(to right, ${light_meta[indexMeta].main1}, ${light_meta[indexMeta].main2})`);
   }else{
-    let index = Math.floor(Math.random()*dthemes.length);
-    document.documentElement.style.setProperty('--background', `linear-gradient(to bottom, ${dthemes[index].bg1}, ${dthemes[index].bg2})`);
-    document.documentElement.style.setProperty('--background-inverted', `linear-gradient(to top, ${dthemes[index].bg1}, ${dthemes[index].bg2})`);
-    document.documentElement.style.setProperty('--meta-colour', `linear-gradient(to right, ${dthemes[index].main1}, ${dthemes[index].main2})`);
+    let indexBkg = Math.floor(Math.random()*dark_bkg.length);
+    let indexMeta = Math.floor(Math.random()*dark_meta.length);
+    document.documentElement.style.setProperty('--background', `linear-gradient(to bottom, ${dark_bkg[indexBkg].bg1}, ${dark_bkg[indexBkg].bg2})`);
+    document.documentElement.style.setProperty('--background-inverted', `linear-gradient(to top, ${dark_bkg[indexBkg].bg1}, ${dark_bkg[indexBkg].bg2})`);
+    document.documentElement.style.setProperty('--meta-colour', `linear-gradient(to right, ${dark_meta[indexMeta].main1}, ${dark_meta[indexMeta].main2})`);
   }
 }
 
 function fullscreenClick() {
-    //The button is this
-    //We want to clone the parent
-    var box = $(this);
-    // /var image = $(this).child();
-    //create a holder box so the layout stays the same
-    var holder = $(box).clone(true, true);
-    //and make it not visible
-    $(holder).css({
-      "visibility": "hidden"
-    });
+  //The button is this
+  //We want to clone the parent
+  var box = $(this);
+  // /var image = $(this).child();
+  //create a holder box so the layout stays the same
+  var holder = $(box).clone(true, true);
+  //and make it not visible
+  $(holder).css({
+    "visibility": "hidden"
+  });
 
-    //Get its position
-    //$(box).before($(holder));
+  //Get its position
+  //$(box).before($(holder));
 
-    var pos = this.getBoundingClientRect();
-    var left = pos.left;
-    var top = pos.top;
-    //Substitute our box with our holder
-    $(box).css({
-      "position": "fixed",
-      "z-index": "100000",
-      "width": pos.width + "px",
-      "height": pos.height + "px",
-      "left": left + "px",
-      "top": top + "px",
-      "transition":"ease-out"
-    });
-    //Set the position of our box (not holder)
-    //Give it absolute position (eg. outside our set structure)
-    $(box).animate({
-      "border-radius": "0",
-      "z-index": "10000",
-      "top": "0",
-      "left": "0",
-      "height": "100vh",
-      "width": "100vw",
-      "padding": "0",
-      "margin":"0"
-    }, 500);
+  var pos = this.getBoundingClientRect();
+  var left = pos.left;
+  var top = pos.top;
+  //Substitute our box with our holder
+  $(box).css({
+    "position": "fixed",
+    "z-index": "100000",
+    "width": pos.width + "px",
+    "height": pos.height + "px",
+    "left": left + "px",
+    "top": top + "px",
+    "transition":"ease-out"
+  });
+  //Set the position of our box (not holder)
+  //Give it absolute position (eg. outside our set structure)
+  $(box).animate({
+    "border-radius": "0",
+    "z-index": "10000",
+    "top": "0",
+    "left": "0",
+    "height": "100vh",
+    "width": "100vw",
+    "padding": "0",
+    "margin":"0"
+  }, 500);
 
-  }
+}
 
 function toggleSticky(){
   var header = document.querySelector('header');
@@ -246,7 +258,7 @@ function makeNewPosition() {
 }
 
 function animateDiv(element, minSize = 40, maxSize = 150, minSpeed = 35, maxSpeed = 25) {
-
+/*
   var newPos = makeNewPosition();
   var speed = Math.floor(Math.random() * maxSpeed) + minSpeed;
   const x1 = element.offsetTop;
@@ -256,6 +268,16 @@ function animateDiv(element, minSize = 40, maxSize = 150, minSpeed = 35, maxSpee
   var screenWidth = Math.max($(window).width() * 0.2, $(window).height() * 0.2, maxSize);
   let width = Math.floor(Math.random() * screenWidth) + minSize;
   var w = width;
+*/
+
+  var newPos = makeNewPosition();
+  var speed = Math.floor(Math.random() * maxSpeed) + minSpeed;
+  const x1 = element.offsetTop;
+  const y1 = element.offsetLeft;
+  var dist = distance(x1, y1, newPos[0], newPos[1]);
+  var time = dist * speed;
+  var screenWidth = Math.max($(window).width() * 0.2, $(window).height() * 0.2, maxSize);
+  let w = Math.floor(Math.random() * screenWidth) + minSize;
 
   $(element).animate(
     { top: newPos[0], left: newPos[1], width: w, height: w },
@@ -287,17 +309,17 @@ class HoverButton {
 
   ) {
     this.el = el;
-this.strength = strength;
-this.proximity = proximity;
-this.scale =  scale;
-this.attract = attract;
-this.enterDuration = enterDuration;
-this.lift = lift;
-this.unset = unset;
-this.calcPosOnMM = calcPosOnMM;
+    this.strength = strength;
+    this.proximity = proximity;
+    this.scale =  scale;
+    this.attract = attract;
+    this.enterDuration = enterDuration;
+    this.lift = lift;
+    this.unset = unset;
+    this.calcPosOnMM = calcPosOnMM;
 
-this.easeLeave = 'elastic.out(1.1, 0.4)';
-this.easeEnter = 'power2.out';
+    this.easeLeave = 'elastic.out(1.1, 0.4)';
+    this.easeEnter = 'power2.out';
 
     this.hover = false;
 
@@ -308,7 +330,7 @@ this.easeEnter = 'power2.out';
   attachEventsListener() {
     window.addEventListener("mousemove", (e) => this.onMouseMove(e));
     if(this.calcPosOnMM){
-          window.addEventListener("mousemove", (e) => this.calculatePosition(e));
+      window.addEventListener("mousemove", (e) => this.calculatePosition(e));
     }
 
     window.addEventListener("resize", (e) => this.calculatePosition(e));
@@ -321,10 +343,10 @@ this.easeEnter = 'power2.out';
   calculatePosition() {
     if(this.unset){
       gsap.set(this.el, {
-    x: 0,
-    y: 0,
-    scale: 1
-  });
+        x: 0,
+        y: 0,
+        scale: 1
+      });
     }
     const box = this.el.getBoundingClientRect();
     this.x = box.left + (box.width * 0.5);
@@ -341,10 +363,10 @@ this.easeEnter = 'power2.out';
     let distance = Math.sqrt(x * x + y * y);
 
     const inside =
-        x < this.width / 2 + this.proximity &&
-        x > -this.width / 2 - this.proximity &&
-        y < this.height / 2 + this.proximity &&
-        y > -this.height / 2 - this.proximity;
+    x < this.width / 2 + this.proximity &&
+    x > -this.width / 2 - this.proximity &&
+    y < this.height / 2 + this.proximity &&
+    y > -this.height / 2 - this.proximity;
 
     if (inside) {
       hover = true;
@@ -362,28 +384,28 @@ this.easeEnter = 'power2.out';
 
   onHover(x, y) {
 
-      var transX = 0;
-      var transY = 0;
+    var transX = 0;
+    var transY = 0;
 
-      if (this.attract) {
-        transX = limitNumberWithinRange((x - this.x) * this.strength, -this.width/2, this.width/2);
-        transY = limitNumberWithinRange((y - this.y) * this.strength, -this.height/2, this.height/2);
-      } else {
-        transX = limitNumberWithinRange(-(x - this.x) * this.strength, -this.width/2, this.width/2);
-        transY = limitNumberWithinRange(-(y - this.y) * this.strength, -this.height/2, this.height/2);
-      }
+    if (this.attract) {
+      transX = limitNumberWithinRange((x - this.x) * this.strength, -this.width/2, this.width/2);
+      transY = limitNumberWithinRange((y - this.y) * this.strength, -this.height/2, this.height/2);
+    } else {
+      transX = limitNumberWithinRange(-(x - this.x) * this.strength, -this.width/2, this.width/2);
+      transY = limitNumberWithinRange(-(y - this.y) * this.strength, -this.height/2, this.height/2);
+    }
 
-      gsap.to(this.el,  {
-  x: transX,
-  y: transY,
-  scale: this.scale,
-  ease: this.easeEnter,
-  duration: this.enterDuration
-});
+    gsap.to(this.el,  {
+      x: transX,
+      y: transY,
+      scale: this.scale,
+      ease: this.easeEnter,
+      duration: this.enterDuration
+    });
 
-if(this.lift){
-this.el.style.zIndex = 10;
-}
+    if(this.lift){
+      this.el.style.zIndex = 10;
+    }
   }
   onLeave() {
     gsap.to(this.el, {
