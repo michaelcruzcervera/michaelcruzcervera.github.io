@@ -1,10 +1,10 @@
-$(function(){
+$(function() {
 
   main();
 
 });
 
-function main(){
+function main() {
   //Let lightTheme = false;
   //window.addEventListener('load', (event) => {
   //Set up hover buttons
@@ -20,10 +20,10 @@ function main(){
   });
 
 
-  const ham =  document.querySelector('.hamburger');
+  const ham = document.querySelector('.hamburger');
   const hamBtn = new HoverButton(ham, 0.1, 30, 1.1, 0.4);
 
-  const sw =  document.querySelector('.switch');
+  const sw = document.querySelector('.switch');
   const swBtn = new HoverButton(sw, 0.1, 30, 1.1, 0.4);
 
   const btn = $(".btn");
@@ -62,22 +62,22 @@ function main(){
     toggle.checked = false;
   }
 
-  toggle.addEventListener("click", function () {
+  toggle.addEventListener("click", function() {
     if (prefersDarkScheme.matches) {
       document.body.classList.toggle("light-theme");
-      var theme = document.body.classList.contains("light-theme")
-      ? "light"
-      : "dark";
+      var theme = document.body.classList.contains("light-theme") ?
+        "light" :
+        "dark";
 
     } else {
       document.body.classList.toggle("dark-theme");
-      var theme = document.body.classList.contains("dark-theme")
-      ? "dark"
-      : "light";
+      var theme = document.body.classList.contains("dark-theme") ?
+        "dark" :
+        "light";
     }
-    if(theme != "dark"){
+    if (theme != "dark") {
       light = true;
-    }else if (theme != "light"){
+    } else if (theme != "light") {
       light = false;
     }
     changeBannerTheme(light);
@@ -89,19 +89,28 @@ function main(){
     changeBannerTheme(light);
   });
 
-  $(".blob").each(function () {
+  $(".blob").each(function() {
 
     //Set Start Postion/Size
     var minSize = 50;
     var maxSize = Math.max(100, $(window).width() * 0.2, $(window).height() * 0.2);
     var w = Math.floor(Math.random() * maxSize) + minSize;
     var newq = makeNewPosition();
-    $(this).css({ top: newq[0], left: newq[1], width: 0, height: 0 });
+    $(this).css({
+      top: newq[0],
+      left: newq[1],
+      width: 0,
+      height: 0
+    });
 
-    $(this).animate({ opacity: 1, width: w, height: w }, 400);
+    $(this).animate({
+      opacity: 1,
+      width: w,
+      height: w
+    }, 400);
 
     //Add HoverButton
-    const btn = new HoverButton($(this)[0], 0.4, maxSize/2, 1.0, 6, false, false, false, true);
+    const btn = new HoverButton($(this)[0], 0.4, maxSize / 2, 1.0, 6, false, false, false, true);
 
     //Start Animation
     animateDiv($(this)[0], minSize, maxSize);
@@ -109,80 +118,102 @@ function main(){
 
 
 
-  window.addEventListener('scroll', function(){
+  window.addEventListener('scroll', function() {
     toggleSticky();
   });
-  /*
-  $(window).on("load",function() {
-  function fade() {
-  var animation_height = $(window).innerHeight() * 0.1;
-  var ratio = Math.round( (1 / animation_height) * 10000 ) / 1000;
-
-  $('section .content').each(function() {
-  var objectTop = $(this).offset().top;
-  var objectBottom = $(this).position().top + ($(this).outerHeight());
-  var windowTop = $(window).scrollTop();
-  var windowBottom = $(window).scrollTop() + $(window).innerHeight();
-
-  if ( objectTop < windowBottom ) {
-  $(this).css( {
-  opacity: 1,
-  animation: 'animate_in 0.4s normal cubic-bezier(.25,1.98,.27,.02)'
-} );
-} else {
-$(this).css( {transition: "0.1s linear", opacity: 0, animation: 'unset' });
-
-}
-});
-}
-$('.fade').css( 'opacity', 0 );
-fade();
-$(window).scroll(function() {fade();});
-$(window).resize(function() {fade();});
-});*/
 
 }
 
-function changeBannerTheme(light){
+function changeBannerTheme(light) {
   //Dark Themes
-  const dark_meta = [
-    {main1:'#fe8c00', main2:'#f83600'}, //dark and bright orange
-    {main1:'#00c6ff', main2:'#0072ff'}, //dark and bright blue
-    {main1:'#fe8c00', main2:'#f83600'}, //dark and bright orange
-    {main1:'#00c6ff', main2:'#0072ff'},
-    {main1:'#fe8c00', main2:'#f83600'}, //dark and bright orange
-    {main1:'#00c6ff', main2:'#0072ff'}
+  const dark_meta = [{
+      main1: '#fe8c00',
+      main2: '#f83600'
+    }, //dark and bright orange
+    {
+      main1: '#00c6ff',
+      main2: '#0072ff'
+    }, //dark and bright blue
+    {
+      main1: '#fe8c00',
+      main2: '#f83600'
+    }, //dark and bright orange
+    {
+      main1: '#00c6ff',
+      main2: '#0072ff'
+    },
+    {
+      main1: '#fe8c00',
+      main2: '#f83600'
+    }, //dark and bright orange
+    {
+      main1: '#00c6ff',
+      main2: '#0072ff'
+    }
   ];
-  const dark_bkg = [
-    {bg1:'#485563', bg2:'#232B32'},
-    {bg1:'#243b55', bg2:'#232B32'}, //dark and bright orange
-    {bg1:'#004e92', bg2:'#232B32'},
+  const dark_bkg = [{
+      bg1: '#485563',
+      bg2: '#232B32'
+    },
+    {
+      bg1: '#243b55',
+      bg2: '#232B32'
+    }, //dark and bright orange
+    {
+      bg1: '#004e92',
+      bg2: '#232B32'
+    },
   ];
   //Light Themes
-  const light_meta = [
-    {main1:'#2bc0e4', main2:'#eaecc6'}, //Baby Blue
-    {main1:'#aa076b', main2:'#61045f'}, //Ribena
-    {main1:'#ff8008', main2:'#ffc837'}, //Fanta
-    {main1:'#2bc0e4', main2:'#eaecc6'}, //Candy Floss
-    {main1:'#757f9a', main2:'#d7dde8'}, //Clay
-    {main1:'#de6262', main2:'#ffb88c'}, //Peach
+  const light_meta = [{
+      main1: '#2bc0e4',
+      main2: '#eaecc6'
+    }, //Baby Blue
+    {
+      main1: '#aa076b',
+      main2: '#61045f'
+    }, //Ribena
+    {
+      main1: '#ff8008',
+      main2: '#ffc837'
+    }, //Fanta
+    {
+      main1: '#2bc0e4',
+      main2: '#eaecc6'
+    }, //Candy Floss
+    {
+      main1: '#757f9a',
+      main2: '#d7dde8'
+    }, //Clay
+    {
+      main1: '#de6262',
+      main2: '#ffb88c'
+    }, //Peach
   ];
-  const light_bkg = [
-    {bg1:'#ddd6f3', bg2:'#faaca8'}, //Pink
-    {bg1:'#2980B9', bg2:'#6DD5FA'}, //Blue
-    {bg1:'#6190E8', bg2:'#A7BFE8'}, //Blue
+  const light_bkg = [{
+      bg1: '#ddd6f3',
+      bg2: '#faaca8'
+    }, //Pink
+    {
+      bg1: '#2980B9',
+      bg2: '#6DD5FA'
+    }, //Blue
+    {
+      bg1: '#6190E8',
+      bg2: '#A7BFE8'
+    }, //Blue
   ];
 
 
-  if(light){
-    let indexBkg = Math.floor(Math.random()*light_bkg.length);
-    let indexMeta = Math.floor(Math.random()*light_meta.length);
+  if (light) {
+    let indexBkg = Math.floor(Math.random() * light_bkg.length);
+    let indexMeta = Math.floor(Math.random() * light_meta.length);
     document.documentElement.style.setProperty('--background', `linear-gradient(to top, ${light_bkg[indexBkg].bg1}, ${light_bkg[indexBkg].bg2})`);
     document.documentElement.style.setProperty('--background-inverted', `linear-gradient(to bottom, ${light_bkg[indexBkg].bg1}, ${light_bkg[indexBkg].bg2})`);
     document.documentElement.style.setProperty('--meta-colour', `linear-gradient(to right, ${light_meta[indexMeta].main1}, ${light_meta[indexMeta].main2})`);
-  }else{
-    let indexBkg = Math.floor(Math.random()*dark_bkg.length);
-    let indexMeta = Math.floor(Math.random()*dark_meta.length);
+  } else {
+    let indexBkg = Math.floor(Math.random() * dark_bkg.length);
+    let indexMeta = Math.floor(Math.random() * dark_meta.length);
     document.documentElement.style.setProperty('--background', `linear-gradient(to bottom, ${dark_bkg[indexBkg].bg1}, ${dark_bkg[indexBkg].bg2})`);
     document.documentElement.style.setProperty('--background-inverted', `linear-gradient(to top, ${dark_bkg[indexBkg].bg1}, ${dark_bkg[indexBkg].bg2})`);
     document.documentElement.style.setProperty('--meta-colour', `linear-gradient(to right, ${dark_meta[indexMeta].main1}, ${dark_meta[indexMeta].main2})`);
@@ -215,7 +246,7 @@ function fullscreenClick() {
     "height": pos.height + "px",
     "left": left + "px",
     "top": top + "px",
-    "transition":"ease-out"
+    "transition": "ease-out"
   });
   //Set the position of our box (not holder)
   //Give it absolute position (eg. outside our set structure)
@@ -227,17 +258,17 @@ function fullscreenClick() {
     "height": "100vh",
     "width": "100vw",
     "padding": "0",
-    "margin":"0"
+    "margin": "0"
   }, 500);
 
 }
 
-function toggleSticky(){
+function toggleSticky() {
   var header = document.querySelector('header');
   header.classList.toggle('sticky', window.scrollY > 0);
 }
 
-function toggleMenu(){
+function toggleMenu() {
   var menu = document.querySelector('.menu');
   var hamburger = document.querySelector('.hamburger')
   hamburger.classList.toggle("is-active");
@@ -258,17 +289,6 @@ function makeNewPosition() {
 }
 
 function animateDiv(element, minSize = 40, maxSize = 150, minSpeed = 35, maxSpeed = 25) {
-/*
-  var newPos = makeNewPosition();
-  var speed = Math.floor(Math.random() * maxSpeed) + minSpeed;
-  const x1 = element.offsetTop;
-  const y1 = element.offsetLeft;
-  var dist = Math.floor(distance(x1, y1, newPos[0], newPos[1]));
-  var time = dist * speed;
-  var screenWidth = Math.max($(window).width() * 0.2, $(window).height() * 0.2, maxSize);
-  let width = Math.floor(Math.random() * screenWidth) + minSize;
-  var w = width;
-*/
 
   var newPos = makeNewPosition();
   var speed = Math.floor(Math.random() * maxSpeed) + minSpeed;
@@ -279,10 +299,14 @@ function animateDiv(element, minSize = 40, maxSize = 150, minSpeed = 35, maxSpee
   var screenWidth = Math.max($(window).width() * 0.2, $(window).height() * 0.2, maxSize);
   let w = Math.floor(Math.random() * screenWidth) + minSize;
 
-  $(element).animate(
-    { top: newPos[0], left: newPos[1], width: w, height: w },
+  $(element).animate({
+      top: newPos[0],
+      left: newPos[1],
+      width: w,
+      height: w
+    },
     time,
-    function () {
+    function() {
       animateDiv(element);
     }
   );
@@ -311,7 +335,7 @@ class HoverButton {
     this.el = el;
     this.strength = strength;
     this.proximity = proximity;
-    this.scale =  scale;
+    this.scale = scale;
     this.attract = attract;
     this.enterDuration = enterDuration;
     this.lift = lift;
@@ -329,19 +353,19 @@ class HoverButton {
 
   attachEventsListener() {
     window.addEventListener("mousemove", (e) => this.onMouseMove(e));
-    if(this.calcPosOnMM){
+    if (this.calcPosOnMM) {
       window.addEventListener("mousemove", (e) => this.calculatePosition(e));
     }
 
     window.addEventListener("resize", (e) => this.calculatePosition(e));
     window.addEventListener("load", (e) => this.calculatePosition(e));
 
-    window.addEventListener("scroll", (e) => this.calculatePosition(e));//this.onScroll(e);});
+    window.addEventListener("scroll", (e) => this.calculatePosition(e)); //this.onScroll(e);});
     //window.addEventListener("scroll", (e) => this.onScroll(e));
   }
 
   calculatePosition() {
-    if(this.unset){
+    if (this.unset) {
       gsap.set(this.el, {
         x: 0,
         y: 0,
@@ -363,10 +387,10 @@ class HoverButton {
     let distance = Math.sqrt(x * x + y * y);
 
     const inside =
-    x < this.width / 2 + this.proximity &&
-    x > -this.width / 2 - this.proximity &&
-    y < this.height / 2 + this.proximity &&
-    y > -this.height / 2 - this.proximity;
+      x < this.width / 2 + this.proximity &&
+      x > -this.width / 2 - this.proximity &&
+      y < this.height / 2 + this.proximity &&
+      y > -this.height / 2 - this.proximity;
 
     if (inside) {
       hover = true;
@@ -388,14 +412,14 @@ class HoverButton {
     var transY = 0;
 
     if (this.attract) {
-      transX = limitNumberWithinRange((x - this.x) * this.strength, -this.width/2, this.width/2);
-      transY = limitNumberWithinRange((y - this.y) * this.strength, -this.height/2, this.height/2);
+      transX = limitNumberWithinRange((x - this.x) * this.strength, -this.width / 2, this.width / 2);
+      transY = limitNumberWithinRange((y - this.y) * this.strength, -this.height / 2, this.height / 2);
     } else {
-      transX = limitNumberWithinRange(-(x - this.x) * this.strength, -this.width/2, this.width/2);
-      transY = limitNumberWithinRange(-(y - this.y) * this.strength, -this.height/2, this.height/2);
+      transX = limitNumberWithinRange(-(x - this.x) * this.strength, -this.width / 2, this.width / 2);
+      transY = limitNumberWithinRange(-(y - this.y) * this.strength, -this.height / 2, this.height / 2);
     }
 
-    gsap.to(this.el,  {
+    gsap.to(this.el, {
       x: transX,
       y: transY,
       scale: this.scale,
@@ -403,7 +427,7 @@ class HoverButton {
       duration: this.enterDuration
     });
 
-    if(this.lift){
+    if (this.lift) {
       this.el.style.zIndex = 10;
     }
   }
@@ -422,7 +446,7 @@ class HoverButton {
 
 
 
-function limitNumberWithinRange(num, min, max){
+function limitNumberWithinRange(num, min, max) {
   const parsed = parseInt(num)
   return Math.min(Math.max(parsed, min), max)
 }

@@ -1,147 +1,181 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-      <link rel="icon" href="../images/icons/m.png">
-    <link rel="stylesheet" href="../style.css"/>
-    <link rel="stylesheet" href="work-style.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
 
-    <script src="../js/scripts.js"></script>
-    <title></title>
-  </head>
-  <body>
-    <div class="body-holder">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="../images/icons/m.png">
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="work-style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+  <script src="../js/libs/three.js"></script>
+  <script src="../js/libs/tween.js"></script>
 
+  <script rel="preload" src="../js/scripts.js"></script>
+  <title></title>
+</head>
+
+<body>
+  <div class="body-holder">
 
     <header>
-          <a href="../index.html" class="logo">Portfolio</a>
-          <!--<a href="../index.html">Home</a>-->
-        </header>
-        <section class="banner" id="home">
-            <!--<img src="../images/placeholder.png">-->
-            <div class="textBx work-title">
-              <h2><span>AR Voxel Engine Unity</span></h2>
-              <h3>Environment Reconstruction and Real-Time Editing Within Augmented Reality.</h3>
-            </div>
-        </section>
-        <section class="intro" id="intro">
-          <div class="heading">
-            <h2>About The Project</h2>
-          </div>
-          <div class="content">
-            <p>Augmented Reality (AR) technology is constantly evolving, with
-              notable recent improvements in standalone headsets and perhaps
-              most interestingly, mobile devices. Considering the potential of
-              AR within gaming and interactive media, the importance of scaling
-              down to more accessible lower cost interfaces is a vital topic of
-              research. Mixing the digital and physical can result in immersive,
-              unique experiences. With the standard of AR development tool-kits
-              being so high it is easier than ever to release AR applications.
-              Without the heavy costs of standalone headsets, mobile AR is
-              making a splash in the industry.<br>These AR experiences change
-              massively depending on the user’s environment. One of the goals
-              of this project was how these differences in the user’s
-              environment could be used to create unique and immersive experiences.
-              <br>
-              By using feature points within the environment, the environment
-              can be reconstructed digitally, taking advantage of the user’s
-              unique space. The user can then sculpt and interact with the
-              resulting mesh in a similar way as VR solutions like Oculus
-              Medium (2016), but with a lower barrier of entry.
-              <br>
-              Reconstruction of environments from tracked point data is a well
-              researched area, but commercial solutions are generally limited
-              to devices with specialised sensors such as the iPad pro and
-              standalone AR headsets. This project aims to explore real-time
-              meshing and reconstruction in Augmented Reality in a more
-              accessible way which does not require specialised sensors but
-              simply a mobile phone. I first elaborate on the relevant research
-              into the respective fields, then define the project plan as well
-              as the requirements of the system, and finally elaborate on the
-              implementation and results of the AR mobile application.</p>
-          </div>
-        </section>
-        <section class="sr" id="sr">
-          <div class="heading">
-            <h2>Surface Reconstruction</h2>
-          </div>
-          <div class="content">
-            <video width="320" height="240" controls>
-  <source src="../images/ARVoxelEngine/usage_cropped.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-          </div>
-        </section>
-        <section class="ui" id="ui">
-          <div class="heading">
-            <h2>AR UI DESIGN</h2>
-          </div>
-          <div class="content">
-            <img class="tile" src="../images/ARVoxelEngine/ui_reconstruction.png" alt="">
-            <img class="tile" src="../images/ARVoxelEngine/menu_material.png" alt="">
-            <img class="tile" src="../images/ARVoxelEngine/menu_settings.png" alt="">
-            <img class="tile" src="../images/ARVoxelEngine/ui_editing.png" alt="">
-          </div>
-        </section>
-        <section class="refs" id="refs">
-          <div class="heading">
-            <h2>References</h2>
-          </div>
-          <div class="content">
-            <ul>
-            <li>[1] <a href="http://paulbourke.net/geometry/polygonise/">Bourke,P.(1994).Polygonisingascalarfield.</a></li>
-            <li>[2] Lorensen, W. Cline, H. (1987). Marching Cubes: A High Resolution3D Surface Construction Algorithm. Computer Graphics, 21 (4), pp.163-169.</li>
-            <li>[3] D ̈urst, M.J., (1988). Additional reference to “marching cubes”(letters).Computer Graphics, 22(2), 72-73.</li>
-            <li>[4] Lengyel, E. (2010).“Voxel-Based Terrain for Real-Time Virtual Simula-tions”. PhD diss., University of California at Davis.</li>
-            <li>[5] Tao, J. Losasso, F. Schaefer, S. Warren, J. (2002).Dual Contouring ofHermite Data. Rice University.</li>
-            <li>[6] Schaefer, S. Tao, J. Warren, J. (2007). Manifold Dual Contouring. IEEETrans. Vis. Comput. Graph.</li>
-            <li>[7] Berger, M. Tagliasacchi, A. Seversky, L. M., Alliez, P. Guennebaud,G. Levine, J. A.. Sharf, A. Silva, C. T.. (2016). A Survey of SurfaceReconstruction from Point Clouds.</li>
-            <li>[8] Hoppe, H. DeRose, T. Duchamp, T. McDonald, J. Stuetzle, W.(1992).Surface Reconstruction from Unorganised Points. University ofWashington.</li>
-            <li>[9] Geiss, R. (2007). Chapter 1. Generating Complex Procedural TerrainsUsing the GPU, GPU Gems 3. Nvidia Corporation.</li>
-            <ul?
-          </div>
-        </section>
-        <section class="other" id="other">
-          <div class="heading">
-            <h2>Other Work</h2>
-          </div>
-          <div class="content">
-            <div class="tile" >
+      <label class="switch">
+        <input class="toggle" type="checkbox">
+        <svg id="theme-svg" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 
-                <a class="with-transition" href="../pages/work.html" >
-                <img src="../images/placeholder.png">
-                </a>
+          <mask id="moon-mask">
+            <rect x="0" y="0" width="100%" height="100%" fill="white" />
+            <circle cx="18" cy="6" r="7" fill="black" stroke="black" />
+          </mask>
+          <circle class="center" fill="black" cx="12" cy="12" r="5" mask="url(#moon-mask)" />
+          <g class="lines" stroke="currentColor">
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </g </svg>
+      </label>
+      <button class="hamburger hamburger--elastic" onclick="toggleMenu();" type="button">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+      <ul class="menu">
+        <li><a href="../index.html" onclick="toggleMenu();">Home</a></li>
+        <li><a href="#about" onclick="toggleMenu();">About</a></li>
+        <li><a href="#work" onclick="toggleMenu();">Research</a></li>
+        <li><a href="#contact" onclick="toggleMenu();">Implementation</a></li>
+        <li><a href="#contact" onclick="toggleMenu();">References</a></li>
+      </ul>
+    </header>
+    <section class="banner" id="home">
+      <!--<img src="../images/placeholder.png">-->
+      <div class="banner-box work-title">
+        <h2><span>AR Voxel Engine Unity</span></h2>
+        <h3>Environment Reconstruction and Real-Time Editing Within Augmented Reality.</h3>
+      </div>
+    </section>
+    <section class="about" id="about">
+      <div class="heading">
+        <h2>About The Project</h2>
+      </div>
+      <div class="content">
+        <p>Augmented Reality (AR) technology is constantly evolving, with
+          notable recent improvements in standalone headsets and perhaps
+          most interestingly, mobile devices. Considering the potential of
+          AR within gaming and interactive media, the importance of scaling
+          down to more accessible lower cost interfaces is a vital topic of
+          research. Mixing the digital and physical can result in immersive,
+          unique experiences. With the standard of AR development tool-kits
+          being so high it is easier than ever to release AR applications.
+          Without the heavy costs of standalone headsets, mobile AR is
+          making a splash in the industry.<br>These AR experiences change
+          massively depending on the user’s environment. One of the goals
+          of this project was how these differences in the user’s
+          environment could be used to create unique and immersive experiences.
+          <br>
+          By using feature points within the environment, the environment
+          can be reconstructed digitally, taking advantage of the user’s
+          unique space. The user can then sculpt and interact with the
+          resulting mesh in a similar way as VR solutions like Oculus
+          Medium (2016), but with a lower barrier of entry.
+          <br>
+          Reconstruction of environments from tracked point data is a well
+          researched area, but commercial solutions are generally limited
+          to devices with specialised sensors such as the iPad pro and
+          standalone AR headsets. This project aims to explore real-time
+          meshing and reconstruction in Augmented Reality in a more
+          accessible way which does not require specialised sensors but
+          simply a mobile phone. I first elaborate on the relevant research
+          into the respective fields, then define the project plan as well
+          as the requirements of the system, and finally elaborate on the
+          implementation and results of the AR mobile application.
+        </p>
+      </div>
+    </section>
+    <section class="sr" id="sr">
+      <div class="heading">
+        <h2>Surface Reconstruction</h2>
+      </div>
+      <div class="content">
+        <video width="320" height="240" controls>
+          <source src="../images/ARVoxelEngine/usage_cropped.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+    <section class="ui" id="ui">
+      <div class="heading">
+        <h2>AR UI DESIGN</h2>
+      </div>
+      <div class="content">
+        <img class="tile" src="../images/ARVoxelEngine/ui_reconstruction.png" alt="">
+        <img class="tile" src="../images/ARVoxelEngine/menu_material.png" alt="">
+        <img class="tile" src="../images/ARVoxelEngine/menu_settings.png" alt="">
+        <img class="tile" src="../images/ARVoxelEngine/ui_editing.png" alt="">
+      </div>
+    </section>
+    <section class="refs" id="refs">
+      <div class="heading">
+        <h2>References</h2>
+      </div>
+      <div class="content">
+        <ul>
+          <li>[1] <a href="http://paulbourke.net/geometry/polygonise/">Bourke,P.(1994).Polygonisingascalarfield.</a></li>
+          <li>[2] Lorensen, W. Cline, H. (1987). Marching Cubes: A High Resolution3D Surface Construction Algorithm. Computer Graphics, 21 (4), pp.163-169.</li>
+          <li>[3] D ̈urst, M.J., (1988). Additional reference to “marching cubes”(letters).Computer Graphics, 22(2), 72-73.</li>
+          <li>[4] Lengyel, E. (2010).“Voxel-Based Terrain for Real-Time Virtual Simula-tions”. PhD diss., University of California at Davis.</li>
+          <li>[5] Tao, J. Losasso, F. Schaefer, S. Warren, J. (2002).Dual Contouring ofHermite Data. Rice University.</li>
+          <li>[6] Schaefer, S. Tao, J. Warren, J. (2007). Manifold Dual Contouring. IEEETrans. Vis. Comput. Graph.</li>
+          <li>[7] Berger, M. Tagliasacchi, A. Seversky, L. M., Alliez, P. Guennebaud,G. Levine, J. A.. Sharf, A. Silva, C. T.. (2016). A Survey of SurfaceReconstruction from Point Clouds.</li>
+          <li>[8] Hoppe, H. DeRose, T. Duchamp, T. McDonald, J. Stuetzle, W.(1992).Surface Reconstruction from Unorganised Points. University ofWashington.</li>
+          <li>[9] Geiss, R. (2007). Chapter 1. Generating Complex Procedural TerrainsUsing the GPU, GPU Gems 3. Nvidia Corporation.</li>
+          <ul? </div>
+    </section>
+    <section class="work" id="work">
+      <div class="heading">
+        <h2>Other Work</h2>
+      </div>
+      <div class="content">
+        <div class="tile">
+          <a class="with-transition" href="pages/work.html">
+            <img src="../images/placeholder.png">
+          </a>
+        </div>
+        <div class="tile">
+          <a class="with-transition" href="pages/work.html">
+            <img src="../images/placeholder.png">
 
+          </a>
+        </div>
+        <div class="tile">
+          <a class="with-transition" href="pages/work.html">
+            <img src="../images/placeholder.png">
+          </a>
+        </div>
+      </div>
+      <div class="heading">
+        <a href="#" class="btn">View More</a>
+      </div>
+    </section>
+    <section class="footer">
+      <ul>
+        <li> <a href="https://www.linkedin.com/in/michael-cruz-cervera/"><img src="../images/icons/linkedin-text.svg"></a></li>
+        <li><a href="https://github.com/michaelcruzcervera"><img src="../images/icons/github.svg"></a></li>
+        <li><a href="https://www.youtube.com/channel/UCZ5U-x3KI8S5laVjoQJdU6w"><img src="../images/icons/youtube.svg"></a></li>
+        <li><a href="https://medium.com/@michaelcruzc3"><img src="../images/icons/medium.svg"></a></li>
+        <li><a href="https://www.instagram.com/michael_cruz_cervera/"><img src="../images/icons/instagram.svg"></a></li>
+      </ul>
+      <p>&#169;Michael Cruz Cervera </p>
+    </section>
+  </div>
+</body>
 
-            </div>
-            <div class="tile">
-              <a class="with-transition" href="../pages/work.html" >
-              <img src="../images/placeholder.png">
-
-              </a>
-            </div>
-            <div class="tile">
-              <a class="with-transition" href="../pages/work.html" >
-              <img src="../images/placeholder.png">
-              </a>
-            </div>
-          </div>
-          <div class="footer">
-              <ul>
-                <li> <a href="https://www.linkedin.com/in/michael-cruz-cervera/"><img src="../images/icons/linkedin.png"></a></li>
-                <li><a href="https://github.com/michaelcruzcervera"><img src="../images/icons/github.png"></a></li>
-                <li><a href="https://www.youtube.com/channel/UCZ5U-x3KI8S5laVjoQJdU6w"><img src="../images/icons/youtube.png"></a></li>
-                <li><a href="https://medium.com/@michaelcruzc3"><img src="../images/icons/medium.png"></a></li>
-                <li><a href="https://www.instagram.com/michael_cruz_cervera/"><img src="../images/icons/instagram.png"></a></li>
-              </ul>
-            <p>&#169;Michael Cruz Cervera </p>
-          </div>
-        </section>
-</div>
-  </body>
 </html>

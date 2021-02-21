@@ -234,8 +234,6 @@ function moveJoint(mouse, joint, degreeLimit) {
                     y: THREE.Math.degToRad(degrees.x)}, 300)
                   .easing(TWEEN.Easing.Quadratic.Out)
                   .start();
-  //joint.rotation.y = THREE.Math.degToRad(degrees.x);
-  //joint.rotation.x = THREE.Math.degToRad(degrees.y);
 }
 
 function onMouseLeave(event, cube) {

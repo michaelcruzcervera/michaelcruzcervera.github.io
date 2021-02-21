@@ -1,8 +1,4 @@
 
-
-section{
-    scroll-snap-align: start;
-}
 section.other {
   padding-left: 0;
   padding-right: 0;
@@ -11,8 +7,9 @@ section.other {
 }
 
 section.banner{
-  /* The image used */
+  /* The image used
 background-image: url("../images/placeholder.png");
+background: var(--)*/
 
 /* Create the parallax scrolling effect */
 background-attachment: fixed;
@@ -20,7 +17,9 @@ background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
 }
-
+.refs{
+  background: var(--bkg-color)
+}
 .refs .content{
   flex-direction: column;
   justify-content: center;
@@ -32,6 +31,12 @@ background-size: cover;
 
 .refs .content ul{
   list-style: none;
+  text-decoration: none;
+}
+
+.refs .content ul a{
+  list-style: none;
+  text-decoration: none;
 }
 
 .ui{
@@ -39,7 +44,7 @@ background-size: cover;
   background: lightblue;
 }
 .ui h2{
-    color: white;
+
 }
 .ui .content{
   display: grid;
@@ -56,9 +61,6 @@ background-size: cover;
 
 .ui .content img:hover{
   box-shadow: 5px 5px 5px 5px rgba(17, 21, 28, 0.03);
-}
-.other .content .tile{
-  margin: 20px;
 }
 
 @media (max-width: 800px)
